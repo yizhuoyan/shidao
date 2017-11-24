@@ -1,0 +1,11 @@
+.layout-full {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.layout-full > * {
+    height: auto !important;
+    flex-grow: 1;
+}

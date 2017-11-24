@@ -1,0 +1,28 @@
+/**分页组件**/
+.pagination-group {
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    border: 0;
+}
+
+.pagination-group > button {
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 0;
+    height: 100%;
+    font-size: 14px;
+    text-align: center;
+    font-family: sans-serif "宋体";
+    line-height: normal;
+    width: 30px;
+
+}
+
+.pagination-group > input {
+    width: 2em;
+    height: 100%;
+    text-align: center;
+    text-indent: 0;
+    font-weight: bold;
+}

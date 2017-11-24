@@ -1,0 +1,52 @@
+.table {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.table > header {
+    flex: 0 0 auto;
+}
+
+.table > main {
+    flex: 0 1 auto;
+    overflow: auto;
+}
+
+.table > footer {
+    flex: 0 0 auto;
+    padding: 5px 15px;
+}
+
+.table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table td, .table th {
+    border: 1px solid #DDDDDD;
+    padding: 5px 0;
+    text-align: center;
+}
+
+.table > header tr {
+    background-color: #F0AD4E;
+    font-weight: bold;
+    height: 2em;
+}
+
+.table > main tr {
+    background-color: #ffffff;
+}
+
+.table > main tr:nth-child(even) {
+    background-color: #F9F9F9;
+}
+
+.table > main tr:HOVER {
+    background-color: #EFEFEF;
+}
+
+
+
+
+

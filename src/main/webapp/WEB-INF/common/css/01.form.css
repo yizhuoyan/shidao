@@ -1,0 +1,58 @@
+/**********form************/
+form {
+    margin: 0;
+
+}
+
+form > p {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+form > p > .grow {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+}
+
+form > p > label {
+    margin-right: 1em;
+    text-align: right;
+    min-width: 3em;
+}
+
+form.label4em > p > label {
+    min-width: 4em;
+}
+
+form.label5em > p > label {
+    min-width: 5em;
+}
+
+form.label6em > p > label {
+    min-width: 6em;
+}
+
+form > p em {
+    color: #7f7f7f;
+    padding-left: 1em;
+    font-style: normal;
+}
+
+form.label4em > p.form-action {
+    padding-left: 4em;
+}
+
+form.label5em > p.form-action {
+    padding-left: 5em;
+}
+
+form.label6em > p.form-action {
+    padding-left: 6em;
+}
+
+form > p.form-action {
+    padding-left: 3em;
+}

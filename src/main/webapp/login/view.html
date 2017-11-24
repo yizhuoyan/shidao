@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>师道教学管理系统|登陆</title>
+    <link href="/common.css" rel="stylesheet">
+
+    <style>
+        header {
+            background: #000;
+            color: #fff;
+            padding: 15px;
+        }
+
+        footer {
+            background: #000;
+            color: #fff;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body class="layout-vbox">
+<header class="layout-justify">
+      <span>
+         <q>吾师道也，夫庸知其年之先后生于吾乎？是故无贵无贱，无长无少，道之所存，师之所存也!</q>
+          <cite>--韩愈</cite>
+      </span>
+    <span>
+         <a class="white" target="frameWindow" href="/todo.html">关于</a>
+      </span>
+</header>
+<main class="layout-center-middle grow">
+    <div>
+        <h1>
+            师道
+            <small>教学系统</small>
+        </h1>
+        <hr>
+        <form id="loginForm">
+            <p>
+                <label for="accountEL">账户:</label>
+                <input id="accountEL" size="32" name="account" value="administrator"
+                       type="text" placeholder="请输入账户" autocomplete="off" maxlength="16"
+                       required autofocus>
+            </p>
+            <p>
+                <label for="passwordEL">密码:</label>
+                <input id="passwordEL" size="32" name="password" value="administrator"
+                       type="password" autocomplete="off" maxlength="16" placeholder="请输入密码" required>
+            </p>
+            <p class="form-action">
+                <button type="submit" class="D3">登录</button>
+                <a target="frameWindow" href="/login-help/view.html">登陆遇到问题?</a>
+            </p>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <adress>&copy;版权所有
+        <a href="mailto:root@yizhuoyan.com">root@yizhuoyan.com</a>
+    </adress>
+</footer>
+<script src="/common.js"></script>
+<script src="controller.js"></script>
+</body>
+</html>

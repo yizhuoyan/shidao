@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>已分配角色</title>
+    <link rel="stylesheet" href="/common.css">
+
+    <style>
+        .role-box {
+            border: 1px solid #999;
+            border-radius: 4px;
+            float: left;
+            margin-right: 1em;
+            margin-bottom: 1em;
+            padding: 5px;
+        }
+
+        .role-box > legend {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .role-box p {
+            margin: 0;
+            text-indent: 2em;
+            width: 150px;
+            height: 80px;
+            font-size: 80%;
+            font-style: italic;
+        }
+
+
+    </style>
+
+
+</head>
+<body class="layout-vbox">
+<header class="pad">
+    <p>已分配了<b id="grantTotalRolesEL"></b>个角色
+    <p>
+</header>
+<main style="overflow: auto">
+    <div id="grantRolesBox" class="content-box">
+        <script type="text/template" name="showGrantRolesTemplate(roles)">
+            <-for(var i=0,z=roles.length,r;i < z;i++){r=roles[i];->
+
+                <fieldset class="role-box" >
+                    <legend>$(r.name)【$(r.code)】</legend>
+                    <p>$(r.remark)</p>
+                </fieldset>
+            <- } ->
+
+        </script>
+    </div>
+</main>
+<script src="/common.js"></script>
+<script src="controller.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+/*************面包屑导航*******************************/
+ol.breadcrumb {
+    background-color: #F0F2F5;
+    border-bottom: 1px solid #D8DADD;
+    padding: 5px 15px;
+}
+
+ol.breadcrumb > li {
+    display: inline-block;
+}
+
+ol.breadcrumb > li + li:before {
+    color: #ccc;
+    content: ">";
+}

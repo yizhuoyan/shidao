@@ -1,0 +1,46 @@
+/***滚动条****/
+.scrollBeauty {
+    scrollbar-face-color: #F3F3F3; /*面子*/
+    scrollbar-arrow-color: #C0C0C0; /*箭头*/
+    scrollbar-3dlight-color: #C0C0C0; /*最外左*/
+    scrollbar-highlight-color: #FFFFFF; /*左二*/
+    scrollbar-shadow-color: #FFFFFF; /*右二*/
+    scrollbar-darkshadow-color: #C0C0C0; /*右一*/
+    scrollbar-track-color: #F3F3F3; /*滑道*/
+}
+
+/*滚动条整体*/
+::-webkit-scrollbar {
+    width: 14px; /*滚动条宽度*/
+}
+
+::-webkit-scrollbar-track {
+    background-color: #F3F3F3; /*滑道全部*/
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: #F3F3F3; /*滑道*/
+    -webkit-border-radius: 4px; /*滑道圆角宽度*/
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #F3F3F3; /*滑动条表面*/
+    border: solid 1px #C0C0C0; /*滑动条边框*/
+    border-radius: 4px; /*滑动条圆角宽度*/
+}
+
+/*横竖滚动条交角*/
+::-webkit-scrollbar-corner {
+    background-color: #F3F3F3;
+}
+
+/*横竖滚动条交角图案*/
+::-webkit-resizer {
+    background-repeat: no-repeat;
+    background-position: bottom right;
+}
+
+/*鼠标滑过滑动条*/
+::-webkit-scrollbar-thumb:hover {
+    background-color: #F3F3E0;
+}

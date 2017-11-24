@@ -1,0 +1,7 @@
+label + label {
+    margin-left: 1em;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}

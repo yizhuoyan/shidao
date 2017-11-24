@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>功能详情</title>
+    <link rel="stylesheet" href="/common.css">
+
+</head>
+
+<body class="layout-vbox">
+<main style="overflow: auto" class="pad">
+    <form id="modForm" class="label5em">
+        <input type="hidden" name="id">
+        <input type="hidden" name="parentId">
+        <p>
+            <label for="parentNameEL">*父功能:</label>
+            <span class="input-group grow">
+                    <button style="width: 30px" id="pickParentBtn" type="button"><i class="fa fa-search"></i></button>
+                    <input readonly type="text" id="parentNameEL" size="32" maxlength="16" placeHolder="顶层功能">
+                    <button class="fa fa-remove" id="clearParentBtn" type="button"></button>
+            </span>
+        </p>
+        <p>
+            <label for="inputCodeEL"> *代号:</label>
+            <span class="input-group grow">
+                <span class="gap-left" id="parentCodeEL" style="color: #555">/</span>
+                <input type="hidden" name="code">
+                <input class="grow"  id="inputCodeEL" type="text" size="32" style="padding-left: 0"
+                       maxlength="4" required placeholder="最多4个字符，建议是功能的缩写或数字">
+            </span>
+        </p>
+        <p>
+            <label> *名称:</label>
+            <input class="grow" name="name" type="text" size="32"
+                   maxlength="32" required>
+        </p>
+        <p>
+            <label> *类型:</label>
+            <span>
+                    <label>
+        			    <input name="kind" type="radio" value="0" checked> 目录
+        		    </label>
+                    <label>
+                        <input name="kind" type="radio" value="1">页面
+                    </label>
+                    <label>
+                        <input name="kind" type="radio" value="2">按钮
+                    </label>
+                </span>
+        </p>
+        <p>
+            <label>URL:</label>
+            <input class="grow" name="url" size="32"
+                   maxlength="64" type="text">
+        </p>
+        <p>
+            <label> *状态:</label>
+            <span>
+                <label>
+        			<input name="status" type="radio" value="1" checked> 启用
+        		</label>
+        		<label>
+        					<input name="status" type="radio" value="0">停用
+        		</label>
+            </span>
+        </p>
+        <p>
+            <label>菜单排序号:</label>
+            <input class="grow" type="text" size="32" name="orderCode">
+            <em>用于主页菜单排序，序号越小，越靠前</em>
+        </p>
+        <p>
+            <label>描述:</label>
+            <textarea class="grow" rows="5" name="remark"></textarea>
+        </p>
+        <p>
+            <label>创建时间:</label>
+            <span id="createTimeEL"></span>
+        </p>
+        <p class="form-action">
+            <button type="submit" class="btn">提交修改</button>
+            <button type="reset" class="btn">重置</button>
+
+        </p>
+    </form>
+</main>
+<script src="/common.js"></script>
+<script src="controller.js"></script>
+</body>
+</html>

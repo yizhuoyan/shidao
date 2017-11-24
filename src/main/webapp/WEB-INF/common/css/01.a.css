@@ -1,0 +1,15 @@
+a {
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+a:hover {
+    text-decoration: none;
+}
+a:link{
+
+}
+
+a + a, .btn + a {
+    margin-left: 30px;
+}

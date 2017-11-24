@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN"
+        "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration>
+    <!-- 定义默认目的地 -->
+    <appender name="default" class="org.apache.log4j.ConsoleAppender">
+        <param name="target" value="System.out"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p-%m at:%c-%L-%t %d{yyyy-MM-dd HH:mm:ss}%n"/>
+        </layout>
+    </appender>
+
+    <!-- 定义文件目的地 -->
+    <appender name="File" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="/log.log"/>
+        <param name="MaxFileSize" value="1024KB"/>
+        <param name="MaxBackupIndex" value="5"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p [%c-%L] - %m%n"/>
+        </layout>
+    </appender>
+
+
+    <!-- 配置日志记录器 -->
+
+
+    <!-- 事务和数据库连接 -->
+    <logger name="org.springframework.jdbc.datasource.DataSourceUtils">
+        <level value="trace"/>
+    </logger>
+
+    <logger name="org.springframework">
+        <level value="error"/>
+    </logger>
+
+    <logger name="com.yizhuoyan.shidao">
+        <level value="trace"/>
+    </logger>
+
+    <logger name=" com.yizhuoyan.shidao.platform.web">
+        <level value="error"/>
+    </logger>
+
+
+    <!-- 配置根日志记录器 -->
+    <root>
+        <level value="error"/>
+        <appender-ref ref="default"/>
+    </root>
+
+</log4j:configuration>

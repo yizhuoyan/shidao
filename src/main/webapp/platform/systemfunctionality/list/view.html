@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>系统功能</title>
+    <link rel="stylesheet" href="/common.css">
+    <script src="/common.js"></script>
+    <link href="/weblib/fancytree/ui.fancytree.css" rel="stylesheet">
+    <script src="/weblib/fancytree/jquery.fancytree.js"></script>
+    <style type="text/css">
+        menu {
+            width: 200px;
+            border-right: 1px solid #dddddd;
+            box-sizing: border-box;
+        }
+    </style>
+
+
+</head>
+<body class="layout-vbox">
+<header class="action-bar">
+    <h1>系统功能一览</h1>
+    <a class="fa fa-plus" href="../add/view.html">新增</a>
+    <a id="delBtn" class="fa fa-remove" >删除</a>
+</header>
+<main class="grow layout-hbox">
+    <menu class="layout-vbox" id="functionalityTreeBox">
+    </menu>
+
+    <article id="detailTabLayout" class="grow layout-tab">
+        <header class="tabs">
+            <a href="#card-base" class="active">基础信息</a>
+            <a href="#card-granted-roles">已分配角色</a>
+        </header>
+
+        <section class="tabs-cards" data-activeListener="handleTabActived">
+            <iframe id="card-base" class="tab-card" data-src="../check/view.html"></iframe>
+            <iframe id="card-granted-roles" class="tab-card" data-src="../check-granted-roles/view.html"></iframe>
+        </section>
+
+    </article>
+
+</main>
+<script src="controller.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+hr {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+hr.long {
+    margin: 1em 6em
+}
+
+hr.auto {
+    margin: 0;
+}
