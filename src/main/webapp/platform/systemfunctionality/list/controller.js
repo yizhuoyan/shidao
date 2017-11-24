@@ -39,7 +39,6 @@ var hanlderBroadcast=function () {
 window.onbroadcast("modFunctionalityOk", function (fid) {
     //重新加载
     updateFunctionalityTableTree().done(function () {
-        console.log(arguments)
         if (fid) {
             tree.activateKey(fid);
         }

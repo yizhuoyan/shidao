@@ -51,6 +51,9 @@
      */
     var handleModFormSubmit = function () {
         $modFormSubmitBtnEL.disabled(true);
+        //处理功能代号
+        var inputCode=$inputCodeEL.val();
+        this.code.value=$parentFunctionalityCodeEL.text()+inputCode;
         $.ajaxPost(modifyFunctionalityURL, $(this).serialize()).done(
             function (resp) {
                 toast("修改成功!");
@@ -117,7 +120,6 @@
 //更新详情区域
     var updateFunctionalityDetailView = function (m) {
         var form = $modFormEL[0];
-        form.id.value = $$(m.id);
         var code = m.code;
         form.code.value = $$(code);
         $inputCodeEL.val(code.substr(code.lastIndexOf('/') + 1));

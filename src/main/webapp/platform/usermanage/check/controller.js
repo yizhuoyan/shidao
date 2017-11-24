@@ -137,7 +137,6 @@
     
     var updateFormView = function (m) {
         var form = $modFormEL[0];
-        form.id.value = $$(m.id);
         $userAccountEL.text($$(m.account));
         $userNameEL.text($$(m.name));
         if(m.avator) {

@@ -71,7 +71,6 @@
     var updateFormView = function (m) {
         var form = $modForm[0];
         $headingRoleNameEL.text($$(m.name));
-        form.id.value = $$(m.id);
         form.name.value = $$(m.name);
         form.code.value = $$(m.code);
         form.remark.value = $$(m.remark);

@@ -40,7 +40,7 @@ public class SystemFunctionalityFunctionImpl extends AbstractFunctionSupport imp
         //取出code中的父代号
         String inputParentCode=code.substring(0,code.lastIndexOf('/'));
         //取出子代号
-        String inputChildCode=code.substring(inputParentCode.length());
+        String inputChildCode=code.substring(inputParentCode.length()+1);
         assertFalse("must-less-than.code",inputChildCode.length()>4,4);
         String parentCode="";
         if(parent!=null){

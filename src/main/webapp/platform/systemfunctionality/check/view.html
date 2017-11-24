@@ -10,7 +10,6 @@
 <body class="layout-vbox">
 <main style="overflow: auto" class="pad">
     <form id="modForm" class="label5em">
-        <input type="hidden" name="id">
         <input type="hidden" name="parentId">
         <p>
             <label for="parentNameEL">*父功能:</label>
@@ -21,11 +20,11 @@
             </span>
         </p>
         <p>
-            <label for="inputCodeEL"> *代号:</label>
+            <label name="code" for="inputCodeEL"> *代号:</label>
             <span class="input-group grow">
                 <span class="gap-left" id="parentCodeEL" style="color: #555">/</span>
                 <input type="hidden" name="code">
-                <input class="grow"  id="inputCodeEL" type="text" size="32" style="padding-left: 0"
+                <input class="grow"  id="inputCodeEL" type="text"  style="padding-left: 0"
                        maxlength="4" required placeholder="最多4个字符，建议是功能的缩写或数字">
             </span>
         </p>

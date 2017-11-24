@@ -50,7 +50,6 @@ var handleResetBtnClick=function (evt) {
 
 var updateView = function (m) {
     var form=$modFormEL[0];
-    form.id.value = $$(m.id);
     form.name.value = $$(m.name);
     form.value.value = $$(m.value);
     form.remark.value = $$(m.remark);
