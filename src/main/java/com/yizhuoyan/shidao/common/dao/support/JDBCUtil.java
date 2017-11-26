@@ -50,18 +50,7 @@ public static final String generateInsertSQL(String table, String columns){
   return sql.toString();
 }
 
-public static final String generateWhereLikeSql(String[] columnArr, String key){
-  //组装wheresql
-  StringBuilder sql = new StringBuilder();
-  if(key!=null){
-    sql.append(" where ")
-        .append(columnArr[0]).append(" like ? ");
-    for(int i = 1; i<columnArr.length; i++){
-      sql.append(" or ").append(columnArr[i]).append(" like ? ");
-    }
-  }
-  return sql.toString();
-}
+
 
 public static final String generateLikeSql(String[] columnArr, String key){
   //组装wheresql

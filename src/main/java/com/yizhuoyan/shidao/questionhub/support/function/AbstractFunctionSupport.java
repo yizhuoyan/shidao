@@ -1,5 +1,7 @@
 package com.yizhuoyan.shidao.questionhub.support.function;
 
+import com.yizhuoyan.shidao.platform.dao.SystemUserDao;
+import com.yizhuoyan.shidao.platform.support.service.SystemConfigService;
 import com.yizhuoyan.shidao.questionhub.dao.KnowledgePointDao;
 import com.yizhuoyan.shidao.questionhub.dao.QuestionDao;
 import com.yizhuoyan.shidao.questionhub.dao.QuestionKindDao;
@@ -10,10 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public abstract class AbstractFunctionSupport {
     @Autowired
-    private QuestionDao questionDao;
+    protected QuestionDao questionDao;
     @Autowired
-    private QuestionKindDao kindDao;
+    protected QuestionKindDao kindDao;
     @Autowired
-    private KnowledgePointDao knowledgePointDao;
+    protected KnowledgePointDao knowledgePointDao;
+    @Autowired
+    protected SystemConfigService systemConfigService;
+    @Autowired
+    protected SystemUserDao userDao;
 
 }

@@ -7,7 +7,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -32,7 +31,6 @@ public class JsonResponseExceptionResolver implements HandlerExceptionResolver,M
             //spring参数绑定异常
             if(ex instanceof BindException){
                 BindException be=(BindException) ex;
-
                 List<FieldError> fieldErrors = be.getFieldErrors();
                 for(FieldError error:fieldErrors){
                     codes.add("must-type-match-"+be.getFieldType(error.getField()).getName()+"."+error.getField());
@@ -53,7 +51,6 @@ public class JsonResponseExceptionResolver implements HandlerExceptionResolver,M
             resp.setContentType("application/json;charset=utf-8");
             try (PrintWriter writer = resp.getWriter()) {
                 String[] messages=new String[codes.size()];
-                String code;
                 for(int i=0,z=messages.length;i<z;i++){
                     messages[i]=i18nMessage(codes.get(i));
                 }

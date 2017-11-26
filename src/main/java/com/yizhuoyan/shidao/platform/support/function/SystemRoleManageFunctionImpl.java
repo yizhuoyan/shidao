@@ -5,6 +5,7 @@
  */
 package com.yizhuoyan.shidao.platform.support.function;
 
+import com.yizhuoyan.shidao.common.dao.support.SelectLikePo;
 import com.yizhuoyan.shidao.common.util.KeyValueMap;
 import com.yizhuoyan.shidao.common.validatation.ParameterObjectValidator;
 import com.yizhuoyan.shidao.platform.po.SysRolePo;
@@ -94,7 +95,9 @@ public class SystemRoleManageFunctionImpl extends AbstractFunctionSupport implem
     public List<SystemRoleModel> listRole(String key)
             throws Exception {
         key = trim(key);
-        List<SystemRoleModel> list = this.roleDao.selectsLike(wrap(key, "%"), "code,name,remark", "code");
+        List<SystemRoleModel> list = this.roleDao.selectsByLike(
+                SelectLikePo.of("code,name,remark",key)
+                        .setOrderBy("code"));
         return list;
     }
 

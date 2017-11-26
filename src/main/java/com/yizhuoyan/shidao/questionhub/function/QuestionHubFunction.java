@@ -5,12 +5,14 @@ import com.yizhuoyan.shidao.questionhub.entity.QuestionKindModel;
 import com.yizhuoyan.shidao.questionhub.entity.QuestionModel;
 import com.yizhuoyan.shidao.questionhub.po.QuestionKindPo;
 import com.yizhuoyan.shidao.questionhub.po.QuestionPo;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/11/21 0021.
  */
+@Transactional
 public interface QuestionHubFunction {
 
     QuestionModel addQuestion(QuestionPo po)throws  Exception;

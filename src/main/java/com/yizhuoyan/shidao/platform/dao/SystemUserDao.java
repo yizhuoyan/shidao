@@ -6,7 +6,6 @@
 package com.yizhuoyan.shidao.platform.dao;
 
 import com.yizhuoyan.shidao.common.dao.CRUDDao;
-import com.yizhuoyan.shidao.common.dao.PaginationQueryDao;
 import com.yizhuoyan.shidao.platform.entity.SystemUserModel;
 
 import java.sql.Connection;
@@ -15,7 +14,7 @@ import java.util.List;
 /**
  * @author root@yizhuoyan.com
  */
-public interface SystemUserDao extends CRUDDao<SystemUserModel>, PaginationQueryDao<SystemUserModel>{
+public interface SystemUserDao extends CRUDDao<SystemUserModel> {
 
 List<SystemUserModel> selectByRoleId(String roleId) throws Exception;
 

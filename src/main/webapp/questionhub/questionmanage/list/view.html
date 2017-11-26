@@ -2,18 +2,23 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>系统用户管理</title>
+    <title>题目管理</title>
     <link rel="stylesheet" href="/common.css">
-
 </head>
 <body class="layout-vbox">
 <header class="action-bar">
-    <h1>系统用户管理</h1>
-    <a class="fa fa-plus" href="../add/view.html">新增</a>
+    <h1>题目管理</h1>
+    <a href="../add/view.html" class="fa fa-plus">新增</a>
     <span class="grow"></span>
-    <form id="queryForm">
+    <form id="queryForm" >
         <input name="pageNo" type="hidden" value="1">
         <span class="input-group">
+            <select name="kind">
+                <option value="">所有题型</option>
+                <option value="1">单选题2</option>
+                <option value="2">单选题3</option>
+                <option value="3">单选题4</option>
+            </select>
             <input name="key" type="text" placeholder="Search for..."
                    maxlength="16">
             <button type="submit" class="fa fa-search"></button>
@@ -25,55 +30,53 @@
         <table>
             <colgroup>
                 <col width="50px">
+                <col width="50px">
                 <col width="100px">
-                <col width="150px">
                 <col width="auto">
                 <col width="100px">
-                <col width="200px">
-                <col width="200px">
+                <col width="100px">
             </colgroup>
-            <thead>
             <tr>
                 <th>No.</th>
                 <th>操作</th>
-                <th>账号</th>
-                <th>姓名</th>
-                <th>状态</th>
-                <th>最近登录时间</th>
+                <th>类型</th>
+                <th>题干</th>
+                <th>创建人</th>
+                <th>创建时间</th>
             </tr>
-            </thead>
         </table>
     </header>
     <main>
         <table class="data">
             <tbody id="dataQueryingTableBody">
-            <tr>
-                <td colspan="99">
-                    <i class="fa fa-spinner fa-spin"></i>
-                </td>
-            </tr>
+                <tr>
+                    <td colspan="99">
+                        <i class="fa fa-spinner fa-spin"></i>
+                    </td>
+                </tr>
             </tbody>
             <tbody id="dataNotFoundTableBody" style="display: none">
-            <tr>
-                <td colspan="99">暂无相关记录!</td>
-            </tr>
+                <tr>
+                    <td colspan="99">暂无相关记录!</td>
+                </tr>
             </tbody>
             <tbody id="dataFoundTableBody">
-                <script type="text/template" name="dataFoundTableTemplate(rows)">
-                    <-for(var i=0,r;i< rows.length;i++){r=rows[i];->
-                         <tr>
-                            <td>$(i+1)</td>
-                            <td>
-                                <a href="../check/view.html?$(r.id)">查看/操作</a>
-                            </td>
-                            <td>$(r.account)</td>
-                            <td>$(r.name)</td>
-                            <td>$(r.status===1?"正常":"停用")</td>
-                            <td>$(Date.format(r.lastLoginTime))</td>
-                        </tr>
-                     <-}->
-                </script>
             </tbody>
+            <script type="text/template" name="dataFoundTableBodyTemplate(items)">
+                <-for(var i=0,item;i < items.length;i++){item=items[i];->
+
+                <tr>
+                    <td>$(i+1)</td>
+                    <td>
+                        <a href="../check/view.html?$(item.id)">查看/操作</a>
+                    </td>
+                    <td>$(item.kind.name)</td>
+                    <td class="left">$(item.content)</td>
+                    <td>$(item.createUser.name)</td>
+                    <td>$(Date.format(item.createTime))</td>
+                </tr>
+                <-}->
+            </script>
         </table>
     </main>
     <footer id="paginationRegionEL" class="layout-justify" style="display: none">

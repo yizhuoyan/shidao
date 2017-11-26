@@ -20,6 +20,11 @@ public SystemConfigService(SystemConfigDao dao){
 }
 
 
+
+public int getDefaultPageSize(){
+  return getSystemConfig("PAGINATION-PAGESIZE",10);
+}
+
 @SuppressWarnings("unchecked")
 public <T> T getSystemConfig(String name, T defaultValue){
 

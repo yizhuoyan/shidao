@@ -1,5 +1,6 @@
 package com.yizhuoyan.shidao.platform.support.function;
 
+import com.yizhuoyan.shidao.common.dao.support.SelectLikePo;
 import com.yizhuoyan.shidao.common.util.KeyValueMap;
 import com.yizhuoyan.shidao.common.validatation.ParameterObjectValidator;
 import com.yizhuoyan.shidao.common.validatation.validategroup.Mod;
@@ -241,7 +242,9 @@ public class SystemFunctionalityFunctionImpl extends AbstractFunctionSupport imp
     public List<SystemFunctionalityModel> listSystemFunctionality(String key)
             throws Exception{
         key = trim(key);
-        List<SystemFunctionalityModel> list = this.functionalityDao.selectsLike(wrap(key, "%"), "code,name,url", "orderCode");
+        List<SystemFunctionalityModel> list = this.functionalityDao.selectsByLike(
+                        SelectLikePo.of("code,name,url",key)
+                                .setOrderBy("orderCode"));
         return list;
     }
 }

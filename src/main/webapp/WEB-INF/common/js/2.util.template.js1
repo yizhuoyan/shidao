@@ -46,11 +46,11 @@
             //添加try-finally保证模板方法返回值
             out.push("try{");
             //添加工具方法,用于过滤null和undefined和特殊字符
-            out.push("function $(s){if(s===null||s===undefined)return '';return String(s).replace(/[<>&]/g,function (c){return {'<':'&lt;','>':'&gt;','&':'&amp;'}[c]})}");
+            out.push("function $(s){if(s===null||s===undefined)return '';if(!arguments[1])return String(s).replace(/[<>&]/g,function (c){return {'<':'&lt;','>':'&gt;','&':'&amp;'}[c]})}");
             //构建方法体
             staticMethod.parse(this.templateSource, out);
             //添加finally保证模板方法返回值
-            out.push("}finally{return _;}");
+            out.push("}catch(e){console.log(e)}finally{return _;}");
 
             var funBody = out.join("\n");
             var args = this.functionArgumentNames;
@@ -75,7 +75,7 @@
     var staticMethod = {
         parseFunctionNameAndArgumentNames: function (funName) {
             var begin = funName.indexOf("(");
-            if (begin == -1) {
+            if (begin === -1) {
                 return [funName, null];
             } else {
                 return [funName.substring(0, begin), funName.substring(begin + 1, funName.lastIndexOf(")"))];
@@ -134,7 +134,7 @@
                 //换行符分割
                 var lines = txt.split(/\r?\n/);
                 if (lines.length > 0) {
-                    var i = 0, z = lines.length - 1
+                    var i = 0, z = lines.length - 1;
                     while (i < z) {
                     //一行一行输出,每行多输出一个换行
                         out.push('_+="' + lines[i++] + '";');

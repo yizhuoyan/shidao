@@ -27,7 +27,9 @@
             return new Date(d).format(fmt);
         } else if (d instanceof Date) {
             return d.format(fmt);
-        } else {
+        } else if(typeof d==="undefined"||d===null){
+            return "";
+        }else{
             return String(d);
         }
     }

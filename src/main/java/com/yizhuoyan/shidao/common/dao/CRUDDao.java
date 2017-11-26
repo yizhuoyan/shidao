@@ -1,5 +1,7 @@
 package com.yizhuoyan.shidao.common.dao;
 
+import com.yizhuoyan.shidao.common.dao.support.SelectLikePo;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +23,9 @@ boolean exist(String column, Object value) throws Exception;
 
 T select(String column, Object value) throws Exception;
 
-List<T> selectsLike(String key, String likeColumns, String orderBy) throws Exception;
+List<T> selects(String column, Object value,String orderBy) throws Exception;
 
+List<T> selectsByLike(SelectLikePo po) throws Exception;
+    int selectsByLikeOnPagination(List<T> pageData,SelectLikePo po) throws Exception;
 
 }

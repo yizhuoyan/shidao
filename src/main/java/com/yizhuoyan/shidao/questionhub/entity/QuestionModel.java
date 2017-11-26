@@ -22,8 +22,8 @@ public class QuestionModel {
     private String answer;
     private String answerExplain;
     private String options;
-    private String belongQuestionId;
-    private QuestionModel belongQuestion;
+    private String compositeQuestionId;
+    private QuestionModel compositeQuestion;
     private int childrenAmount;
 
     public Map toJSONMap(){
@@ -54,10 +54,10 @@ public class QuestionModel {
         if(this.options!=null) {
             map.put("options", this.options);
         }
-        if(this.belongQuestion!=null) {
-            map.put("belongQuestion", KeyValueMap.of(2)
-                    .put("id", this.belongQuestion.getId())
-                    .put("content", this.belongQuestion.getContent())
+        if(this.compositeQuestion!=null) {
+            map.put("compositeQuestion", KeyValueMap.of(2)
+                    .put("id", this.compositeQuestion.getId())
+                    .put("content", this.compositeQuestion.getContent())
             );
         }
 
@@ -122,6 +122,22 @@ public class QuestionModel {
         this.kind = kind;
     }
 
+    public String getCompositeQuestionId() {
+        return compositeQuestionId;
+    }
+
+    public void setCompositeQuestionId(String compositeQuestionId) {
+        this.compositeQuestionId = compositeQuestionId;
+    }
+
+    public QuestionModel getCompositeQuestion() {
+        return compositeQuestion;
+    }
+
+    public void setCompositeQuestion(QuestionModel compositeQuestion) {
+        this.compositeQuestion = compositeQuestion;
+    }
+
     public Instant getCreateTime() {
         return createTime;
     }
@@ -162,21 +178,6 @@ public class QuestionModel {
         this.options = options;
     }
 
-    public String getBelongQuestionId() {
-        return belongQuestionId;
-    }
-
-    public void setBelongQuestionId(String belongQuestionId) {
-        this.belongQuestionId = belongQuestionId;
-    }
-
-    public QuestionModel getBelongQuestion() {
-        return belongQuestion;
-    }
-
-    public void setBelongQuestion(QuestionModel belongQuestion) {
-        this.belongQuestion = belongQuestion;
-    }
 
     public int getChildrenAmount() {
         return childrenAmount;
@@ -184,5 +185,26 @@ public class QuestionModel {
 
     public void setChildrenAmount(int childrenAmount) {
         this.childrenAmount = childrenAmount;
+    }
+
+    @Override
+    public String toString() {
+        return "QuestionModel{" +
+                "id='" + id + '\'' +
+                ", content='" + content + '\'' +
+                ", difficult=" + difficult +
+                ", createUserId='" + createUserId + '\'' +
+                ", createUser=" + createUser +
+                ", kindId='" + kindId + '\'' +
+                ", kind=" + kind +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", answer='" + answer + '\'' +
+                ", answerExplain='" + answerExplain + '\'' +
+                ", options='" + options + '\'' +
+                ", compositeQuestionId='" + compositeQuestionId + '\'' +
+                ", compositeQuestion=" + compositeQuestion +
+                ", childrenAmount=" + childrenAmount +
+                '}';
     }
 }

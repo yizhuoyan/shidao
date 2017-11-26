@@ -6,6 +6,7 @@ import com.yizhuoyan.shidao.common.util.PlatformUtil;
 import com.yizhuoyan.shidao.questionhub.entity.QuestionModel;
 import com.yizhuoyan.shidao.questionhub.function.QuestionHubFunction;
 import com.yizhuoyan.shidao.questionhub.po.QuestionPo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/questionhub/question")
-public class QuestionHandler {
+public class QuestionManageHandler  {
+    @Autowired
     private QuestionHubFunction fun;
 
     public JsonResponse add(QuestionPo po)throws  Exception{

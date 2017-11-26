@@ -3,6 +3,7 @@ package com.yizhuoyan.shidao.questionhub.support.dao;
 import com.yizhuoyan.shidao.common.dao.support.SingleTableDaoSupport;
 import com.yizhuoyan.shidao.questionhub.dao.KnowledgePointDao;
 import com.yizhuoyan.shidao.questionhub.entity.KnowledgePointModel;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,7 @@ import java.sql.ResultSet;
 /**
  * Created by Administrator on 2017/11/21 0021.
  */
+@Repository
 public class KnowledgePointDaoImpl extends SingleTableDaoSupport<KnowledgePointModel> implements KnowledgePointDao {
 
     public KnowledgePointDaoImpl() {

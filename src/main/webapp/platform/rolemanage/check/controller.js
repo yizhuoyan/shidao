@@ -18,8 +18,8 @@
 
     $(function () {
         $modForm = $("#modForm");
-        $formSubmitBtn = $modForm.querySelector("button[type=submit]");
-        $formResetBtn = $modForm.querySelector("button[type=reset]");
+        $formSubmitBtn = $modForm.find("button[type=submit]");
+        $formResetBtn = $modForm.find("button[type=reset]");
         $delBtn = $("#delBtn");
         $headingRoleNameEL = $("#headingRoleNameEL");
         //创建tablayout
