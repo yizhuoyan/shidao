@@ -1,6 +1,9 @@
 package com.yizhuoyan.shidao.common.util;
 
 import java.io.Serializable;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.UUID;
@@ -68,6 +71,7 @@ public static String prefix0(String target, int maxLength){
  *
  * @return
  */
+
 public static String uuid(){
   String uuid = UUID.randomUUID().toString();
   char[] cs = new char[32];
@@ -78,6 +82,24 @@ public static String uuid(){
   }
   return new String(cs);
 }
+    public static String uuid16(){
+       long uuid =SnowFlakeUUID.uuid();
+       return prefix0(Long.toString(uuid,16),16);
+    }
+    public static String uuid12(){
+        long uuid =SnowFlakeUUID.uuid();
+        return Long.toString(uuid,36);
+    }
+public static void main(String[] args)throws Exception{
+
+    for(int i=10;i-->0;){
+        System.out.println(uuid16());
+
+    }
+
+
+}
+
 
 static final public String wrap(final String s, final String wrap){
   if(s==null){
