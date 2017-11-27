@@ -1,5 +1,9 @@
 package com.yizhuoyan.shidao.questionhub.entity;
 
+import com.yizhuoyan.shidao.common.util.KeyValueMap;
+
+import java.util.Map;
+
 /**
  * Created by Administrator on 2017/11/21 0021.
  */
@@ -9,6 +13,19 @@ public class QuestionKindModel {
     private String remark;
     private String introduction;
 
+
+    public Map toJsonMap(){
+        KeyValueMap map=new KeyValueMap(4);
+        map.put("id",this.id);
+        map.put("name",this.name);
+        if(this.remark!=null) {
+            map.put("remark", this.remark);
+        }
+        if(this.introduction!=null) {
+            map.put("introduction", this.introduction);
+        }
+        return  map;
+    }
     public String getId() {
         return id;
     }

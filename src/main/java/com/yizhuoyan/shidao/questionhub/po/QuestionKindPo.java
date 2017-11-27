@@ -4,6 +4,16 @@ package com.yizhuoyan.shidao.questionhub.po;
  * Created by Administrator on 2017/11/21 0021.
  */
 public class QuestionKindPo {
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     private String remark;
     private String introduction;
 

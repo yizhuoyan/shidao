@@ -3,7 +3,6 @@
     var $queryForm;
     //提交按钮
     var $submitBtnEL;
-    var $questionKindSelectEL;
     //数据表格体
     var $dataFoundTableBodyEL;
     var $dataNotFoundTableBodyEL;
@@ -24,16 +23,11 @@
     $(function () {
         $queryForm = $("#queryForm");
         $submitBtnEL = $queryForm.find("button[type=submit]");
-        $questionKindSelectEL=$queryForm.find("select[name=kind]");
+
         $dataFoundTableBodyEL = $("#dataFoundTableBody");
         $dataNotFoundTableBodyEL = $("#dataNotFoundTableBody");
         $dataQueryingTableBodyEL= $("#dataQueryingTableBody");
         $paginationRegionEL = $("#paginationRegionEL");
-
-        //init kind select
-        $.load("/questionhub/questionkind/list",function (data) {
-            updateKindSelectView(data);
-        });
 
         queryViewGroup.add([$dataFoundTableBodyEL,$paginationRegionEL])
             .add($dataQueryingTableBodyEL)
@@ -111,17 +105,6 @@
                 break;
         }
     };
-
-    var updateKindSelectView=function (kinds) {
-        var fragment=document.createDocumentFragment();
-        for(var i=0,z=kinds.length,kind;i<z;i++){kind=kinds[i];
-            var option=document.createElement("option");
-            option.value=kind.id;
-            option.textContent=kind.name;
-            fragment.appendChild(option);
-        }
-        $questionKindSelectEL.append(fragment);
-    }
     var showQueryingView=function () {
         queryViewGroup.onlyShow($dataQueryingTableBodyEL);
     };

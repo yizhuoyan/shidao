@@ -36,7 +36,7 @@ public class SystemRoleManageFunctionImpl extends AbstractFunctionSupport implem
         String code = po.getCode();
         assertFalse("already-exist", roleDao.exist("code", code), code);
         SystemRoleModel model = new SystemRoleModel();
-        model.setId(uuid());
+        model.setId(uuid12());
         model.setCode(code);
         model.setName(po.getName());
         model.setRemark(po.getRemark());

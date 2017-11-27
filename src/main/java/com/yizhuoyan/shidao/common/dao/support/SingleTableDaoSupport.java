@@ -88,6 +88,8 @@ public abstract class SingleTableDaoSupport<T> implements CRUDDao<T> {
     }
 
 
+
+
     @Override
     public void update(Serializable id, Map<String, Object> columns) throws Exception {
         if (columns.size() == 0) return;
@@ -166,7 +168,7 @@ public abstract class SingleTableDaoSupport<T> implements CRUDDao<T> {
         //the total rows
         int total = 0;
         //be liked columns
-        String[] columnArr = columns.split(",");
+        String[] columnArr = po.getColumns().split(",");
         String key=po.getLikeValue();
         String whereLikeSql = generateLikeSql(columnArr, key);
 
@@ -200,7 +202,7 @@ public abstract class SingleTableDaoSupport<T> implements CRUDDao<T> {
         return total;
     }
 
-    public List<T> selectsAll(String orderBys) throws Exception {
+    public List<T> selects(String orderBys) throws Exception {
         Sql sql = Sql.select(generateSelectColumns())
                 .from(this.tableName)
                 .orderBy(orderBys);

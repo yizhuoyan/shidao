@@ -86,19 +86,12 @@ public static String uuid(){
        long uuid =SnowFlakeUUID.uuid();
        return prefix0(Long.toString(uuid,16),16);
     }
+
     public static String uuid12(){
         long uuid =SnowFlakeUUID.uuid();
-        return Long.toString(uuid,36);
-    }
-public static void main(String[] args)throws Exception{
-
-    for(int i=10;i-->0;){
-        System.out.println(uuid16());
-
+        return prefix0(Long.toString(uuid,16),36);
     }
 
-
-}
 
 
 static final public String wrap(final String s, final String wrap){

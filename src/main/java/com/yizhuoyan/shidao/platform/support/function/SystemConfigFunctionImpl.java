@@ -51,7 +51,7 @@ public class SystemConfigFunctionImpl extends AbstractFunctionSupport implements
         assertFalse("already-exist.name", configDao.exist("name", name), name);
 
         SystemConfigModel item = new SystemConfigModel();
-        item.setId(uuid());
+        item.setId(uuid12());
         item.setName(po.getName());
         item.setValue(po.getValue());
         item.setRemark(trim(po.getRemark()));

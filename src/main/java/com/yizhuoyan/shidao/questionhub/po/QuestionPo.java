@@ -10,7 +10,7 @@ public class QuestionPo {
     private String kindId;
     private String answer;
     private String answerExplain;
-    private String belongQuestionId;
+    private String compositeQuestionId;
     private String createUserId;
 
     public String getContent() {
@@ -61,12 +61,13 @@ public class QuestionPo {
         this.answerExplain = answerExplain;
     }
 
-    public String getBelongQuestionId() {
-        return belongQuestionId;
+
+    public String getCompositeQuestionId() {
+        return compositeQuestionId;
     }
 
-    public void setBelongQuestionId(String belongQuestionId) {
-        this.belongQuestionId = belongQuestionId;
+    public void setCompositeQuestionId(String compositeQuestionId) {
+        this.compositeQuestionId = compositeQuestionId;
     }
 
     public String getCreateUserId() {

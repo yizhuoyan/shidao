@@ -17,6 +17,7 @@ int delete(String column, Object value) throws Exception;
 
 void update(Serializable id, Map<String, Object> valueMap) throws Exception;
 
+
 void update(Serializable id, String columnName, Object value) throws Exception;
 
 boolean exist(String column, Object value) throws Exception;
@@ -24,6 +25,7 @@ boolean exist(String column, Object value) throws Exception;
 T select(String column, Object value) throws Exception;
 
 List<T> selects(String column, Object value,String orderBy) throws Exception;
+List<T> selects(String orderBy) throws Exception;
 
 List<T> selectsByLike(SelectLikePo po) throws Exception;
     int selectsByLikeOnPagination(List<T> pageData,SelectLikePo po) throws Exception;

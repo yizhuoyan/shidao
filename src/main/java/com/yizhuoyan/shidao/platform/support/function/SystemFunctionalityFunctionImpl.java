@@ -81,7 +81,7 @@ public class SystemFunctionalityFunctionImpl extends AbstractFunctionSupport imp
         int kind = po.getKind();
         // 5最后同步数据库
         SystemFunctionalityModel model = new SystemFunctionalityModel();
-        model.setId(uuid());
+        model.setId(uuid12());
         model.setCode(po.getCode());
         model.setCreateTime(new Date());
         model.setName(po.getName());

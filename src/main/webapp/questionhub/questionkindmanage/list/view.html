@@ -15,6 +15,9 @@
         <span class="input-group">
             <select name="kind">
                 <option value="">所有题型</option>
+                <option value="1">单选题2</option>
+                <option value="2">单选题3</option>
+                <option value="3">单选题4</option>
             </select>
             <input name="key" type="text" placeholder="Search for..."
                    maxlength="16">
@@ -65,7 +68,7 @@
                 <tr>
                     <td>$(i+1)</td>
                     <td>
-                        <a href="../check/view.html?$(item.id)">操作</a>
+                        <a href="../check/view.html?$(item.id)">查看/操作</a>
                     </td>
                     <td>$(item.kind.name)</td>
                     <td class="left">$(item.content)</td>

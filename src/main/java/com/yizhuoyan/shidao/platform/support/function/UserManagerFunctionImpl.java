@@ -40,7 +40,7 @@ public class UserManagerFunctionImpl extends AbstractFunctionSupport implements
         // 获取默认密码
         String password = configService.getSystemConfig("USER-INIT-PASSWORD", "123456");
         SystemUserModel model = new SystemUserModel();
-        model.setId(uuid());
+        model.setId(uuid12());
         model.setAccount(account);
         model.setCreateTime(new Date());
         model.setLastLoginTime(null);
