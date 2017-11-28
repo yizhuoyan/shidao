@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>新增题目类型</title>
+    <link rel="stylesheet" href="/common.css">
+</head>
+<body class="layout-vbox">
+<header class="action-bar">
+    <a class="fa fa-back" href="../list/view.html"></a>
+    <h1>新增题目类型</h1>
+</header>
+<main class="pad grow">
+    <form id="addForm"
+          method="post">
+        <p>
+            <label>*代号：</label>
+            <input  class="grow" name="id" maxlength="64" type="text" required placeholder="建议使用字母，不可修改">
+        </p>
+        <p>
+            <label>*名称：</label>
+            <input  class="grow" name="name" maxlength="256" type="text" required >
+        </p>
+        <p>
+            <label>描述：</label>
+            <textarea  maxlength="512" rows="5" class="grow" name="remark" ></textarea>
+            <i></i>
+        </p>
+        <p>
+            <button type="submit">确 定</button>
+        </p>
+    </form>
+</main>
+<script src="/common.js"></script>
+<script src="controller.js"></script>
+</body>
+</html>

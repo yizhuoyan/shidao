@@ -2,9 +2,9 @@
     "use strict";
     //当前操作的角色id
     var roleId = window.location.search.substr(1);
-    var loadRoleURL = "/platform/rolemanage/get?id=" + roleId;
-    var modifyRoleURL = "/platform/rolemanage/mod?id=" + roleId;
-    var deleteRoleURL = "/platform/rolemanage/del?id=" + roleId;
+    var loadRoleURL = "/platform/role/get?id=" + roleId;
+    var modifyRoleURL = "/platform/role/mod?id=" + roleId;
+    var deleteRoleURL = "/platform/role/del?id=" + roleId;
     //角色数据模型
     var roleModel;
 
@@ -39,7 +39,6 @@
             //重置按钮点击事件
             $formResetBtn.click(handleFormResetBtnClick);
         });
-
     });
 
 

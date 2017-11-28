@@ -17,7 +17,7 @@
      */
     var handleFormSubmit = function () {
         $formSubmitBtnEL.disabled(true);
-        var url="/platform/usermanage/add";
+        var url="/platform/user/add";
         $.ajaxPost(url, $(this).serialize())
             .done(function (resp) {
                     var message = "新增成功!是否继续新增?";

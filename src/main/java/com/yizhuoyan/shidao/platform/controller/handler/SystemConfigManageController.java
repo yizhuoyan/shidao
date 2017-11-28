@@ -21,7 +21,7 @@ import java.util.List;
  * @author root@yizhuoyan.com
  */
 @Controller
-@RequestMapping("/platform/systemconfig")
+@RequestMapping("/platform/config")
 public class SystemConfigManageController extends AbstractControllerSupport{
 @Autowired
 private SystemConfigFunction function;

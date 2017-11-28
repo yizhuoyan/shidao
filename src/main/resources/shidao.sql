@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50528
 File Encoding         : 65001
 
-Date: 2017-11-24 22:23:58
+Date: 2017-11-28 17:47:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -41,14 +41,14 @@ CREATE TABLE `qst_question` (
   `id` char(32) NOT NULL DEFAULT '',
   `content` varchar(256) DEFAULT NULL COMMENT '题目内容',
   `difficult` tinyint(4) DEFAULT NULL COMMENT '难度',
-  `id_user_creater` char(32) DEFAULT NULL COMMENT '创建人',
-  `kind` tinyint(1) NOT NULL DEFAULT '0' COMMENT '题目类型0=不定项选择,1=单选,2=多选',
-  `time_create` datetime DEFAULT NULL,
-  `time_update` datetime DEFAULT NULL COMMENT '答案',
+  `creator_user_id` char(32) DEFAULT NULL COMMENT '创建人',
+  `question_kind_id` char(32) NOT NULL DEFAULT '0' COMMENT '题目类型0=不定项选择,1=单选,2=多选',
+  `create_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL COMMENT '答案',
   `answer` text,
   `answer_explain` text COMMENT '答案解析',
   `options` text COMMENT '题目选项换行符隔开',
-  `id_question_belong` char(32) DEFAULT NULL COMMENT '所属题目，用于综合题的小题',
+  `composite_question_id` char(32) DEFAULT NULL COMMENT '所属题目，用于综合题的小题',
   `children_Amount` tinyint(4) DEFAULT NULL COMMENT '包含小题数量',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -56,10 +56,10 @@ CREATE TABLE `qst_question` (
 -- ----------------------------
 -- Records of qst_question
 -- ----------------------------
-INSERT INTO `qst_question` VALUES ('', null, null, null, '0', null, null, null, null, null, null, null);
-INSERT INTO `qst_question` VALUES ('1', '1+2=单选题', '0', null, '1', null, null, null, null, null, null, null);
-INSERT INTO `qst_question` VALUES ('2', '2?2=4多选题', '0', null, '2', null, null, null, null, null, null, null);
-INSERT INTO `qst_question` VALUES ('3', '2?=4不定项', '0', null, '0', null, null, null, null, null, null, null);
+INSERT INTO `qst_question` VALUES ('0', 'xxxx', '1', 't1', 'choice-any', '2017-11-28 17:38:29', '2017-11-28 17:38:29', null, null, null, null, null);
+INSERT INTO `qst_question` VALUES ('1', '1+2=单选题', '0', 't1', 'choice-any', '2017-11-28 17:38:29', '2017-11-28 17:38:29', null, null, null, null, null);
+INSERT INTO `qst_question` VALUES ('2', '2?2=4多选题', '0', 't1', 'choice-any', '2017-11-28 17:38:29', '2017-11-28 17:38:29', null, null, null, null, null);
+INSERT INTO `qst_question` VALUES ('3', '2?=4不定项', '0', 't1', 'choice-any', '2017-11-28 17:38:29', '2017-11-28 17:38:29', null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for qst_question_kind
@@ -68,21 +68,22 @@ DROP TABLE IF EXISTS `qst_question_kind`;
 CREATE TABLE `qst_question_kind` (
   `id` varchar(32) NOT NULL,
   `name` varchar(32) DEFAULT NULL,
-  `remark` varchar(128) DEFAULT NULL,
+  `remark` varchar(512) DEFAULT NULL,
+  `introduction` varchar(512) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of qst_question_kind
 -- ----------------------------
-INSERT INTO `qst_question_kind` VALUES ('choice-any', '不定型选题', null);
-INSERT INTO `qst_question_kind` VALUES ('choice-mult', '多项选择题', '');
-INSERT INTO `qst_question_kind` VALUES ('choice-radio', '单项选择题', 'ssss');
-INSERT INTO `qst_question_kind` VALUES ('composite', '综合题', null);
-INSERT INTO `qst_question_kind` VALUES ('composite-part', '综合小题', null);
-INSERT INTO `qst_question_kind` VALUES ('essay', '问答题', null);
-INSERT INTO `qst_question_kind` VALUES ('fillinblank', '填空题', null);
-INSERT INTO `qst_question_kind` VALUES ('yesno', '是非题', null);
+INSERT INTO `qst_question_kind` VALUES ('choice-any', '不定型选题', null, null);
+INSERT INTO `qst_question_kind` VALUES ('choice-mult', '多项选择题', '', null);
+INSERT INTO `qst_question_kind` VALUES ('choice-radio', '单项选择题', 'ssss', null);
+INSERT INTO `qst_question_kind` VALUES ('composite', '综合题', null, null);
+INSERT INTO `qst_question_kind` VALUES ('composite-part', '综合小题', null, null);
+INSERT INTO `qst_question_kind` VALUES ('essay', '问答题', null, null);
+INSERT INTO `qst_question_kind` VALUES ('fillinblank', '填空题', null, null);
+INSERT INTO `qst_question_kind` VALUES ('yesno', '是非题', null, null);
 
 -- ----------------------------
 -- Table structure for rel_question_knowledge_point
@@ -250,7 +251,7 @@ INSERT INTO `sys_functionality` VALUES ('7e00d4b61c7bceb8f84470c6dbb9efbd', '/xt
 INSERT INTO `sys_functionality` VALUES ('ae11caced5e2785a4da4a0a21fb3208a', '/dashbord', '首页', '/dashboard/view.html', '2017-11-03 21:54:19', null, '1', '1', '首页', '00');
 INSERT INTO `sys_functionality` VALUES ('bac883b3c099ca28e904f8449f140006', '/xtgl/xtpz/add', '新增', '/platform/systemfunctionality/add', '2017-11-22 15:09:07', '1', '1', '2', ' 新增', '01');
 INSERT INTO `sys_functionality` VALUES ('c0ec45a8ae14e2788a44a689ce5731cf', '/xtgl', '系统管理', null, '2015-10-31 16:33:47', null, '1', '0', '顶层模块,包含系统设置等基础数据维护,保证系统正确运行1', '90');
-INSERT INTO `sys_functionality` VALUES ('c573c76681561e189774858eb218000c', '/tkzx/txgl', '题型管理', '/appquestionbank/questiontypemanage/index.html', '2016-01-17 12:07:29', '697f5f731cd5afea0db40879a5d5fd13', '1', '1', '题库题型管理,主要用于配制题型视图模板,题目存储数据库表名称', null);
+INSERT INTO `sys_functionality` VALUES ('c573c76681561e189774858eb218000c', '/tkzx/txgl', '题型管理', '/questionhub/questionkindmanage/list/view.html', '2016-01-17 12:07:29', '697f5f731cd5afea0db40879a5d5fd13', '1', '1', '题库题型管理,主要用于配制题型视图模板,题目存储数据库表名称', '');
 INSERT INTO `sys_functionality` VALUES ('d87fd9ebba4e8e1a72e4843c9de41b9b', '/xtgl/xtpz/mod', '修改', '/platform/systemfunctionality/mod', '2017-11-22 15:15:09', '1', '1', '2', '', '03');
 INSERT INTO `sys_functionality` VALUES ('e5931aeffc9267f894c46f59d97e7c54', '/grzx/xgmm', '修改密码', '/platform/usercenter/modify-password/view.html', '2017-11-10 22:00:30', '144454b9dcd3d9cb53c4cbd4316671f9', '1', '1', '12345', '02');
 
@@ -315,6 +316,6 @@ INSERT INTO `sys_user` VALUES ('cc2a8be31c1544d97cd4fb12c90ce10a', '12', '新用
 INSERT INTO `sys_user` VALUES ('cd7e82dddf537b8a0f941d08393b5df0', 'teacher1', '请修改名称', '123456', null, '2015-08-07 22:40:57', null, null, null, null, '0');
 INSERT INTO `sys_user` VALUES ('s1', 'student', '学生0', '123456', null, '2015-07-22 22:14:37', null, null, null, null, '1');
 INSERT INTO `sys_user` VALUES ('s2', 'student1', '学生1', '123456', null, '2015-07-22 22:14:58', null, null, null, null, '1');
-INSERT INTO `sys_user` VALUES ('supermanager', 'administrator', '超级系统管理员', 'administrator', null, '2015-12-05 14:01:12', '2015-12-31 14:01:20', '2017-11-24 19:15:33', '超级系统管理员22', null, '0');
+INSERT INTO `sys_user` VALUES ('supermanager', 'administrator', '超级系统管理员', 'administrator', null, '2015-12-05 14:01:12', '2015-12-31 14:01:20', '2017-11-28 17:22:12', '超级系统管理员22', null, '0');
 INSERT INTO `sys_user` VALUES ('system', 'system', '系统管理员', 'admin', null, '2015-07-01 15:39:36', null, '2016-04-21 23:00:58', null, null, '0');
 INSERT INTO `sys_user` VALUES ('t1', 'teacher', '教师1', '123456', null, '2015-07-22 22:14:08', null, null, null, null, '0');

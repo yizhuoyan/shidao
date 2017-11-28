@@ -29,6 +29,7 @@ public class QuestionKindDaoImpl extends SingleTableDaoSupport<QuestionKindModel
         return m;
     }
 
+
     @Override
     protected void obj2row(PreparedStatement ps, QuestionKindModel e) throws Exception {
         int i=1;

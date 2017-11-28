@@ -73,7 +73,7 @@
 
 
     var loadUserInfo=function () {
-        var url="/platform/usermanage/get.json?id="+userId;
+        var url="/platform/user/get?id="+userId;
        return $.load(url);
     };
     
@@ -82,13 +82,13 @@
     };
 
     var loadAllRoles=function () {
-        var url="/platform/rolemanage/list.json";
+        var url="/platform/role/list";
 
         return $.load(url);
     };
     
     var loadUserGrantedRoles=function () {
-        var url = "/platform/usermanage/ofRoles.json?id="+userId;
+        var url = "/platform/user/ofRoles?id="+userId;
         return $.load(url);
     };
     //转换角色列表符合fancyTree组件的格式
@@ -208,11 +208,11 @@
     };
 
     var doGrantRole2User=function (userId,roleIdArr) {
-            var url = "/platform/usermanage/grantRoles";
-            return $.ajaxPost(url, {
+            var url = "/platform/user/grantRoles";
+            return $.ajaxPut(url, {
                 id: userId,
                 roleIds: roleIdArr.join(",")
-            },function (resp) {
+            },function (data) {
                     window.top.toast("授于用户角色成功!");
             });
     };

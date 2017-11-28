@@ -25,7 +25,7 @@ import java.util.List;
  * @author root@yizhuoyan.com
  */
 @Controller
-@RequestMapping("/platform/usermanage")
+@RequestMapping("/platform/user")
 public class UserManageController extends AbstractControllerSupport{
 
 @Autowired

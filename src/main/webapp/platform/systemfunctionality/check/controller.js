@@ -3,9 +3,9 @@
 
     var functionalityId=window.location.search.substr(1);
     var functionalityModel = null;
-    var loadFunctionalityURL = "/platform/systemfunctionality/get?id="+functionalityId;
-    var modifyFunctionalityURL = "/platform/systemfunctionality/mod?id="+functionalityId;
-    var deleteFunctionalityURL = "/platform/systemfunctionality/del?id="+functionalityId;
+    var loadFunctionalityURL = "/platform/functionality/get?id="+functionalityId;
+    var modifyFunctionalityURL = "/platform/functionality/mod?id="+functionalityId;
+    var deleteFunctionalityURL = "/platform/functionality/del?id="+functionalityId;
 
     var $modFormEL;
     var $modFormSubmitBtnEL;

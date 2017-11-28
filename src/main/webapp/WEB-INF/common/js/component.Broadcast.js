@@ -58,7 +58,11 @@ window.onbroadcast=function (messageType,handler) {
         handlers=handlersMap[messageType]=[handler];
     }
 }
-
+/**
+ * 发送广播
+ * @param type
+ * @param args
+ */
 window.broadcast = function (type, args) {
     window.top.postMessage({
         type: type,

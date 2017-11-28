@@ -40,7 +40,7 @@
         $queryFormSubmitBtnEL.disabled(true);
         //显示查询UI
         paintQuerying();
-        var url="/platform/systemconfig/list";
+        var url="/platform/config/list";
         //提交查询请求
         $.ajaxGet(url, $(this).serialize()).done(function (rows) {
             if (rows.length > 0) {

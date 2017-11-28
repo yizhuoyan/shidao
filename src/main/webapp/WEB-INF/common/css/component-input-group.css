@@ -2,7 +2,6 @@
     display: inline-flex;
     padding: 0;
     margin: 0;
-    border: 1px solid black;
     flex-flow: row nowrap;
     align-items: stretch;
     border: 1px solid #E5E5E5;
@@ -18,6 +17,9 @@
 .input-group > * {
     flex: 0 1 auto;
     border-radius: 0;
+    flex-flow: row nowrap;
+    display: inline-flex;
+    align-items: center;
 }
 
 .input-group > :first-child {

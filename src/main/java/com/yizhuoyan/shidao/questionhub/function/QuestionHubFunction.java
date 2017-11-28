@@ -21,7 +21,9 @@ public interface QuestionHubFunction {
     QuestionModel checkQuestion(String id)throws  Exception;
     PaginationQueryResult<QuestionModel> listQuestion(String kind,String key,int pageSize,int pageNo)throws  Exception;
 
+
     QuestionKindModel modifyQuestionKind(String id,QuestionKindPo po)throws  Exception;
+    QuestionKindModel addQuestionKind(QuestionKindPo po)throws  Exception;
     QuestionKindModel checkQuestionKind(String id)throws  Exception;
     List<QuestionKindModel> listQuestionKind()throws  Exception;
 

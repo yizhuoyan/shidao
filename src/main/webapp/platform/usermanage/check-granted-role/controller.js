@@ -1,13 +1,17 @@
 ;+function () {
-    var userId;
+    "use strict";
+
+    var userId=window.location.search.substr(1);
     var userGrantRolesModel;
     var $userNameEL;
     var $userTotalGrantRolesEL;
     var $grantedRoleBox;
     var $modifyGrantedBtnEL;
 
+    var loadUserInfoModelURL="/platform/user/get?id="+userId;
+    var loadRolesOfUserModelURL="/platform/user/ofRoles?id="+userId;
+
     $(function () {
-        userId = window.location.search.substr(1);
         $userNameEL = $("#userNameEL");
         $userTotalGrantRolesEL = $("#userTotalGrantRoleEL");
         $grantedRoleBox = $("#grantedRoleBox");
@@ -22,33 +26,19 @@
      */
     var reloadPageView=function () {
         //加载用户数据模型
-        loadUserModel(userId).done(function (userModel) {
+        $.load(loadUserInfoModelURL,function (userModel) {
             //更新用户信息
             updateUserInfoView(userModel);
             //加载用户拥有角色
-            loadRolesOfUser(userId).done(function (userGrantRoles) {
+            $.load(loadRolesOfUserModelURL,function (userGrantRoles) {
                 userGrantRolesModel=userGrantRoles;
                 //更新分配角色视图
                 updateGrantRolesView(userGrantRoles);
                 //添加修改授权按钮点击事件
                 $modifyGrantedBtnEL.click(handleModifyGrantedBtnClick);
-
             });
-
         });
     };
-
-    var loadUserModel = function (id) {
-        var url = "/platform/usermanage/get.json?id="+userId;
-        return $.load(url);
-    };
-        //加载拥有角色
-    var loadRolesOfUser = function (userId) {
-        var url = "/platform/usermanage/ofRoles.json?id="+userId;
-        return $.load(url);
-    };
-
-
 
 
     var updateGrantRolesView = function (roles) {

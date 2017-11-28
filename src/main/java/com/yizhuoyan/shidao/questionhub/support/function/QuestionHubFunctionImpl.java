@@ -48,7 +48,7 @@ public class QuestionHubFunctionImpl extends AbstractFunctionSupport implements 
         m.setCreateTime(Instant.now());
         m.setCreateUserId(createUserId);
         m.setDifficult(po.getDifficult());
-        m.setKindId(kindId);
+        m.setQuestionKindId(kindId);
         m.setOptions(po.getOptions());
         m.setUpdateTime(m.getCreateTime());
 
@@ -78,7 +78,7 @@ public class QuestionHubFunctionImpl extends AbstractFunctionSupport implements 
         QuestionModel q=questionDao.select("id",id);
         assertNotNull("not-exist.id",q,id);
         q.setCreateUser(userDao.select("id",q.getCreateUserId()));
-        q.setKind(kindDao.select("id",q.getKindId()));
+        q.setQuestionkind(kindDao.select("id",q.getQuestionKindId()));
         return q;
     }
 
@@ -105,7 +105,7 @@ public class QuestionHubFunctionImpl extends AbstractFunctionSupport implements 
 
         //查找关联数据
         for (QuestionModel q:pageData){
-            q.setKind(kindDao.select("id",q.getKindId()));
+            q.setQuestionkind(kindDao.select("id",q.getQuestionKindId()));
             q.setCreateUser(userDao.select("id",q.getCreateUserId()));
         }
         PaginationQueryResult<QuestionModel> result=new PaginationQueryResult<>(total,pageData);
@@ -113,6 +113,24 @@ public class QuestionHubFunctionImpl extends AbstractFunctionSupport implements 
         result.setPageSize(pageSize);
         return result;
     }
+
+    @Override
+    public QuestionKindModel addQuestionKind(QuestionKindPo po) throws Exception {
+        ParameterObjectValidator.throwIfFail(po);
+        String id=po.getId();
+        assertFalse("already-exist.id",kindDao.exist("id",id),id);
+
+        QuestionKindModel m=new QuestionKindModel();
+
+        m.setId(id);
+        m.setName(po.getName());
+        m.setRemark(po.getRemark());
+        m.setIntroduction(po.getIntroduction());
+
+        kindDao.insert(m);
+        return m;
+    }
+
 
     @Override
     public QuestionKindModel modifyQuestionKind(String id, QuestionKindPo po) throws Exception {

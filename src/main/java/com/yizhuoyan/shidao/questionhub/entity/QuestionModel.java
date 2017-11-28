@@ -15,8 +15,8 @@ public class QuestionModel {
     private int difficult;
     private String createUserId;
     private SystemUserModel createUser;
-    private String kindId;
-    private QuestionKindModel kind;
+    private String questionKindId;
+    private QuestionKindModel questionkind;
     private Instant createTime;
     private Instant updateTime;
     private String answer;
@@ -32,8 +32,8 @@ public class QuestionModel {
         map.put("content",this.content);
         map.put("difficult",this.difficult);
         map.put("kind",KeyValueMap.of(2)
-                .put("id",this.kind.getId())
-                .put("name",this.kind.getName())
+                .put("id",this.questionkind.getId())
+                .put("name",this.questionkind.getName())
         );
 
         map.put("createUser",KeyValueMap.of(2)
@@ -106,20 +106,20 @@ public class QuestionModel {
         this.createUser = createUser;
     }
 
-    public String getKindId() {
-        return kindId;
+    public String getQuestionKindId() {
+        return questionKindId;
     }
 
-    public void setKindId(String kindId) {
-        this.kindId = kindId;
+    public void setQuestionKindId(String questionKindId) {
+        this.questionKindId = questionKindId;
     }
 
-    public QuestionKindModel getKind() {
-        return kind;
+    public QuestionKindModel getQuestionkind() {
+        return questionkind;
     }
 
-    public void setKind(QuestionKindModel kind) {
-        this.kind = kind;
+    public void setQuestionkind(QuestionKindModel questionkind) {
+        this.questionkind = questionkind;
     }
 
     public String getCompositeQuestionId() {
@@ -187,24 +187,4 @@ public class QuestionModel {
         this.childrenAmount = childrenAmount;
     }
 
-    @Override
-    public String toString() {
-        return "QuestionModel{" +
-                "id='" + id + '\'' +
-                ", content='" + content + '\'' +
-                ", difficult=" + difficult +
-                ", createUserId='" + createUserId + '\'' +
-                ", createUser=" + createUser +
-                ", kindId='" + kindId + '\'' +
-                ", kind=" + kind +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", answer='" + answer + '\'' +
-                ", answerExplain='" + answerExplain + '\'' +
-                ", options='" + options + '\'' +
-                ", compositeQuestionId='" + compositeQuestionId + '\'' +
-                ", compositeQuestion=" + compositeQuestion +
-                ", childrenAmount=" + childrenAmount +
-                '}';
-    }
 }

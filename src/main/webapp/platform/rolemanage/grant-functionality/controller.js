@@ -12,8 +12,8 @@
     //---support
     //角色id//从地址栏url传入
     var roleId= window.location.search.substr(1);
-    var loadRoleURL = "/platform/rolemanage/get?id=" + roleId;
-    var loadRoleFunctionalityURL = "/platform/rolemanage/ofFunctionality?roleId=" + roleId;
+    var loadRoleURL = "/platform/role/get?id=" + roleId;
+    var loadRoleFunctionalityURL = "/platform/role/ofFunctionality?id=" + roleId;
 
     //角色数据模型
     var roleInfoModel;
@@ -108,7 +108,7 @@
         var deferred = $.Deferred();
         $tableTreeEL.fancytree({
             source: {
-                url: "/platform/systemfunctionality/list",
+                url: "/platform/functionality/list",
                 cache: true
             },
             postProcess: function (evt, data) {
@@ -171,7 +171,7 @@
 
             var url = "/platform/rolemanage/grantFunctionality";
             $.ajaxPost(url, {
-                roleId: roleId,
+                id: roleId,
                 functionalityIds: selectedNodes.join(",")
             }).done(function (resp) {
                 toast("分配成功！");

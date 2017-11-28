@@ -1,5 +1,5 @@
 ;+function (window,document) {
-    
+    "use strict";
 
 //展示的功能id
 var functionalityId;
@@ -21,7 +21,7 @@ $(function () {
  加载功能模块所属角色
  **/
 var loadRolesOfFunctionality = function (fid) {
-    var url = "/platform/systemfunctionality/ofRoles?id="+fid;
+    var url = "/platform/functionality/ofRoles?id="+fid;
     $.load(url,function (data) {
             showRolesOfFunctionality(data);
     });

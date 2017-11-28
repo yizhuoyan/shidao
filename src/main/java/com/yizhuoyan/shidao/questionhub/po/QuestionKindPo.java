@@ -4,6 +4,7 @@ package com.yizhuoyan.shidao.questionhub.po;
  * Created by Administrator on 2017/11/21 0021.
  */
 public class QuestionKindPo {
+    private String id;
     private String name;
 
     public String getName() {
@@ -27,6 +28,14 @@ public class QuestionKindPo {
 
     public String getIntroduction() {
         return introduction;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setIntroduction(String introduction) {

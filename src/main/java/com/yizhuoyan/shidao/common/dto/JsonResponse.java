@@ -87,8 +87,8 @@ public class JsonResponse {
                 json.put("data", this.data);
             }
         }else{
-            json.put("error", this.errors);
-            json.put("message", this.messages);
+            json.put("errors", this.errors);
+            json.put("messages", this.messages);
         }
         return json;
     }

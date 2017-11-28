@@ -36,7 +36,7 @@
             //显示查询UI
             showQueryingView();
             //提交查询请求
-            var url = "/platform/rolemanage/list.json";
+            var url = "/platform/role/list";
             $.ajaxGet(url, $(this).serialize()).done(function (queryResult) {
                 //判断是否有数据
                 if (queryResult.length) {

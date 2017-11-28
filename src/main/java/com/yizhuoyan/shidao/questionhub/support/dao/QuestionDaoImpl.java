@@ -16,7 +16,7 @@ import java.sql.ResultSet;
 public class QuestionDaoImpl extends SingleTableDaoSupport<QuestionModel> implements QuestionDao {
 
     public QuestionDaoImpl() {
-        super("qst_question", "id,content,difficult,creator_user_id,kind,create_time,update_time,answer,answer_explain,options,composite_question_id,children_Amount",true);
+        super("qst_question", "id,content,difficult,creator_user_id,question_kind_id,create_time,update_time,answer,answer_explain,options,composite_question_id,children_Amount",true);
     }
 
 
@@ -34,8 +34,8 @@ public class QuestionDaoImpl extends SingleTableDaoSupport<QuestionModel> implem
         ps.setString(i++,e.getCreateUserId());
         ps.setInt(i++,e.getDifficult());
         ps.setString(i++,e.getId());
-        ps.setString(i++,e.getKindId());
         ps.setString(i++,e.getOptions());
+        ps.setString(i++,e.getQuestionKindId());
         ps.setTimestamp(i++,JDBCUtil.toSqlTimestamp(e.getUpdateTime()));
     }
     @Override
@@ -51,10 +51,9 @@ public class QuestionDaoImpl extends SingleTableDaoSupport<QuestionModel> implem
         q.setCreateUserId(rs.getString(i++));
         q.setDifficult(rs.getInt(i++));
         q.setId(rs.getString(i++));
-        q.setKindId(rs.getString(i++));
         q.setOptions(rs.getString(i++));
+        q.setQuestionKindId(rs.getString(i++));
         q.setUpdateTime(JDBCUtil.toInstant(rs.getTimestamp(i++)));
-        System.out.println(q);
         return q;
     }
 }

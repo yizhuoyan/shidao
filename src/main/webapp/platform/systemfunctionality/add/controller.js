@@ -39,7 +39,7 @@ $(function () {
 var handleFormSubmit = function () {
     $addFormSubmitBtnEL.disabled(true);
     this.code.value=$parentFunctionalityCodeEL.text()+$inputCodeEL.val();
-    var url="/platform/systemfunctionality/add";
+    var url="/platform/functionality/add";
     $.ajaxPost(url,$(this).serialize()).done(function (resp) {
             window.top.confirmDialog("新增成功,是否继续添加？", function (yes) {
                 if (!yes) {

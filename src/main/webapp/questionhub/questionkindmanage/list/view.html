@@ -2,28 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>题目管理</title>
+    <title>题型管理</title>
     <link rel="stylesheet" href="/common.css">
 </head>
 <body class="layout-vbox">
 <header class="action-bar">
-    <h1>题目管理</h1>
+    <h1>题型管理</h1>
     <a href="../add/view.html" class="fa fa-plus">新增</a>
-    <span class="grow"></span>
-    <form id="queryForm" >
-        <input name="pageNo" type="hidden" value="1">
-        <span class="input-group">
-            <select name="kind">
-                <option value="">所有题型</option>
-                <option value="1">单选题2</option>
-                <option value="2">单选题3</option>
-                <option value="3">单选题4</option>
-            </select>
-            <input name="key" type="text" placeholder="Search for..."
-                   maxlength="16">
-            <button type="submit" class="fa fa-search"></button>
-        </span>
-    </form>
 </header>
 <main class="grow table pad">
     <header>
@@ -32,17 +17,15 @@
                 <col width="50px">
                 <col width="50px">
                 <col width="100px">
+                <col width="100px">
                 <col width="auto">
-                <col width="100px">
-                <col width="100px">
             </colgroup>
             <tr>
                 <th>No.</th>
                 <th>操作</th>
-                <th>类型</th>
-                <th>题干</th>
-                <th>创建人</th>
-                <th>创建时间</th>
+                <th>id</th>
+                <th>名称</th>
+                <th>备注</th>
             </tr>
         </table>
     </header>
@@ -68,32 +51,18 @@
                 <tr>
                     <td>$(i+1)</td>
                     <td>
-                        <a href="../check/view.html?$(item.id)">查看/操作</a>
+                        <a href="../check/view.html?$(item.id)">操作</a>
                     </td>
-                    <td>$(item.kind.name)</td>
-                    <td class="left">$(item.content)</td>
-                    <td>$(item.createUser.name)</td>
-                    <td>$(Date.format(item.createTime))</td>
+                    <td>$(item.id)</td>
+                    <td>$(item.name)</td>
+                    <td  class="left">$(item.remark)</td>
                 </tr>
                 <-}->
             </script>
         </table>
     </main>
-    <footer id="paginationRegionEL" class="layout-justify" style="display: none">
-        <span>
-            <strong class="tips">
-                共找到 <b id="totalRowsEL">0</b>条记录
-                每页<b id="pageSizeEL">0</b>条,
-                共<b id="totalPagesEL">0</b>页
-            </strong>
-        </span>
-        <span id="paginationButtonsEL" class="pagination-group">
-                <button id="firstPageBtn" disabled>&lt;&lt;</button>
-                <button id="previousPageBtn" disabled>&lt;</button>
-                <b id="pageNoEL">0</b>
-                <button id="nextPageBtn" disabled>&gt;</button>
-                <button id="lastPageBtn" disabled>&gt;&gt;</button>
-        </span>
+    <footer id="pageInfoSection"  style="display: none">
+        共找到 <b id="totalRowsEL">0</b>条记录
     </footer>
 </main>
 <script src="/common.js"></script>

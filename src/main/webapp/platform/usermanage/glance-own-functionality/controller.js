@@ -1,5 +1,9 @@
 ;+function () {
-    var userId;
+    var userId=window.location.search.substr(1);
+
+    var loadUserModelURL = "/platform/user/get?id="+userId;
+    var loadUserGrantedFunctionalitysModelURL="/platform/user/glanceOwnFunctionalitys?id="+userId;
+
     var totalRowsArr=[];
     var $headingUserNameEL;
     var $totalOwnFunctionalitysEL;
@@ -10,7 +14,6 @@
     var tree;
 
     $(function () {
-        userId = window.location.search.substr(1);
          $headingUserNameEL=$("#headingUserNameEL")
          $totalOwnFunctionalitysEL=$("#totalOwnFunctionalitysEL");
          $totalGrantedRolesEL=$("#totalGrantedRolesEL")
@@ -18,11 +21,12 @@
 
 
         //加载用户信息
-        loadUserInfoModel(userId).done(function (userModel) {
+        $.load(loadUserModelURL,function (userModel) {
             updateUserInfoView(userModel);
         });
+
         //加载用户拥有功能
-        loadUserGrantedFunctionalitysModel(userId).done(function (userFunctionalityArr) {
+        $.load(loadUserGrantedFunctionalitysModelURL,function (userFunctionalityArr) {
             //更新总功能数
             $totalOwnFunctionalitysEL.text(userFunctionalityArr.length);
             updateFunctionalityTableTree(userFunctionalityArr);
@@ -30,18 +34,7 @@
         });
     });
 
-    var loadUserInfoModel = function (id) {
-        var url = "/platform/usermanage/get.json?id="+userId;
-        return $.load(url);
-    };
-    var loadUserGrantedFunctionalitysModel=function (userId) {
-        var url = "/platform/usermanage/glanceOwnFunctionalitys.json?id="+userId;
-        return $.load(url);
-    };
-    var loadUserGrantedRolesModel=function (userId) {
-        var url = "/platform/usermanage/ofRoles.json?id="+userId;
-        return $.load(url);
-    };
+
 
 
     var updateUserInfoView=function (u) {

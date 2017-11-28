@@ -173,7 +173,7 @@
      * 处理消息中的可替换内容
      */
     var handleAjaxFail=function (resp) {
-        var messages=resp.message;
+        var messages=resp.messages;
         if(!messageKeyMap){
             messageKeyMap=getLabelNameMap();
         }

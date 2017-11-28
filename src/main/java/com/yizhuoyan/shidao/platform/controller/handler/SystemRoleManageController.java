@@ -22,7 +22,7 @@ import java.util.List;
  * @author root@yizhuoyan.com
  */
 @Controller
-@RequestMapping("/platform/rolemanage")
+@RequestMapping("/platform/role")
 public class SystemRoleManageController extends AbstractControllerSupport{
 @Autowired
 private SystemRoleManageFunction function;
@@ -51,14 +51,14 @@ public JsonResponse get(String id) throws Exception{
   return JsonResponse.ok(m);
 }
 
-public JsonResponse ofFunctionality(String roleId) throws Exception{
-  List<SystemFunctionalityModel> functionalitys = function.listSystemFunctionalityOfRole(roleId);
+public JsonResponse ofFunctionality(String id) throws Exception{
+  List<SystemFunctionalityModel> functionalitys = function.listSystemFunctionalityOfRole(id);
   return JsonResponse.ok(functionalitys,f->f.toJSON());
 }
 
-public JsonResponse grantFunctionality(String roleId, @RequestParam(defaultValue = "") String functionalityIds) throws Exception{
+public JsonResponse grantFunctionality(String id, @RequestParam(defaultValue = "") String functionalityIds) throws Exception{
   String[] functionalityIdArray = functionalityIds.split(",");
-  function.grantSystemFunctionalitysToRole(roleId, functionalityIdArray);
+  function.grantSystemFunctionalitysToRole(id, functionalityIdArray);
   return JsonResponse.ok();
 }
 

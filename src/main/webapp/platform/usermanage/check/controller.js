@@ -56,7 +56,7 @@
         $glanceOwnFunctionalityBtnEL=$("#glanceOwnFunctionalityBtn");
 
         //加载用户数据模型
-        $.load("/platform/usermanage/get?id="+userId,function (data) {
+        $.load("/platform/user/get?id="+userId,function (data) {
             userModel=data;
             //更新actionBar标题
             updateActionBarView(userModel);
@@ -96,7 +96,7 @@
 //密码重置
     var handleResetPasswordBtnClick = function (account) {
 
-        $.ajaxPost("/platform/usermanage/resetPassword", {
+        $.ajaxPost("/platform/user/resetPassword", {
             id: userId
         }).done(function (resp) {
                 toast("重置账号[" + account + "]密码成功!");
@@ -106,7 +106,7 @@
 
     /**处理表单提交*/
     var handleFormSubmit = function () {
-        var url="/platform/usermanage/mod";
+        var url="/platform/user/mod";
         $.ajaxPost(url, $(this).serialize())
             .done(function (resp) {
                     toast("修改成功");
@@ -119,7 +119,7 @@
         var message = "确定删除用户【" + userName + "】?";
         window.confirmDialog(message, function (yes) {
             if (yes) {
-                var url = "/platform/usermangage/del?id="+userId;
+                var url = "/platform/user/del?id="+userId;
                 $.ajaxDelete(url, function (resp) {
                         window.toast("删除成功！");
                 });

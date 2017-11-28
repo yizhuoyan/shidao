@@ -20,7 +20,7 @@ import java.util.List;
  * @author root@yizhuoyan.com
  */
 @Controller
-@RequestMapping("/platform/systemfunctionality")
+@RequestMapping("/platform/functionality")
 public class SystemFunctionalityManageController{
 @Autowired
 private SystemFuncationalityFunction function;

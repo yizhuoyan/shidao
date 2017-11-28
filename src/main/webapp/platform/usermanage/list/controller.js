@@ -62,7 +62,7 @@
         $submitBtnEL.disabled(true);
         //显示查询UI
         showQueryingView();
-        var url="/platform/usermanage/list";
+        var url="/platform/user/list";
         //提交查询请求
         $.ajaxGet(url,$(this).serialize()).done(function (result) {
             queryResultModel=result;

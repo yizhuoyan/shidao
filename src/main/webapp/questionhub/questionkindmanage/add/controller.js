@@ -18,7 +18,7 @@
      */
     var handleAddFormSubmit = function () {
         $addFormSubmitBtnEL.disabled(true);
-        var url = "/platform/config/add";
+        var url = "/questionhub/questionkind/add";
         $.ajaxPost(url, $(this).serialize(), function (resp) {
             toast("新增成功!");
         }).always(function () {

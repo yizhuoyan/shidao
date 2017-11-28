@@ -18,7 +18,7 @@
 
     var handleFormSubmit = function () {
         $formSubmitBtn.disabled(true);
-        var url="/platform/rolemanage/add";
+        var url="/platform/role/add";
         $.ajaxPost(url,$(this).serialize())
             .done(function (data) {
                         window.top.confirmDialog("新增成功!是否继续?", function (yes) {

@@ -42,8 +42,7 @@
 
 .layout-tab > .tabs > a {
     background-color: #F0F2F5;
-    margin: 0;
-    margin-bottom: -1px;
+    margin: 0 0 -1px;
     cursor: pointer;
     text-decoration: none;
     height: 100%;

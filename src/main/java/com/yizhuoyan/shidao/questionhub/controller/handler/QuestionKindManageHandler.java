@@ -20,6 +20,16 @@ public class QuestionKindManageHandler {
     @Autowired
     private QuestionHubFunction fun;
 
+    public JsonResponse add(QuestionKindPo po)throws  Exception{
+        QuestionKindModel m=fun.addQuestionKind(po);
+        return JsonResponse.ok(m.toJsonMap());
+    }
+    public JsonResponse get(String id)throws  Exception{
+        QuestionKindModel m=fun.checkQuestionKind(id);
+        return JsonResponse.ok(m.toJsonMap());
+    }
+
+
     public JsonResponse mod(String id,QuestionKindPo po)throws  Exception{
         QuestionKindModel m=fun.modifyQuestionKind(id,po);
         return JsonResponse.ok(m.toJsonMap());
