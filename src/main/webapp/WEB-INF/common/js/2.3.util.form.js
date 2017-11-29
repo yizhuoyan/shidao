@@ -12,8 +12,7 @@
     });
 
     /**
-     * 处理lable和输入框
-     * 查找网页中所有label，使其关联到后面的对应的input，textarea
+     * 查找网页中所有label，使其关联到后面的对应的input，textarea,select
      */
     var extendFormLabel=function (form) {
        //查找表单下的label
@@ -22,19 +21,24 @@
             label=labels[i];
             //已关联的跳过
             if(!label.getAttribute("for")) {
-                //如果label后面是input，textarea才处理
+                //如果label后面是input，textarea,select才处理
                 var nextSiblingElement = label.nextElementSibling;
                 if (nextSiblingElement) {
                     switch (nextSiblingElement.tagName) {
                         case "INPUT":
+                        case "SELECT":
                         case "TEXTAREA":
                             //如果输入框已有id，则直接使用，否则使用其name属性
-                            if (nextSiblingElement.name) {
-                                if (!nextSiblingElement.id) {
-                                    nextSiblingElement.id = nextSiblingElement.name;
+                            var targetId=nextSiblingElement.id;
+                            if (!targetId) {
+                                targetId= nextSiblingElement.name;
+                                //如果name属性也不存在,自动生成一个
+                                if(!targetId){
+                                    targetId="el"+String(Math.random()).substr(2);
                                 }
-                                label.setAttribute("for", nextSiblingElement.id);
                             }
+                            nextSiblingElement.id=targetId;
+                            label.setAttribute("for", targetId);
                     }
                 }
             }

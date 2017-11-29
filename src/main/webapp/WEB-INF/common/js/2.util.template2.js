@@ -56,7 +56,6 @@
                 //创建方法
                 var f = args ? new Function(args, funBody) : new Function(funBody);
                 this.functionReference=f;
-                console.log(f);
                 return f;
             } catch (e) {
                 console.log(e);

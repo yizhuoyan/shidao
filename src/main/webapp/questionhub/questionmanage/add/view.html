@@ -12,44 +12,73 @@
 </header>
 
 <main class="pad" style="overflow: auto">
-    <form id="addForm">
+    <form id="addForm" class="vertical">
         <p>
             <label>*题型：</label>
-            <select name="kindId" class="gow">
-
+            <select name="kindId" class="grow">
+                <option>11</option>
             </select>
         </p>
         <p>
-           <label>题型说明：</label>
-           <p id="questionRemarkEL">
-
-
-            </p>
-        </p>
-        <p>
             <label>
-                *题干:
+                *题目内容:(<a href="#">填写说明</a>)
             </label>
-            <textarea name="content" placeholder="" required>
-
-            </textarea>
+            <textarea name="content" rows="5" class="grow" placeholder="支持Markdown语法" required></textarea>
 
         </p>
+
         <p>
-            <label>
-                *名称:
-            </label>
-            <input class="grow" name="name" type="text" maxlength="32" required placeholder="">
+            <label>*答案:</label>
+            <input type="text" class="grow" maxlength="512" name="answer">
         </p>
         <p>
-            <label>描述:</label>
-            <textarea class="grow" rows="4" maxlength="512" name="remark"></textarea> <em>不能超过512个字符哦</em>
+            <label>*答案解析:</label>
+            <textarea name="answerExplain" rows="5" class="grow"  ></textarea>
+
         </p>
+
+
         <p class="form-action">
             <button type="submit">确 定</button>
         </p>
+
+
+
     </form>
 </main>
+<aside>
+    <dl>
+        <dt>单选题，多选题，不定项选择题</dt>
+        <dd>
+<textarea rows="10" cols="100">题干题干题干题干
+题干题干题干题干
+&lt;空一行&gt;
+&lt;空一行&gt;
+A.选项1 //字母.到本行结束为有效选项内容
+B.选项2
+C.选项3
+D.选项4
+
+...</textarea>
+        </dd>
+        <dt>填空题，判断题，问答题</dt>
+        <dd>
+            <textarea>题干题干题干题干</textarea>
+        </dd>
+        <dt>综合题</dt>
+        <dd>
+            <textarea>题干题干题干题干
+            题干题干题干题干
+            &lt;空一行&gt;
+            &lt;空一行&gt;
+            1.小题1
+            2.小题2
+            ....
+            </textarea>
+        </dd>
+    </dl>
+
+</aside>
 <script src="/common.js"></script>
 <script src="controller.js"></script>
 

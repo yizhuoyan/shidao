@@ -59,9 +59,7 @@
             data=null;
         }
         var defer=$.Deferred();
-        $.post(url,{
-            _method:"delete"
-        },function (resp) {
+        $.post(url,data,function (resp) {
             if(resp.ok){
                 if(done){
                     done(resp.data);
@@ -99,9 +97,7 @@
             data=null;
         }
         var defer=$.Deferred();
-        $.post(url,$.extend(data,{
-            _method:"put"
-        }),function (resp) {
+        $.post(url,data,function (resp) {
             if(resp.ok){
                 if(done){
                     done(resp.data);

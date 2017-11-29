@@ -16,7 +16,7 @@ import java.sql.ResultSet;
 public class QuestionDaoImpl extends SingleTableDaoSupport<QuestionModel> implements QuestionDao {
 
     public QuestionDaoImpl() {
-        super("qst_question", "id,content,difficult,creator_user_id,question_kind_id,create_time,update_time,answer,answer_explain,options,composite_question_id,children_Amount",true);
+        super("qst_question", "id,content,supply-content,difficult,creator_user_id,question_kind_id,create_time,update_time,answer,answer_explain",true);
     }
 
 

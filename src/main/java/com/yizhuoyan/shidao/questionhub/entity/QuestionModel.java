@@ -11,25 +11,47 @@ import java.util.Map;
  */
 public class QuestionModel {
     private String id;
+    /**
+     * 题目内容
+     */
     private String content;
+    /**
+     * 题目内容补充
+     * 对应选择题为选项，以换行隔开
+     * 对应综合题为小题，以换行隔开
+     */
+    private String supplyContent;
+    /**
+     * 题目难度
+     */
     private int difficult;
+
     private String createUserId;
     private SystemUserModel createUser;
+    /**
+     * 题目类型
+     */
     private String questionKindId;
     private QuestionKindModel questionkind;
+
     private Instant createTime;
     private Instant updateTime;
+    /**
+     * 题目答案
+     */
     private String answer;
+    /**
+     * 题目答案解析
+     */
     private String answerExplain;
-    private String options;
-    private String compositeQuestionId;
-    private QuestionModel compositeQuestion;
-    private int childrenAmount;
 
     public Map toJSONMap(){
         KeyValueMap map=new KeyValueMap(12);
         map.put("id",this.id);
         map.put("content",this.content);
+        if(this.supplyContent!=null){
+            map.put("supplyContent",this.supplyContent);
+        }
         map.put("difficult",this.difficult);
         map.put("kind",KeyValueMap.of(2)
                 .put("id",this.questionkind.getId())
@@ -51,17 +73,6 @@ public class QuestionModel {
         if(this.answerExplain!=null) {
             map.put("answerExplain", this.answerExplain);
         }
-        if(this.options!=null) {
-            map.put("options", this.options);
-        }
-        if(this.compositeQuestion!=null) {
-            map.put("compositeQuestion", KeyValueMap.of(2)
-                    .put("id", this.compositeQuestion.getId())
-                    .put("content", this.compositeQuestion.getContent())
-            );
-        }
-
-        map.put("childrenAmount",this.childrenAmount);
 
         return map;
     }
@@ -122,21 +133,6 @@ public class QuestionModel {
         this.questionkind = questionkind;
     }
 
-    public String getCompositeQuestionId() {
-        return compositeQuestionId;
-    }
-
-    public void setCompositeQuestionId(String compositeQuestionId) {
-        this.compositeQuestionId = compositeQuestionId;
-    }
-
-    public QuestionModel getCompositeQuestion() {
-        return compositeQuestion;
-    }
-
-    public void setCompositeQuestion(QuestionModel compositeQuestion) {
-        this.compositeQuestion = compositeQuestion;
-    }
 
     public Instant getCreateTime() {
         return createTime;
@@ -170,21 +166,11 @@ public class QuestionModel {
         this.answerExplain = answerExplain;
     }
 
-    public String getOptions() {
-        return options;
+    public String getSupplyContent() {
+        return supplyContent;
     }
 
-    public void setOptions(String options) {
-        this.options = options;
+    public void setSupplyContent(String supplyContent) {
+        this.supplyContent = supplyContent;
     }
-
-
-    public int getChildrenAmount() {
-        return childrenAmount;
-    }
-
-    public void setChildrenAmount(int childrenAmount) {
-        this.childrenAmount = childrenAmount;
-    }
-
 }

@@ -11,8 +11,7 @@
     <h1>新增题目类型</h1>
 </header>
 <main class="pad grow">
-    <form id="addForm"
-          method="post">
+    <form id="addForm">
         <p>
             <label>*代号：</label>
             <input  class="grow" name="id" maxlength="64" type="text" required placeholder="建议使用字母，不可修改">
@@ -24,9 +23,9 @@
         <p>
             <label>描述：</label>
             <textarea  maxlength="512" rows="5" class="grow" name="remark" ></textarea>
-            <i></i>
+            <em>你还可以输入512个字符</em>
         </p>
-        <p>
+        <p class="form-action">
             <button type="submit">确 定</button>
         </p>
     </form>

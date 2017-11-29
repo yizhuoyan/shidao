@@ -2,7 +2,8 @@
     "use strict";
     
     //得到id
-    var questionkindId;
+    var questionkindId=window.location.search.substr(1);
+    var loadQuestionKindModelURL="/questionhub/questionkind/get?id="+questionkindId;
     //当前的模型
     var questionKindModel = null;
     //
@@ -11,12 +12,11 @@
     var $modFormResetBtnEL;
 
 $(function () {
-    questionkindId = window.location.search.substr(1);
     $modFormEL=$("#modForm");
     $modFormSubmitBtnEL = $modFormEL.find("button[type=submit]");
     $modFormResetBtnEL=$modFormEL.find("button[type=reset]");
     //加载数据
-    loadSystemConfigInfo(questionkindId).done(function (m) {
+    $.load(loadQuestionKindModelURL,function (m) {
         questionKindModel = m;
         updateView(m);
         $modFormEL.submit(handleModFormSubmit);
@@ -27,10 +27,7 @@ $(function () {
 });
 
 
-var loadSystemConfigInfo = function (id) {
-    var url="/questionhub/questionkind/get?id="+id;
-    return $.load(url);
-};
+
 
 var handleModFormSubmit=function () {
 

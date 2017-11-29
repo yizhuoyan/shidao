@@ -6,26 +6,35 @@ form {
 
 form > p {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: center;
 }
+form.vertical>p{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content:center;
+    align-items: flex-start;
+}
 
 form > p > .grow {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
+    flex: 1 1 auto;
+}
+form.vertical>p>.grow{
+    flex:none;
+    align-self: stretch;
 }
 
 form > p > label {
     margin-right: 1em;
     text-align: right;
-    min-width: 3em;
-}
-
-form.label4em > p > label {
     min-width: 4em;
 }
+form.vertical > p > label {
+    margin-bottom: 1em;
+    text-align: left;
+}
+
 
 form.label5em > p > label {
     min-width: 5em;
@@ -41,18 +50,18 @@ form > p em {
     font-style: normal;
 }
 
-form.label4em > p.form-action {
-    padding-left: 4em;
-}
 
 form.label5em > p.form-action {
-    padding-left: 5em;
-}
-
-form.label6em > p.form-action {
     padding-left: 6em;
 }
 
+form.label6em > p.form-action {
+    padding-left: 7em;
+}
+
 form > p.form-action {
-    padding-left: 3em;
+    padding-left: 5em;
+}
+form.vertical > p.form-action {
+    padding-left: 0em;
 }

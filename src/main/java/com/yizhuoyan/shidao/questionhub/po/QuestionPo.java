@@ -10,7 +10,6 @@ public class QuestionPo {
     private String kindId;
     private String answer;
     private String answerExplain;
-    private String compositeQuestionId;
     private String createUserId;
 
     public String getContent() {
