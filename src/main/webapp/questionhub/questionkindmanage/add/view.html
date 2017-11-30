@@ -11,7 +11,7 @@
     <h1>新增题目类型</h1>
 </header>
 <main class="pad grow">
-    <form id="addForm">
+    <form id="addForm" class="label5em">
         <p>
             <label>*代号：</label>
             <input  class="grow" name="id" maxlength="64" type="text" required placeholder="建议使用字母，不可修改">
@@ -19,6 +19,10 @@
         <p>
             <label>*名称：</label>
             <input  class="grow" name="name" maxlength="256" type="text" required >
+        </p>
+        <p>
+            <label>*解析类：</label>
+            <input  class="grow" name="parserClassName" maxlength="256" type="text" required>
         </p>
         <p>
             <label>描述：</label>

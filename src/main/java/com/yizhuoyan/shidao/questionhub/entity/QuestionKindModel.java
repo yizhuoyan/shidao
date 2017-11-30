@@ -12,12 +12,21 @@ public class QuestionKindModel {
     private String name;
     private String remark;
     private String introduction;
+    private String parserClassName;
 
+    public String getParserClassName() {
+        return parserClassName;
+    }
+
+    public void setParserClassName(String parserClassName) {
+        this.parserClassName = parserClassName;
+    }
 
     public Map toJsonMap(){
         KeyValueMap map=new KeyValueMap(4);
         map.put("id",this.id);
         map.put("name",this.name);
+        map.put("parserClassName",this.parserClassName);
         if(this.remark!=null) {
             map.put("remark", this.remark);
         }

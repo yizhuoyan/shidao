@@ -12,27 +12,26 @@
 </header>
 
 <main class="pad" style="overflow: auto">
-    <form id="addForm">
+    <form id="addForm" class="vertical">
         <p>
             <label>*题型：</label>
-            <select id="questionKindSelect" name="kindId" class="grow">
-                <option>加载中...</option>
+            <select name="kindId" class="grow">
+                <option>11</option>
             </select>
         </p>
         <p>
-            <label>*难度：</label>
-            <input name="difficult"  class="grow" value="1"  type="number" min="1" max="9">
-
-        </p>
-        <p class="vertical">
             <label>
-                &nbsp;&nbsp;*内容：(<a href="../instruction/view.html">填写说明</a>)
+                *题目内容:(<a href="#">填写说明</a>)
             </label>
-            <textarea name="content" rows="15" class="grow" placeholder="支持Markdown语法" required></textarea>
+            <textarea name="content" rows="5" class="grow" placeholder="支持Markdown语法" required></textarea>
+        </p>
+        <p>
+            <label>*答案解析:</label>
+            <textarea name="answerExplain" rows="5" class="grow"  ></textarea>
+
         </p>
 
-
-        <p>
+        <p class="form-action">
             <button type="submit">确 定</button>
         </p>
 

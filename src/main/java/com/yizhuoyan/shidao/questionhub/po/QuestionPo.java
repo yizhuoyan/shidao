@@ -5,10 +5,8 @@ package com.yizhuoyan.shidao.questionhub.po;
  */
 public class QuestionPo {
     private String content;
-    private String options;
     private int difficult;
     private String kindId;
-    private String answer;
     private String answerExplain;
     private String createUserId;
 
@@ -20,13 +18,7 @@ public class QuestionPo {
         this.content = content;
     }
 
-    public String getOptions() {
-        return options;
-    }
 
-    public void setOptions(String options) {
-        this.options = options;
-    }
 
     public int getDifficult() {
         return difficult;
@@ -44,13 +36,7 @@ public class QuestionPo {
         this.kindId = kindId;
     }
 
-    public String getAnswer() {
-        return answer;
-    }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
 
     public String getAnswerExplain() {
         return answerExplain;
@@ -61,13 +47,6 @@ public class QuestionPo {
     }
 
 
-    public String getCompositeQuestionId() {
-        return compositeQuestionId;
-    }
-
-    public void setCompositeQuestionId(String compositeQuestionId) {
-        this.compositeQuestionId = compositeQuestionId;
-    }
 
     public String getCreateUserId() {
         return createUserId;

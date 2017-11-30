@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 public class QuestionKindDaoImpl extends SingleTableDaoSupport<QuestionKindModel> implements QuestionKindDao {
 
     public QuestionKindDaoImpl() {
-        super("qst_question_kind", "id,name,introduction,remark");
+        super("qst_question_kind", "id,name,parse_class_name,introduction,remark");
     }
 
     @Override
@@ -24,6 +24,7 @@ public class QuestionKindDaoImpl extends SingleTableDaoSupport<QuestionKindModel
         int i=1;
         m.setId(rs.getString(i++));
         m.setName(rs.getString(i++));
+        m.setParserClassName(rs.getString(i++));
         m.setIntroduction(rs.getString(i++));
         m.setRemark(rs.getString(i++));
         return m;
@@ -35,6 +36,7 @@ public class QuestionKindDaoImpl extends SingleTableDaoSupport<QuestionKindModel
         int i=1;
         ps.setString(i++,e.getId());
         ps.setString(i++,e.getName());
+        ps.setString(i++,e.getParserClassName());
         ps.setString(i++,e.getIntroduction());
         ps.setString(i++,e.getRemark());
 

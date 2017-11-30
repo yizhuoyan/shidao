@@ -1,34 +1,50 @@
 ;+function () {
     "use strict";
 
-    var $addForm;
-    var $formSubmitBtn;
+    var $addFormEL;
+    var $addFormSubmitBtnEL;
+    var $questionKindSelectEL;
 
     $(function () {
-        $addForm = $("#addForm");
-        $formSubmitBtn = $("button[type=submit]", $addForm);
+        $addFormEL = $("#addForm");
+        $addFormSubmitBtnEL = $("button[type=submit]", $addFormEL);
+        $questionKindSelectEL=$("#questionKindSelect");
+        //加载题目类型列表
+        loadQuestionKindList();
         //添加表单提交事件
-        $addForm.submit(handleFormSubmit);
+        $addFormEL.submit(handleFormSubmit);
 
     });
+    var loadQuestionKindList=function () {
+        var url="/questionhub/questionkind/list";
+        $.load(url,function (list) {
+            var frg=document.createDocumentFragment();
+            for(var i=0,z=list.length,item;i<z;i++){item=list[i];
+                var option=document.createElement("option");
+                option.value=item.id;
+                option.textContent=item.name;
+                frg.appendChild(option);
+            }
+
+            $questionKindSelectEL.empty().append(frg);
+        })
+    }
     /**
      处理表单提交事件
      */
-
-
     var handleFormSubmit = function () {
-        $formSubmitBtn.disabled(true);
-        var url="/platform/rolemanage/add";
+        $addFormSubmitBtnEL.disabled(true);
+        var url="/questionhub/question/add";
         $.ajaxPost(url,$(this).serialize())
             .done(function (data) {
                         window.top.confirmDialog("新增成功!是否继续?", function (yes) {
                             if (!yes) {
-                                window.location.href ="/platform/rolemanage/list/view.html";
+                                window.location.href ="/questionhub/question/list/view.html";
                             }
                         })
                 })
             .always(function () {
-                $formSubmitBtn.disabled(false);
+                $addFormSubmitBtnEL.disabled(false);
             });
         return false;
     };

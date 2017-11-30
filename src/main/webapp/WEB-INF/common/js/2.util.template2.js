@@ -2,14 +2,14 @@
     "use strict";
 
     /**
-     * 通过<script type="text/tempate">标签构建模板方法
      *
-     * @param {String} id 方法名称，格式为xxx(a,b)
+     *
+     * @param {String} nameAndArgs 方法声明为xxx(a,b)
      * @param {String} templateHtml 字符串模板
      */
-    var TemplateFunction = function (id, templateHtml) {
+    var TemplateFunction =window.TemplateFunction= function (nameAndArgs, templateHtml) {
         //方法声明格式为xxx或xxx(a,b)
-        this.id = id;
+        this.nameAndArgs = nameAndArgs;
         //模板字符串
         this.templateSource = templateHtml;
         //模板方法名称
@@ -18,18 +18,37 @@
         this.functionArgumentNames=null;
         //模板方法体
         this.body = [];
-
         //生成方法引用
         this.functionReference=null;
 
         privateMethod.init.apply(this);
     };
+    //私有方法
     var privateMethod = {
         init: function () {
-            var id = this.id;
-            var result = staticMethod.parseFunctionNameAndArgumentNames(id);
+            //解析
+            var result = staticMethod.parseFunctionNameAndArgumentNames(this.nameAndArgs);
             this.functionName = result[0];
             this.functionArgumentNames = result[1];
+        }
+    };
+    //方法中的
+    TemplateFunction.helper={
+        print:function(s,escape){
+            if(s===null||s===undefined)return '';
+            if(escape) {
+                return String(s).replace(/[<>&]/g, function (c) {
+                    return {'<': '&lt;', '>': '&gt;', '&': '&amp;'}[c]
+                })
+            }
+            return String(s);
+
+        },
+        checked:function (b) {
+            return b?"checked":"";
+        },
+        selected:function (b) {
+            return b?"selected":"";
         }
     };
     /**
@@ -38,12 +57,16 @@
     TemplateFunction.prototype = {
         //构建模板方法
         build: function () {
+
             var out = this.body;
+            //添加工具方法
+            out.push("var helper=window.TemplateFunction.helper;");
+            out.push("var $=helper.print;");
+            out.push("var $checked=helper.checked;");
+            out.push("var $selected=helper.selected;");
             out.push("var _='';\n");
             //添加try-finally保证模板方法返回值
             out.push("try{\n");
-            //添加工具方法,用于过滤null和undefined和特殊字符
-            out.push("function $(s,keep){if(s===null||s===undefined)return '';if(keep)return String(s);return String(s).replace(/[<>&]/g,function (c){return {'<':'&lt;','>':'&gt;','&':'&amp;'}[c]})}");
             out.push("\n");
             //构建方法体
             staticMethod.parse(this.templateSource, out);
@@ -207,7 +230,7 @@
     };
 
 
-//expode
+    //通过<script type="text/tempate">标签构建模板方法
     var templates = document.querySelectorAll("script[type='text/template']");
     Array.prototype.forEach.call(templates, function (t) {
         var templateHTML = t.innerHTML;

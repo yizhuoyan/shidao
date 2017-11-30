@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/11/21 0021.
  */
-public class QuestionModel {
+public class  QuestionModel {
     private String id;
     /**
      * 题目内容

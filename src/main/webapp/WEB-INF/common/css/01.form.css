@@ -10,7 +10,7 @@ form > p {
     justify-content: flex-start;
     align-items: center;
 }
-form.vertical>p{
+form.vertical>p,p.vertical{
     display: flex;
     flex-flow: column nowrap;
     justify-content:center;
@@ -20,20 +20,22 @@ form.vertical>p{
 form > p > .grow {
     flex: 1 1 auto;
 }
-form.vertical>p>.grow{
+
+form.vertical>p>.grow,p.vertical>.grow{
     flex:none;
     align-self: stretch;
 }
 
 form > p > label {
-    margin-right: 1em;
     text-align: right;
     min-width: 4em;
 }
-form.vertical > p > label {
+
+form.vertical > p > label ,p.vertical>label{
     margin-bottom: 1em;
     text-align: left;
 }
+
 
 
 form.label5em > p > label {

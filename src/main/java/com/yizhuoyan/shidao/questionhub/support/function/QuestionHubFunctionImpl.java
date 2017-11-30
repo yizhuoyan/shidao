@@ -7,6 +7,7 @@ import com.yizhuoyan.shidao.common.validatation.ParameterObjectValidator;
 import com.yizhuoyan.shidao.questionhub.entity.QuestionKindModel;
 import com.yizhuoyan.shidao.questionhub.entity.QuestionModel;
 import com.yizhuoyan.shidao.questionhub.function.QuestionHubFunction;
+import com.yizhuoyan.shidao.questionhub.parser.QuestionParser;
 import com.yizhuoyan.shidao.questionhub.po.QuestionKindPo;
 import com.yizhuoyan.shidao.questionhub.po.QuestionPo;
 import org.springframework.stereotype.Service;
@@ -16,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static com.yizhuoyan.shidao.common.util.AssertThrowUtil.*;
 import static com.yizhuoyan.shidao.common.util.PlatformUtil.trim;
 import static com.yizhuoyan.shidao.common.util.PlatformUtil.uuid12;
-import static com.yizhuoyan.shidao.common.util.AssertThrowUtil.*;
 import static com.yizhuoyan.shidao.common.validatation.ParameterValidator.$;
 
 /**
@@ -33,23 +34,22 @@ public class QuestionHubFunctionImpl extends AbstractFunctionSupport implements 
     public QuestionModel addQuestion(QuestionPo po) throws Exception {
         ParameterObjectValidator.throwIfFail(po);
         String kindId=po.getKindId();
+        QuestionKindModel kind=kindDao.select("id",kindId);
         //validate kind
-        assertTrue("not-exist.kindId",kindDao.exist("id",kindId),kindId);
+        assertNotNull("not-exist.kindId",kind,kindId);
         //validate creator user
         String createUserId=po.getCreateUserId();
         assertTrue("not-exist.createUserId",userDao.exist("id",createUserId),createUserId);
 
-        QuestionModel m=new QuestionModel();
+        //parse content and supply content
+        QuestionParser parser=(QuestionParser) Class.forName(kind.getParserClassName()).newInstance();
+
+        QuestionModel m=parser.parse(po.getContent());
         m.setId(uuid12());
-        m.setAnswer(po.getAnswer());
-        m.setAnswerExplain(po.getAnswerExplain());
-        m.setCompositeQuestionId(po.getCompositeQuestionId());
-        m.setContent(po.getContent());
         m.setCreateTime(Instant.now());
         m.setCreateUserId(createUserId);
         m.setDifficult(po.getDifficult());
         m.setQuestionKindId(kindId);
-        m.setOptions(po.getOptions());
         m.setUpdateTime(m.getCreateTime());
 
         questionDao.insert(m);

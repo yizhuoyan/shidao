@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>图片上传器</title>
+    <link rel="stylesheet" href="/common.css">
+    <style type="text/css">
+        .drop-section{
+            width: 400px;
+            height: 400px;
+            border: 1px dashed #999999;
+        }
+    </style>
+</head>
+<body class="layout-vbox">
+<header class="layout-justify">
+    <aside>
+        <h5>图片上传</h5>
+    </aside>
+    <aside>
+        <button id="confirmPickBtn">确定选择</button>
+    </aside>
+</header>
+<main class="layout-vbox">
+    <section id="drag"  class="drop-section">
+
+    </section>
+</main>
+<script src="/common.js"></script>
+<script src="controller.js"></script>
+<script>
+    drag.addEventListener("dragenter",function (evt) {
+
+        evt.preventDefault();
+        console.log(evt);
+        return true;
+    },false);
+    drag.addEventListener("dragover",function (evt) {
+        evt.preventDefault();
+        return false;
+    },false);
+    drag.addEventListener("drop",function (evt) {
+        evt.preventDefault();
+
+        var file = evt.dataTransfer.files[0]; //获取文件
+        console.log(file);
+        return true;
+    },false);
+</script>
+</body>
+</html>

@@ -20,6 +20,7 @@ public class QuestionManageHandler  {
     private QuestionHubFunction fun;
 
     public JsonResponse add(QuestionPo po)throws  Exception{
+        po.setCreateUserId("t1");
         QuestionModel m=fun.addQuestion(po);
         return JsonResponse.ok(m.toJSONMap());
     }
