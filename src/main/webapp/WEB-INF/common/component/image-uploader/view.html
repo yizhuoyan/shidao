@@ -22,30 +22,40 @@
     </aside>
 </header>
 <main class="layout-vbox">
-    <section id="drag"  class="drop-section">
+    <textarea id="drag"  class="drop-section">
 
-    </section>
+    </textarea>
 </main>
 <script src="/common.js"></script>
 <script src="controller.js"></script>
 <script>
-    drag.addEventListener("dragenter",function (evt) {
 
-        evt.preventDefault();
-        console.log(evt);
-        return true;
-    },false);
     drag.addEventListener("dragover",function (evt) {
         evt.preventDefault();
         return false;
-    },false);
+    });
     drag.addEventListener("drop",function (evt) {
         evt.preventDefault();
 
         var file = evt.dataTransfer.files[0]; //获取文件
-        console.log(file);
+        ajaxFileUpload(file);
+
         return true;
-    },false);
+    });
+    
+    var ajaxFileUpload=function (file) {
+        var url="/common/upload";
+        var data=new FormData();
+        data.set("file",file,file.name);
+        var xhr=new XMLHttpRequest();
+        xhr.onreadystatechange=function () {
+            console.log(xhr.responseText)
+        }
+        xhr.open("post",url);
+        //xhr.setRequestHeader("content-type","multipart/form-data");
+        xhr.send(data);
+
+    } 
 </script>
 </body>
 </html>

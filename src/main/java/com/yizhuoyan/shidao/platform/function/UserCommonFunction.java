@@ -1,6 +1,6 @@
 package com.yizhuoyan.shidao.platform.function;
 
-import com.yizhuoyan.shidao.platform.entity.UserContext;
+import com.yizhuoyan.shidao.platform.dto.UserContext;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional

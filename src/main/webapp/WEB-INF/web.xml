@@ -48,7 +48,24 @@
         <filter-name>缓存控制</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <servlet>
+        <servlet-name>通用小文件上传</servlet-name>
+        <servlet-class>com.yizhuoyan.shidao.common.web.FileUploadServlet</servlet-class>
+        <multipart-config>
 
+            <location>/WEB-INF/upload-temp</location>
+            <!-- 5m -->
+            <max-file-size>10485760</max-file-size>
+            <!--10m-->
+            <max-request-size>10485760</max-request-size>
+            <file-size-threshold>0</file-size-threshold>
+        </multipart-config>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>通用小文件上传</servlet-name>
+        <url-pattern>/common/upload</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>前端控制器</servlet-name>
         <servlet-class>com.yizhuoyan.shidao.common.web.springmvc.PlatformDispatcherServlet</servlet-class>
