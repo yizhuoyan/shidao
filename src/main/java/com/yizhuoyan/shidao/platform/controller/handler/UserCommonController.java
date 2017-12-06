@@ -2,8 +2,8 @@ package com.yizhuoyan.shidao.platform.controller.handler;
 
 import com.yizhuoyan.shidao.common.dto.JsonResponse;
 import com.yizhuoyan.shidao.common.web.springmvc.AbstractControllerSupport;
+import com.yizhuoyan.shidao.platform.dto.UserContext;
 import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityModel;
-import com.yizhuoyan.shidao.platform.entity.UserContext;
 import com.yizhuoyan.shidao.platform.function.UserCommonFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +43,7 @@ public JsonResponse login(String account, String password, HttpServletRequest re
   //保存登陆凭据
   context.setToken(session.getId());
   context.setCurrentLoginIp(req.getRemoteHost());
-  this.saveCurrentUser(context);
+  UserContext.saveCurrentUser(context);
   session.setAttribute("TOKEN",context.getToken());
 
   return JsonResponse.ok(context.toJson());
@@ -57,7 +57,7 @@ public JsonResponse logout(HttpSession session){
 
 public JsonResponse modifyMyPassword(String account,String oldPassword,
                                String newPassword, String newPasswordConfirm) throws Exception{
-  UserContext context = this.getCurrentUser();
+  UserContext context = UserContext.getCurrentUser();
   String userId = context.getUserId();
   if(context.isFirstLogin()){
     //第一次登陆修改密码不需要旧密码
@@ -70,7 +70,7 @@ public JsonResponse modifyMyPassword(String account,String oldPassword,
 }
 
 public JsonResponse myMenu() throws Exception{
-  UserContext context = this.getCurrentUser();
+  UserContext context = UserContext.getCurrentUser();
   List<SystemFunctionalityModel> functionalitys = context.getMenuFunctionalitys();
   return JsonResponse.ok(functionalitys,f->f.toJSON());
 }

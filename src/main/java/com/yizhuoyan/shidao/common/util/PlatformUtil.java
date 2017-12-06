@@ -1,6 +1,6 @@
 package com.yizhuoyan.shidao.common.util;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.UUID;
@@ -110,7 +110,7 @@ public abstract class PlatformUtil {
 
     public static String uuid12() {
         long uuid = SnowFlakeUUID.uuid();
-        return prefix0(Long.toString(uuid, 16), 36);
+        return prefix0(Long.toString(uuid, 36), 12);
     }
 
 
@@ -124,4 +124,16 @@ public abstract class PlatformUtil {
         return map;
     }
 
+    public static String inputStream2String(InputStream in) throws  IOException{
+        try(BufferedReader reader=new BufferedReader(new InputStreamReader(in,"utf-8"))) {
+            StringBuilder result = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                result.append(line).append('\n');
+            }
+            return result.toString();
+        }
+
+
+    }
 }

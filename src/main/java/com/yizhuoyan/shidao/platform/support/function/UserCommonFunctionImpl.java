@@ -3,9 +3,9 @@ package com.yizhuoyan.shidao.platform.support.function;
 import com.yizhuoyan.shidao.common.exception.ParameterException;
 import com.yizhuoyan.shidao.common.util.KeyValueMap;
 import com.yizhuoyan.shidao.common.util.PlatformUtil;
+import com.yizhuoyan.shidao.platform.dto.UserContext;
 import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityModel;
 import com.yizhuoyan.shidao.platform.entity.SystemUserModel;
-import com.yizhuoyan.shidao.platform.entity.UserContext;
 import com.yizhuoyan.shidao.platform.function.UserCommonFunction;
 import org.springframework.stereotype.Service;
 
