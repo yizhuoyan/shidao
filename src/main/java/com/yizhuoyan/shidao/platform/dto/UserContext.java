@@ -1,9 +1,8 @@
 package com.yizhuoyan.shidao.platform.dto;
 
-import com.yizhuoyan.shidao.common.exception.PlatformException;
 import com.yizhuoyan.shidao.common.util.KeyValueMap;
-import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityModel;
-import com.yizhuoyan.shidao.platform.entity.SystemRoleModel;
+import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityDo;
+import com.yizhuoyan.shidao.platform.entity.SystemRoleDo;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -62,12 +61,12 @@ public class UserContext {
 
 
     //用户拥有角色
-    private LinkedHashMap<String, SystemRoleModel> rolesMap;
+    private LinkedHashMap<String, SystemRoleDo> rolesMap;
 
     //所有功能
-    private LinkedHashMap<String, SystemFunctionalityModel> functionalitysMap;
+    private LinkedHashMap<String, SystemFunctionalityDo> functionalitysMap;
     //菜单功能
-    private List<SystemFunctionalityModel> menuFunctionalitys;
+    private List<SystemFunctionalityDo> menuFunctionalitys;
     //登陆凭据
     private String token;
 
@@ -92,27 +91,27 @@ public class UserContext {
         this.lastLoginIp = lastLoginIp;
     }
 
-    public LinkedHashMap<String, SystemRoleModel> getRolesMap() {
+    public LinkedHashMap<String, SystemRoleDo> getRolesMap() {
         return rolesMap;
     }
 
-    public void setRolesMap(LinkedHashMap<String, SystemRoleModel> rolesMap) {
+    public void setRolesMap(LinkedHashMap<String, SystemRoleDo> rolesMap) {
         this.rolesMap = rolesMap;
     }
 
-    public LinkedHashMap<String, SystemFunctionalityModel> getFunctionalitysMap() {
+    public LinkedHashMap<String, SystemFunctionalityDo> getFunctionalitysMap() {
         return functionalitysMap;
     }
 
-    public void setFunctionalitysMap(LinkedHashMap<String, SystemFunctionalityModel> functionalitysMap) {
+    public void setFunctionalitysMap(LinkedHashMap<String, SystemFunctionalityDo> functionalitysMap) {
         this.functionalitysMap = functionalitysMap;
     }
 
-    public List<SystemFunctionalityModel> getMenuFunctionalitys() {
+    public List<SystemFunctionalityDo> getMenuFunctionalitys() {
         return menuFunctionalitys;
     }
 
-    public void setMenuFunctionalitys(List<SystemFunctionalityModel> menuFunctionalitys) {
+    public void setMenuFunctionalitys(List<SystemFunctionalityDo> menuFunctionalitys) {
         this.menuFunctionalitys = menuFunctionalitys;
     }
 

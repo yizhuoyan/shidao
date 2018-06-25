@@ -1,10 +1,9 @@
 package com.yizhuoyan.shidao.questionhub.controller.handler;
 
 import com.yizhuoyan.shidao.common.dto.JsonResponse;
-import com.yizhuoyan.shidao.questionhub.entity.QuestionKindModel;
+import com.yizhuoyan.shidao.questionhub.entity.QuestionKindDo;
 import com.yizhuoyan.shidao.questionhub.function.QuestionHubFunction;
 import com.yizhuoyan.shidao.questionhub.po.QuestionKindPo;
-import com.yizhuoyan.shidao.questionhub.po.QuestionPo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,25 +20,25 @@ public class QuestionKindManageHandler {
     private QuestionHubFunction fun;
 
     public JsonResponse add(QuestionKindPo po)throws  Exception{
-        QuestionKindModel m=fun.addQuestionKind(po);
+        QuestionKindDo m=fun.addQuestionKind(po);
         return JsonResponse.ok(m.toJsonMap());
     }
     public JsonResponse get(String id)throws  Exception{
-        QuestionKindModel m=fun.checkQuestionKind(id);
+        QuestionKindDo m=fun.checkQuestionKind(id);
         return JsonResponse.ok(m.toJsonMap());
     }
 
 
     public JsonResponse mod(String id,QuestionKindPo po)throws  Exception{
-        QuestionKindModel m=fun.modifyQuestionKind(id,po);
+        QuestionKindDo m=fun.modifyQuestionKind(id,po);
         return JsonResponse.ok(m.toJsonMap());
     }
 
     public JsonResponse list()throws Exception{
 
-        List<QuestionKindModel> result=fun.listQuestionKind();
+        List<QuestionKindDo> result=fun.listQuestionKind();
 
-        return JsonResponse.ok(result,QuestionKindModel::toJsonMap);
+        return JsonResponse.ok(result, QuestionKindDo::toJsonMap);
     }
 
 }

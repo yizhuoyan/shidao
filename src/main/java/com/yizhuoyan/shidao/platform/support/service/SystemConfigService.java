@@ -2,7 +2,7 @@ package com.yizhuoyan.shidao.platform.support.service;
 
 import com.yizhuoyan.shidao.common.util.PlatformUtil;
 import com.yizhuoyan.shidao.platform.dao.SystemConfigDao;
-import com.yizhuoyan.shidao.platform.entity.SystemConfigModel;
+import com.yizhuoyan.shidao.platform.entity.SystemConfigDo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public int getDefaultPageSize(){
 public <T> T getSystemConfig(String name, T defaultValue){
 
   try{
-    SystemConfigModel dic = dao.select("name",name);
+    SystemConfigDo dic = dao.select("name",name);
     String value = PlatformUtil.trim(dic.getValue());
     if(value==null){
       return defaultValue;

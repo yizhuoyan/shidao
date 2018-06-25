@@ -32,9 +32,9 @@ public class Sql {
         return sq;
     }
 
-    public static Sql update(String s) {
+    public static Sql updateTable(String table) {
         Sql sq = new Sql();
-        sq.sql.append("update ").append(s);
+        sq.sql.append("update ").append(table);
         return sq;
     }
 
@@ -50,13 +50,13 @@ public class Sql {
         return sq;
     }
 
-    public Sql andSet(String column, String value) {
-        sql.append(",").append(column).append('=').append(value);
+    public Sql andSet(String columnAndValue) {
+        sql.append(",").append(columnAndValue);
         return this;
     }
 
-    public Sql set(String column, String value) {
-        sql.append(" set ").append(column).append('=').append(value);
+    public Sql set(String columnAndValue) {
+        sql.append(" set ").append(columnAndValue);
         return this;
     }
 

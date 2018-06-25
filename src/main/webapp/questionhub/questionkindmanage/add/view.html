@@ -6,27 +6,33 @@
     <link rel="stylesheet" href="/common.css">
 </head>
 <body class="layout-vbox">
+
 <header class="action-bar">
     <a class="fa fa-back" href="../list/view.html"></a>
     <h1>新增题目类型</h1>
 </header>
-<main class="pad grow">
-    <form id="addForm" class="label5em">
+
+<main class="pad layout-box-grow">
+    <form id="addForm" class="label8em">
         <p>
             <label>*代号：</label>
-            <input  class="grow" name="id" maxlength="64" type="text" required placeholder="建议使用字母，不可修改">
+            <input  class="layout-box-grow" name="id" maxlength="64" type="text" required placeholder="建议使用字母，不可修改">
         </p>
         <p>
             <label>*名称：</label>
-            <input  class="grow" name="name" maxlength="256" type="text" required >
+            <input  class="layout-box-grow" name="name" maxlength="256" type="text" required >
         </p>
         <p>
             <label>*解析类：</label>
-            <input  class="grow" name="parserClassName" maxlength="256" type="text" required>
+            <input  class="layout-box-grow" name="parserClassName" maxlength="256" type="text" required>
+        </p>
+        <p>
+            <label>*填写说明URL：</label>
+            <input  class="layout-box-grow" name="instruction" maxlength="256" type="url" required placeholder="请输入url">
         </p>
         <p>
             <label>描述：</label>
-            <textarea  maxlength="512" rows="5" class="grow" name="remark" ></textarea>
+            <textarea  maxlength="512" rows="5" class="layout-box-grow" name="remark" ></textarea>
             <em>你还可以输入512个字符</em>
         </p>
         <p class="form-action">

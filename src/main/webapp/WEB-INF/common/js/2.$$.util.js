@@ -13,7 +13,7 @@
 
 
     $$.queryString = function (key) {
-        var reg = new RegExp("(?:\\?|&)" + key + "=([^&]*)(?:&|$)");
+        var reg = new RegExp("(?:\\?|&)" + key + "=([^&]*)(?:&|#)");
         var result = window.location.search.match(reg);
         if (result) {
             return decodeURI(result[1]);

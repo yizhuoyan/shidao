@@ -5,31 +5,20 @@
     justify-content: flex-start;
     align-items: stretch;
 }
-
-.layout-hbox.wrap {
+.layout-hbox-wrap {
     flex-wrap: wrap;
-}
-
-.layout-vbox {
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: stretch;
-}
-
-.layout-vbox > * {
-    flex: 0 0 auto;
 }
 
 .layout-hbox > * {
     flex: 0 0 auto;
 }
 
-.layout-vbox > .grow {
+.layout-hbox > .layout-box-grow {
     flex: 1 1 auto;
 }
 
-.layout-hbox > .grow {
-    flex: 1 1 auto;
-}
+

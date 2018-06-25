@@ -6,7 +6,7 @@
 package com.yizhuoyan.shidao.platform.dao;
 
 import com.yizhuoyan.shidao.common.dao.CRUDDao;
-import com.yizhuoyan.shidao.platform.entity.SystemRoleModel;
+import com.yizhuoyan.shidao.platform.entity.SystemRoleDo;
 
 import java.util.List;
 
@@ -14,13 +14,13 @@ import java.util.List;
 /**
  * @author root@yizhuoyan.com
  */
-public interface SystemRoleDao extends CRUDDao<SystemRoleModel>{
+public interface SystemRoleDao extends CRUDDao<SystemRoleDo>{
 
-List<SystemRoleModel> selectByUserId(String userId) throws Exception;
+List<SystemRoleDo> selectByUserId(String userId) throws Exception;
 
-List<SystemRoleModel> selectByFunctionalityId(String functionalityId) throws Exception;
+List<SystemRoleDo> selectByFunctionalityId(String functionalityId) throws Exception;
 
-List<SystemRoleModel> selectByUserIdAndFunctionalityId(String userId, String functionalityId) throws Exception;
+List<SystemRoleDo> selectByUserIdAndFunctionalityId(String userId, String functionalityId) throws Exception;
 
 
 void joinOnFunctionality(String roleId, String functionalityId) throws Exception;

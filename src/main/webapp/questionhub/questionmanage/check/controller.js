@@ -1,35 +1,53 @@
 ;+function () {
     "use strict";
 
-    var $addForm;
-    var $formSubmitBtn;
+    var qid=window.location.search.substr(1);
+    var loadQuestionModelURL="/questionhub/question/get?id="+qid;
+    var $formEL;
+    var $formSubmitBtnEL;
+    var $kindNameEL,$creatTimeEL,$creatorNameEL;
+
 
     $(function () {
-        $addForm = $("#addForm");
-        $formSubmitBtn = $("button[type=submit]", $addForm);
+        $formEL = $("form");
+        $formSubmitBtnEL = $("button[type=submit]", $formEL);
+        $kindNameEL=$("#kindNameEL");
+        $creatorNameEL=$("#creatorNameEL");
+        $creatTimeEL=$("#createTimeEL");
+
+
+        //加载题目详情
+        $.load(loadQuestionModelURL,function (m) {
+            updateFormView(m);
+        })
+
         //添加表单提交事件
-        $addForm.submit(handleFormSubmit);
+        $formEL.submit(handleFormSubmit);
 
     });
     /**
      处理表单提交事件
      */
-
-
     var handleFormSubmit = function () {
-        $formSubmitBtn.disabled(true);
-        var url="/platform/rolemanage/add";
+        $formSubmitBtnEL.disabled(true);
+        var url="/questionhub/question/mod?id="+qid;
         $.ajaxPost(url,$(this).serialize())
             .done(function (data) {
-                        window.top.confirmDialog("新增成功!是否继续?", function (yes) {
-                            if (!yes) {
-                                window.location.href ="/platform/rolemanage/list/view.html";
-                            }
-                        })
-                })
+                toast("修改成功！");
+            })
             .always(function () {
-                $formSubmitBtn.disabled(false);
+                $formSubmitBtnEL.disabled(false);
             });
         return false;
     };
+
+    var  updateFormView=function (m) {
+        var form=$formEL[0];
+        form.difficult.value=$$(m.difficult);
+        $kindNameEL.text($$(m.kind.name));
+        $creatTimeEL.text(Date.format(m.createTime));
+        $creatorNameEL.text($$(m.createUser.name));
+        form.content.textContent=$$(m.content);
+        form.kindId.value=$$(m.questionKindId);
+    }
 }();

@@ -139,11 +139,11 @@ public class KeyValueMap implements Map<String, Object> {
             }
         };
     }
-
+    @SuppressWarnings("unchecked")
     public <T> T getAs(String key) {
         return (T) this.get(key);
     }
-
+    @SuppressWarnings("unchecked")
     public <T> T getAs(String key, T defaultValue) {
         return (T) this.getOrDefault(key, defaultValue);
     }

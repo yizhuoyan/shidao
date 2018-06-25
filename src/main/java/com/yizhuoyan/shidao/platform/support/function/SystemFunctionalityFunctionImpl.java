@@ -3,15 +3,12 @@ package com.yizhuoyan.shidao.platform.support.function;
 import com.yizhuoyan.shidao.common.dao.support.SelectLikePo;
 import com.yizhuoyan.shidao.common.util.KeyValueMap;
 import com.yizhuoyan.shidao.common.validatation.ParameterObjectValidator;
-import com.yizhuoyan.shidao.common.validatation.validategroup.Mod;
 import com.yizhuoyan.shidao.platform.po.SystemFunctionalityPo;
-import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityModel;
-import com.yizhuoyan.shidao.platform.entity.SystemRoleModel;
+import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityDo;
+import com.yizhuoyan.shidao.platform.entity.SystemRoleDo;
 import com.yizhuoyan.shidao.platform.function.SystemFuncationalityFunction;
 import org.springframework.stereotype.Service;
 
-import javax.validation.groups.Default;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -33,7 +30,7 @@ public class SystemFunctionalityFunctionImpl extends AbstractFunctionSupport imp
      * @param parent
      * @return
      */
-    private String validateFunctionalityCode(String code,SystemFunctionalityModel parent){
+    private String validateFunctionalityCode(String code,SystemFunctionalityDo parent){
         code=$("code",code);
         if(code.charAt(0)!='/'){
             code="/"+code;
@@ -51,21 +48,21 @@ public class SystemFunctionalityFunctionImpl extends AbstractFunctionSupport imp
         return code;
     }
     @Override
-    public List<SystemRoleModel> listRoleOfSystemFunctionality(String functionalityId)
+    public List<SystemRoleDo> listRoleOfSystemFunctionality(String functionalityId)
             throws Exception{
         functionalityId=$("functionalityId",functionalityId);
-        List<SystemRoleModel> list = this.roleDao.selectByFunctionalityId(functionalityId);
+        List<SystemRoleDo> list = this.roleDao.selectByFunctionalityId(functionalityId);
         return list;
     }
     @Override
-    public SystemFunctionalityModel addSystemFunctionality(SystemFunctionalityPo po) throws Exception{
+    public SystemFunctionalityDo addSystemFunctionality(SystemFunctionalityPo po) throws Exception{
 
         ParameterObjectValidator.throwIfFail(po);
 
         String parentId = trim(po.getParentId());
 
         // 1父模块
-        SystemFunctionalityModel parentFunctionality = null;
+        SystemFunctionalityDo parentFunctionality = null;
         if(parentId!=null){
             parentFunctionality = this.functionalityDao.select("id",parentId);
             assertNotNull("not-exist.parentId", parentFunctionality,parentId);
@@ -80,7 +77,7 @@ public class SystemFunctionalityFunctionImpl extends AbstractFunctionSupport imp
         //4 kind
         int kind = po.getKind();
         // 5最后同步数据库
-        SystemFunctionalityModel model = new SystemFunctionalityModel();
+        SystemFunctionalityDo model = new SystemFunctionalityDo();
         model.setId(uuid12());
         model.setCode(po.getCode());
         model.setCreateTime(new Date());
@@ -97,11 +94,11 @@ public class SystemFunctionalityFunctionImpl extends AbstractFunctionSupport imp
 
 
     @Override
-    public SystemFunctionalityModel modifySystemFunctionality(String id,SystemFunctionalityPo po) throws Exception{
+    public SystemFunctionalityDo modifySystemFunctionality(String id, SystemFunctionalityPo po) throws Exception{
         id=$("id",id);
         ParameterObjectValidator.throwIfFail(po);
         //1找到旧模块
-        SystemFunctionalityModel oldFunctionality = functionalityDao.select("id", id);
+        SystemFunctionalityDo oldFunctionality = functionalityDao.select("id", id);
         assertNotNull("not-exist.id", oldFunctionality,id);
 
         KeyValueMap needUpdateMap = KeyValueMap.of(5);
@@ -113,13 +110,13 @@ public class SystemFunctionalityFunctionImpl extends AbstractFunctionSupport imp
             String parentCode=null;
             if(newParentId!=null){
                 //3.1获取新父模块
-                SystemFunctionalityModel newParentFunctionality = this.functionalityDao.select("id", po
+                SystemFunctionalityDo newParentFunctionality = this.functionalityDao.select("id", po
                         .getParentId());
                 assertNotNull("not-exist.parentId", newParentFunctionality);
                 //新父模块不能是当前模块
                 assertNotEquals("functionality-parentIsCurrent",newParentId,id);
                 //新父模块不能是当前模块的子模块
-                assertFalse("functionality-parentIsCurrentDescendant",oldFunctionality.getCode().startsWith(newParentFunctionality.getCode()));
+                assertFalse("functionality-parentIsCurrentDescendant",newParentFunctionality.getCode().startsWith(oldFunctionality.getCode()));
                 oldFunctionality.setParent(newParentFunctionality);
                 oldFunctionality.setParentId(newParentId);
                 parentCode=oldFunctionality.getCode();
@@ -204,17 +201,13 @@ public class SystemFunctionalityFunctionImpl extends AbstractFunctionSupport imp
     @Override
     public void deleteSystemFunctionality(String id) throws Exception{
         id = $("id", id);
-        SystemFunctionalityModel f=functionalityDao.select("id",id);
+        SystemFunctionalityDo f=functionalityDao.select("id",id);
 
         assertNotNull("not-exist.id",f,id);
 
-        //查找所有后代
-        List<SystemFunctionalityModel> descendant=functionalityDao.selectDescendantByCode(f.getCode());
-        //排序，保证从底层后代开始删除
-        Collections.sort(descendant,(b, a)->{
-            return a.getCode().length()-b.getCode().length();
-        });
-        for (SystemFunctionalityModel child:descendant){
+        //查找所有后代(排序，保证底层在前)
+        List<SystemFunctionalityDo> descendant=functionalityDao.selectDescendantByCode(f.getCode());
+        for (SystemFunctionalityDo child:descendant){
             // 删除关联关系
             functionalityDao.disjoinOnRole(child.getId());
             this.functionalityDao.delete("id",child.getId());
@@ -225,24 +218,24 @@ public class SystemFunctionalityFunctionImpl extends AbstractFunctionSupport imp
     }
 
     @Override
-    public SystemFunctionalityModel checkSysFunctionalityDetail(String id)
+    public SystemFunctionalityDo checkSysFunctionalityDetail(String id)
             throws Exception{
         id = $("id", id);
-        SystemFunctionalityModel model = this.functionalityDao.select("id", id);
+        SystemFunctionalityDo model = this.functionalityDao.select("id", id);
         assertNotNull("not-exist.id", model,id);
         String parentId = model.getParentId();
         if(parentId!=null){
-            SystemFunctionalityModel parent = this.functionalityDao.select("id", parentId);
+            SystemFunctionalityDo parent = this.functionalityDao.select("id", parentId);
             model.setParent(parent);
         }
         return model;
     }
 
     @Override
-    public List<SystemFunctionalityModel> listSystemFunctionality(String key)
+    public List<SystemFunctionalityDo> listSystemFunctionality(String key)
             throws Exception{
         key = trim(key);
-        List<SystemFunctionalityModel> list = this.functionalityDao.selectsByLike(
+        List<SystemFunctionalityDo> list = this.functionalityDao.selectsByLike(
                         SelectLikePo.of("code,name,url",key)
                                 .setOrderBy("orderCode"));
         return list;

@@ -29,11 +29,13 @@ form.vertical>p>.grow,p.vertical>.grow{
 form > p > label {
     text-align: right;
     min-width: 4em;
+    padding-right: 1em;
 }
 
 form.vertical > p > label ,p.vertical>label{
     margin-bottom: 1em;
     text-align: left;
+    padding-right: 0;
 }
 
 
@@ -41,9 +43,14 @@ form.vertical > p > label ,p.vertical>label{
 form.label5em > p > label {
     min-width: 5em;
 }
-
 form.label6em > p > label {
     min-width: 6em;
+}
+form.label7em > p > label {
+    min-width: 7em;
+}
+form.label8em > p > label {
+    min-width: 8em;
 }
 
 form > p em {
@@ -60,10 +67,17 @@ form.label5em > p.form-action {
 form.label6em > p.form-action {
     padding-left: 7em;
 }
+form.label7em > p.form-action {
+    padding-left: 8em;
+}
+form.label8em > p.form-action {
+    padding-left: 9em;
+}
 
 form > p.form-action {
     padding-left: 5em;
 }
+
 form.vertical > p.form-action {
     padding-left: 0em;
 }

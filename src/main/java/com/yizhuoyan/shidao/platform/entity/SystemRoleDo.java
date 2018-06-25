@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * @author root@yizhuoyan.com
  */
-public class SystemRoleModel{
+public class SystemRoleDo {
 
 private static final long serialVersionUID = 6361545273496684832L;
 
@@ -36,7 +36,7 @@ private String remark;
 /**
  * 角色下功能模块
  */
-private List<SystemFunctionalityModel> functionalitys;
+private List<SystemFunctionalityDo> functionalitys;
 
   public Map toJSON() {
     KeyValueMap map = KeyValueMap.of(4);
@@ -82,11 +82,11 @@ public void setRemark(String remark){
 }
 
 
-public List<SystemFunctionalityModel> getFunctionalitys(){
+public List<SystemFunctionalityDo> getFunctionalitys(){
   return this.functionalitys;
 }
 
-public void setFunctionalitys(List<SystemFunctionalityModel> functionalitys){
+public void setFunctionalitys(List<SystemFunctionalityDo> functionalitys){
   this.functionalitys = functionalitys;
 }
 

@@ -6,9 +6,9 @@ import com.yizhuoyan.shidao.common.util.KeyValueMap;
 import com.yizhuoyan.shidao.common.validatation.ParameterObjectValidator;
 import com.yizhuoyan.shidao.common.validatation.validategroup.Mod;
 import com.yizhuoyan.shidao.platform.po.SysUserPo;
-import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityModel;
-import com.yizhuoyan.shidao.platform.entity.SystemRoleModel;
-import com.yizhuoyan.shidao.platform.entity.SystemUserModel;
+import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityDo;
+import com.yizhuoyan.shidao.platform.entity.SystemRoleDo;
+import com.yizhuoyan.shidao.platform.entity.SystemUserDo;
 import com.yizhuoyan.shidao.platform.function.UserManagerFunction;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +31,7 @@ public class UserManagerFunctionImpl extends AbstractFunctionSupport implements
         UserManagerFunction {
 
 
-    public SystemUserModel addUser(SysUserPo dto) throws Exception {
+    public SystemUserDo addUser(SysUserPo dto) throws Exception {
         // 验证dto
         ParameterObjectValidator.throwIfFail(dto);
         // 代号不能重复
@@ -39,7 +39,7 @@ public class UserManagerFunctionImpl extends AbstractFunctionSupport implements
         assertFalse("already-exist.account", userDao.exist("account", account), account);
         // 获取默认密码
         String password = configService.getSystemConfig("USER-INIT-PASSWORD", "123456");
-        SystemUserModel model = new SystemUserModel();
+        SystemUserDo model = new SystemUserDo();
         model.setId(uuid12());
         model.setAccount(account);
         model.setCreateTime(new Date());
@@ -54,12 +54,12 @@ public class UserManagerFunctionImpl extends AbstractFunctionSupport implements
         return model;
     }
 
-    public SystemUserModel modUser(String id, SysUserPo dto) throws Exception {
+    public SystemUserDo modUser(String id, SysUserPo dto) throws Exception {
         // 验证dto
         ParameterObjectValidator.throwIfFail(dto, Mod.class);
         // id必须
         id = $("id", id);
-        SystemUserModel oldUser = userDao.select("id", id);
+        SystemUserDo oldUser = userDao.select("id", id);
         assertNotNull("not-exist.id", oldUser, id);
         KeyValueMap needUpdate = new KeyValueMap(2);
         // 获取状态
@@ -80,8 +80,8 @@ public class UserManagerFunctionImpl extends AbstractFunctionSupport implements
         return oldUser;
     }
 
-    public PaginationQueryResult<SystemUserModel> queryUser(String key,
-                                                            int pageNo, int pageSize) throws Exception {
+    public PaginationQueryResult<SystemUserDo> queryUser(String key,
+                                                         int pageNo, int pageSize) throws Exception {
         key = trim(key);
         if (pageNo < 1) {
             pageNo = 1;
@@ -91,13 +91,13 @@ public class UserManagerFunctionImpl extends AbstractFunctionSupport implements
             pageSize = configService.getSystemConfig("PAGINATION-PAGESIZE", 10);
         }
 
-        List<SystemUserModel> pageData = new ArrayList<>(pageSize);
+        List<SystemUserDo> pageData = new ArrayList<>(pageSize);
         int total = userDao.selectsByLikeOnPagination(pageData,SelectLikePo.of("account,name,remark", key)
                         .setOrderBy("account,createTime")
                         .setPageNo(pageNo)
                         .setPageSize(pageSize)
         );
-        PaginationQueryResult<SystemUserModel> paginationResult = new PaginationQueryResult<SystemUserModel>(total, pageData);
+        PaginationQueryResult<SystemUserDo> paginationResult = new PaginationQueryResult<SystemUserDo>(total, pageData);
         paginationResult.setPageNo(pageNo);
         paginationResult.setPageSize(pageSize);
         return paginationResult;
@@ -108,7 +108,7 @@ public class UserManagerFunctionImpl extends AbstractFunctionSupport implements
     public void resetUserPassword(String id) throws Exception {
         id = $("id", id);
         // 1找到教师
-        SystemUserModel m = this.userDao.select("id", id);
+        SystemUserDo m = this.userDao.select("id", id);
         assertNotNull("not-exist", m);
         // 2找到初始化密码
         String initPassword = configService.getSystemConfig("STUDENT-INIT-PASSWORD", "123456");
@@ -119,51 +119,51 @@ public class UserManagerFunctionImpl extends AbstractFunctionSupport implements
     @Override
     public void lockUser(String id) throws Exception {
         id = $("id", id);
-        SystemUserModel m = userDao.select("id", id);
+        SystemUserDo m = userDao.select("id", id);
         m.setStatus(0);
-        userDao.update(id, "status", SystemUserModel.STATUS_LOCKED);
+        userDao.update(id, "status", SystemUserDo.STATUS_LOCKED);
     }
 
     @Override
     public void unlockUser(String id) throws Exception {
         id = $("id", id);
-        SystemUserModel m = userDao.select("id", id);
+        SystemUserDo m = userDao.select("id", id);
         m.setStatus(1);
-        userDao.update(id, "status", SystemUserModel.STATUS_NORMAL);
+        userDao.update(id, "status", SystemUserDo.STATUS_NORMAL);
     }
 
     @Override
     public void deleteUser(String id) throws Exception {
         id = $("id", id);
-        SystemUserModel m = userDao.select("id", id);
+        SystemUserDo m = userDao.select("id", id);
         assertNotNull("not-exist.id", m, id);
         //删除用户，做逻辑删除
-        userDao.update(id, "status", SystemUserModel.STATUS_DELETED);
+        userDao.update(id, "status", SystemUserDo.STATUS_DELETED);
 
 
     }
 
-    public SystemUserModel checkUserDetail(String id) throws Exception {
+    public SystemUserDo checkUserDetail(String id) throws Exception {
         id = $("id", id);
-        SystemUserModel model = this.userDao.select("id", id);
+        SystemUserDo model = this.userDao.select("id", id);
         assertNotNull("not-exist.id", model, id);
         return model;
     }
 
-    public List<SystemRoleModel> listRoleOfUser(String userId)
+    public List<SystemRoleDo> listRoleOfUser(String userId)
             throws Exception {
         userId = $("userId", userId);
-        List<SystemRoleModel> roles = this.roleDao.selectByUserId(userId);
+        List<SystemRoleDo> roles = this.roleDao.selectByUserId(userId);
         return roles;
     }
 
 
-    public List<SystemFunctionalityModel> glanceOwnFunctionalitys(String userId)
+    public List<SystemFunctionalityDo> glanceOwnFunctionalitys(String userId)
             throws Exception {
         userId = $("userId", userId);
-        List<SystemFunctionalityModel> functionalitys = functionalityDao.selectByUserId(userId);
-        List<SystemRoleModel> belongRoles;
-        for (SystemFunctionalityModel f : functionalitys) {
+        List<SystemFunctionalityDo> functionalitys = functionalityDao.selectByUserId(userId);
+        List<SystemRoleDo> belongRoles;
+        for (SystemFunctionalityDo f : functionalitys) {
             //加载角色
             belongRoles = roleDao.selectByUserIdAndFunctionalityId(userId, f.getId());
             f.setRoles(belongRoles);

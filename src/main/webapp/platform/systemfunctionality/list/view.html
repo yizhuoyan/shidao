@@ -23,11 +23,11 @@
     <a class="fa fa-plus" href="../add/view.html">新增</a>
     <a id="delBtn" class="fa fa-remove" >删除</a>
 </header>
-<main class="grow layout-hbox">
+<main class="layout-box-grow layout-hbox">
     <menu class="layout-vbox" id="functionalityTreeBox">
     </menu>
 
-    <article id="detailTabLayout" class="grow layout-tab">
+    <article id="detailTabLayout" class="layout-box-grow layout-tab">
         <header class="tabs">
             <a href="#card-base" class="active">基础信息</a>
             <a href="#card-granted-roles">已分配角色</a>
@@ -35,7 +35,7 @@
 
         <section class="tabs-cards" data-activeListener="handleTabActived">
             <iframe id="card-base" class="tab-card" data-src="../check/view.html"></iframe>
-            <iframe id="card-granted-roles" class="tab-card" data-src="../check-granted-roles/view.html"></iframe>
+            <iframe id="card-granted-roles" class="tab-card" data-src="../granted-roles/view.html"></iframe>
         </section>
 
     </article>

@@ -2,9 +2,9 @@ package com.yizhuoyan.shidao.platform.function;
 
 import com.yizhuoyan.shidao.common.dto.PaginationQueryResult;
 import com.yizhuoyan.shidao.platform.po.SysUserPo;
-import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityModel;
-import com.yizhuoyan.shidao.platform.entity.SystemRoleModel;
-import com.yizhuoyan.shidao.platform.entity.SystemUserModel;
+import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityDo;
+import com.yizhuoyan.shidao.platform.entity.SystemRoleDo;
+import com.yizhuoyan.shidao.platform.entity.SystemUserDo;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -18,13 +18,13 @@ import java.util.List;
 @Transactional
 public interface UserManagerFunction {
 
-SystemUserModel addUser(SysUserPo po) throws Exception;
+SystemUserDo addUser(SysUserPo po) throws Exception;
 
-SystemUserModel modUser(String id, SysUserPo po) throws Exception;
+SystemUserDo modUser(String id, SysUserPo po) throws Exception;
    void deleteUser(String id)throws  Exception;
-SystemUserModel checkUserDetail(String id) throws Exception;
+SystemUserDo checkUserDetail(String id) throws Exception;
 
-List<SystemRoleModel> listRoleOfUser(String userId) throws Exception;
+List<SystemRoleDo> listRoleOfUser(String userId) throws Exception;
 
 /**
  * 添加用户所属角色
@@ -44,7 +44,7 @@ void grantRoles(String userId, String... roleIds) throws Exception;
  */
 void revokeRole(String userId, String roleId) throws Exception;
 
-List<SystemFunctionalityModel> glanceOwnFunctionalitys(String userId) throws Exception;
+List<SystemFunctionalityDo> glanceOwnFunctionalitys(String userId) throws Exception;
 
 void resetUserPassword(String userId) throws Exception;
 
@@ -52,5 +52,5 @@ void lockUser(String userId) throws Exception;
 
 void unlockUser(String userId) throws Exception;
 
-PaginationQueryResult<SystemUserModel> queryUser(String key, int pageNo, int pageSize) throws Exception;
+PaginationQueryResult<SystemUserDo> queryUser(String key, int pageNo, int pageSize) throws Exception;
 }

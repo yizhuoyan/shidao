@@ -2,6 +2,7 @@ package com.yizhuoyan.shidao.platform.po;
 
 import com.yizhuoyan.shidao.common.validatation.MaxLength;
 import com.yizhuoyan.shidao.common.validatation.MustIn;
+import lombok.Data;
 
 import javax.validation.constraints.*;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.*;
 /**
  * @author yizhuoyan@
  */
+@Data
 public class SysUserPo{
 /**
  * 账户
@@ -37,47 +39,6 @@ private int status;
  */
 @MaxLength(512)
 private String remark;
-
-
-public String getAccount(){
-  return this.account;
-}
-
-public void setAccount(String account){
-  this.account = account;
-}
-
-public String getName(){
-  return this.name;
-}
-
-public void setName(String name){
-  this.name = name;
-}
-
-public String getPortraitPath(){
-  return this.portraitPath;
-}
-
-public void setPortraitPath(String portraitPath){
-  this.portraitPath = portraitPath;
-}
-
-public int getStatus(){
-  return this.status;
-}
-
-public void setStatus(int status){
-  this.status = status;
-}
-
-public String getRemark(){
-  return this.remark;
-}
-
-public void setRemark(String remark){
-  this.remark = remark;
-}
 
 
 }

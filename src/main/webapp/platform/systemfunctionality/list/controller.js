@@ -153,7 +153,7 @@
         window.top.confirmDialog(message, function (yes) {
             if (yes) {
                 var url = "/platform/functionality/del?id=" + selectFunctionalityId;
-                $.delete(url, function (data) {
+                $.ajaxDelete(url, function (data) {
                     toast("删除成功！");
                     updateFunctionalityTableTree();
                 });

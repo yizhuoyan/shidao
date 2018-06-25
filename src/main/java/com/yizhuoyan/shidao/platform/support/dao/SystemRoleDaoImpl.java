@@ -8,7 +8,7 @@ package com.yizhuoyan.shidao.platform.support.dao;
 import com.yizhuoyan.shidao.common.dao.support.SingleTableDaoSupport;
 import com.yizhuoyan.shidao.common.dao.support.Sql;
 import com.yizhuoyan.shidao.platform.dao.SystemRoleDao;
-import com.yizhuoyan.shidao.platform.entity.SystemRoleModel;
+import com.yizhuoyan.shidao.platform.entity.SystemRoleDo;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -21,14 +21,14 @@ import java.util.List;
  * @author root@yizhuoyan.com
  */
 @Repository
-public class SystemRoleDaoImpl extends SingleTableDaoSupport<SystemRoleModel> implements SystemRoleDao{
+public class SystemRoleDaoImpl extends SingleTableDaoSupport<SystemRoleDo> implements SystemRoleDao{
 
 public SystemRoleDaoImpl(){
   super("sys_role", "id,code,name,remark");
 }
 
 @Override
-public void obj2row(PreparedStatement ps, SystemRoleModel m) throws Exception{
+public void obj2row(PreparedStatement ps, SystemRoleDo m) throws Exception{
   int i = 1;
   ps.setString(i++, m.getId());
   ps.setString(i++, m.getCode());
@@ -57,7 +57,7 @@ public void disjoinOnFunctionality(String roleId) throws Exception{
     executeDelete("rel_user_role(role_id)", roleId);
   }
 
-  public List<SystemRoleModel> selectByUserId(String userId) throws Exception{
+  public List<SystemRoleDo> selectByUserId(String userId) throws Exception{
   Sql sql = Sql.select(this.generateSelectColumns("r"))
                 .from(this.tableName, " r")
                 .join("rel_user_role rel on rel.role_id=r.id")
@@ -65,7 +65,7 @@ public void disjoinOnFunctionality(String roleId) throws Exception{
   return this.executesQuerySql(sql, this::row2obj, userId);
 }
 
-public List<SystemRoleModel> selectByFunctionalityId(String functionalityId)
+public List<SystemRoleDo> selectByFunctionalityId(String functionalityId)
     throws Exception{
   Sql sql = Sql.select(generateSelectColumns("r"))
                 .from(this.tableName, " r")
@@ -73,7 +73,7 @@ public List<SystemRoleModel> selectByFunctionalityId(String functionalityId)
                 .where("rel.functionality_id=?");
   return this.executesQuerySql(sql, this::row2obj, functionalityId);
 }
-public List<SystemRoleModel> selectByUserIdAndFunctionalityId(String userId,String functionalityId)
+public List<SystemRoleDo> selectByUserIdAndFunctionalityId(String userId, String functionalityId)
     throws Exception{
   Sql sql = Sql.select(generateSelectColumns("r"))
                 .from(this.tableName, " r")
@@ -86,8 +86,8 @@ public List<SystemRoleModel> selectByUserIdAndFunctionalityId(String userId,Stri
 }
 
 @Override
-protected SystemRoleModel row2obj(ResultSet rs) throws Exception{
-  SystemRoleModel m = new SystemRoleModel();
+protected SystemRoleDo row2obj(ResultSet rs) throws Exception{
+  SystemRoleDo m = new SystemRoleDo();
   int i = 1;
   m.setId(rs.getString(i++));
   m.setCode(rs.getString(i++));

@@ -3,7 +3,7 @@ package com.yizhuoyan.shidao.questionhub.support.dao;
 import com.yizhuoyan.shidao.common.dao.support.JDBCUtil;
 import com.yizhuoyan.shidao.common.dao.support.SingleTableDaoSupport;
 import com.yizhuoyan.shidao.questionhub.dao.QuestionDao;
-import com.yizhuoyan.shidao.questionhub.entity.QuestionModel;
+import com.yizhuoyan.shidao.questionhub.entity.QuestionDo;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -13,17 +13,17 @@ import java.sql.ResultSet;
  * Created by Administrator on 2017/11/21 0021.
  */
 @Repository
-public class QuestionDaoImpl extends SingleTableDaoSupport<QuestionModel> implements QuestionDao {
+public class QuestionDaoImpl extends SingleTableDaoSupport<QuestionDo> implements QuestionDao {
 
     public QuestionDaoImpl() {
-        super("qst_question", "id,content,supply_content,difficult,create_user_id,question_kind_id,create_time,update_time,answer,answer_explain",true);
+        super("qst_question", "id,title,content,options,difficult,creator_user_id,question_kind_id,create_time,update_time,answer,answer_explain",true);
     }
 
 
 
 
     @Override
-    protected void obj2row(PreparedStatement ps, QuestionModel e) throws Exception {
+    protected void obj2row(PreparedStatement ps, QuestionDo e) throws Exception {
         int i=1;
         ps.setString(i++,e.getAnswer());
         ps.setString(i++,e.getAnswerExplain());
@@ -32,13 +32,14 @@ public class QuestionDaoImpl extends SingleTableDaoSupport<QuestionModel> implem
         ps.setString(i++,e.getCreateUserId());
         ps.setInt(i++,e.getDifficult());
         ps.setString(i++,e.getId());
+        ps.setString(i++,e.getOptions());
         ps.setString(i++,e.getQuestionKindId());
-        ps.setString(i++,e.getSupplyContent());
+        ps.setString(i++,e.getTitle());
         ps.setTimestamp(i++,JDBCUtil.toSqlTimestamp(e.getUpdateTime()));
     }
     @Override
-    protected QuestionModel row2obj(ResultSet rs) throws Exception {
-        QuestionModel q=new QuestionModel();
+    protected QuestionDo row2obj(ResultSet rs) throws Exception {
+        QuestionDo q=new QuestionDo();
         int i=1;
         q.setAnswer(rs.getString(i++));
         q.setAnswerExplain(rs.getString(i++));
@@ -47,8 +48,9 @@ public class QuestionDaoImpl extends SingleTableDaoSupport<QuestionModel> implem
         q.setCreateUserId(rs.getString(i++));
         q.setDifficult(rs.getInt(i++));
         q.setId(rs.getString(i++));
+        q.setOptions(rs.getString(i++));
         q.setQuestionKindId(rs.getString(i++));
-        q.setSupplyContent(rs.getString(i++));
+        q.setTitle(rs.getString(i++));
         q.setUpdateTime(JDBCUtil.toInstant(rs.getTimestamp(i++)));
         return q;
     }

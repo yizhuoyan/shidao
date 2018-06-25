@@ -20,7 +20,9 @@ public abstract class PlatformUtil {
         result.append(arr[arr.length-1]);
         return result.toString();
     }
-
+    public static boolean isBlank(String s){
+        return s==null||s.trim().length()==0;
+    }
     public static <T>String join(T[] arr,String join){
         if(arr==null||arr.length==0)return "";
         StringBuilder result=new StringBuilder();
@@ -28,6 +30,16 @@ public abstract class PlatformUtil {
             result.append( arr[z] ).append(join);
         }
         result.append(arr[arr.length-1]);
+        return result.toString();
+    }
+
+    public static <T>String join(List<T> list,String join){
+        if(list==null||list.size()==0)return "";
+        StringBuilder result=new StringBuilder();
+        for(int i=0,z=list.size()-1; i<z ; i++){
+            result.append( list.get(i)).append(join);
+        }
+        result.append(list.get(list.size()-1));
         return result.toString();
     }
     public static int parseInt(String v, int def){
@@ -57,7 +69,16 @@ public abstract class PlatformUtil {
         return new StringBuilder(wrap.length() * 2 + s.length()).append(wrap)
                 .append(s).append(wrap).toString();
     }
-
+    public static String repeat(final String s,final int times){
+        if (s == null) {
+            return s;
+        }
+        StringBuilder result=new StringBuilder(s.length()*times);
+        for(int i=times;i-->0;){
+            result.append(s);
+        }
+        return result.toString();
+    }
     /**
      * 清理字符串 如果是s为null,则返回null 否则去掉前后空格(trim) 然后如果是空字符串,则返回null
      *

@@ -2,11 +2,9 @@ package com.yizhuoyan.shidao.platform.support.function;
 
 import com.yizhuoyan.shidao.common.dao.support.SelectLikePo;
 import com.yizhuoyan.shidao.common.util.KeyValueMap;
-import com.yizhuoyan.shidao.common.util.PlatformUtil;
 import com.yizhuoyan.shidao.common.validatation.ParameterObjectValidator;
-import com.yizhuoyan.shidao.common.validatation.validategroup.Mod;
 import com.yizhuoyan.shidao.platform.po.SystemConfigPo;
-import com.yizhuoyan.shidao.platform.entity.SystemConfigModel;
+import com.yizhuoyan.shidao.platform.entity.SystemConfigDo;
 import com.yizhuoyan.shidao.platform.function.SystemConfigFunction;
 import org.springframework.stereotype.Service;
 
@@ -26,32 +24,32 @@ import static com.yizhuoyan.shidao.common.util.PlatformUtil.*;
 public class SystemConfigFunctionImpl extends AbstractFunctionSupport implements SystemConfigFunction {
 
     @Override
-    public List<SystemConfigModel> listSystemConfig(String key)
+    public List<SystemConfigDo> listSystemConfig(String key)
             throws Exception {
         key = trim(key);
-        List<SystemConfigModel> result = this.configDao.selectsByLike(
+        List<SystemConfigDo> result = this.configDao.selectsByLike(
                 SelectLikePo.of("name,value,remark",key)
                         .setOrderBy("name"));
         return result;
     }
 
     @Override
-    public SystemConfigModel checkSystemConfigDetail(String id) throws Exception {
+    public SystemConfigDo checkSystemConfigDetail(String id) throws Exception {
         id = $("id", id);
-        SystemConfigModel item = configDao.select("id", id);
+        SystemConfigDo item = configDao.select("id", id);
         assertNotNull("not-exist.id", item, id);
         return item;
     }
 
     @Override
-    public SystemConfigModel addSystemConfig(SystemConfigPo po)
+    public SystemConfigDo addSystemConfig(SystemConfigPo po)
             throws Exception {
         ParameterObjectValidator.throwIfFail(po, Default.class);
         // 配置命名不能重复
         String name = po.getName();
         assertFalse("already-exist.name", configDao.exist("name", name), name);
 
-        SystemConfigModel item = new SystemConfigModel();
+        SystemConfigDo item = new SystemConfigDo();
         item.setId(uuid12());
         item.setName(po.getName());
         item.setValue(po.getValue());
@@ -64,9 +62,9 @@ public class SystemConfigFunctionImpl extends AbstractFunctionSupport implements
 
 
     @Override
-    public SystemConfigModel modifySystemConfig(String id, SystemConfigPo po) throws Exception {
+    public SystemConfigDo modifySystemConfig(String id, SystemConfigPo po) throws Exception {
         id = $("id", id);
-        SystemConfigModel old = configDao.select("id", id);
+        SystemConfigDo old = configDao.select("id", id);
         assertNotNull("not-exist.id", old, id);
         ParameterObjectValidator.throwIfFail(po);
         KeyValueMap needUpdate = new KeyValueMap(4);

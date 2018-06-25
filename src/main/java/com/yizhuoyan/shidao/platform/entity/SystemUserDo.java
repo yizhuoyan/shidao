@@ -1,8 +1,8 @@
 package com.yizhuoyan.shidao.platform.entity;
 
 import com.yizhuoyan.shidao.common.util.KeyValueMap;
+import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 
@@ -11,7 +11,9 @@ import java.util.Map;
  *
  * @author ben
  */
-public class SystemUserModel  {
+@Data
+public class SystemUserDo {
+    private static final long serialVersionUID = 1390116807248341188L;
     /**
      * 正常
      */
@@ -20,12 +22,11 @@ public class SystemUserModel  {
      * 锁定
      */
     public static final int STATUS_LOCKED = 1;
+
     /**
      * 已删除
      */
     public static final int STATUS_DELETED = 2;
-
-    private static final long serialVersionUID = 1390116807248341188L;
     /**
      * 唯一标识符
      */
@@ -96,94 +97,6 @@ public class SystemUserModel  {
         return m;
     }
 
-
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getAccount() {
-        return this.account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getLoginIp() {
-        return loginIp;
-    }
-
-    public void setLoginIp(String loginIp) {
-        this.loginIp = loginIp;
-    }
-
-    public String getAvator() {
-        return avator;
-    }
-
-    public void setAvator(String avator) {
-        this.avator = avator;
-    }
-
-    public Date getCreateTime() {
-        return this.createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getLastLoginTime() {
-        return this.lastLoginTime;
-    }
-
-    public void setLastLoginTime(Date lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
-    }
-
-    public Date getLastModPassTime() {
-        return this.lastModPassTime;
-    }
-
-    public void setLastModPassTime(Date lastModPassTime) {
-        this.lastModPassTime = lastModPassTime;
-    }
-
-    public String getRemark() {
-        return this.remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public int getStatus() {
-        return this.status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
 
     public boolean isLock() {
         return this.status == STATUS_LOCKED;

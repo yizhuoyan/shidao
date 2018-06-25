@@ -8,7 +8,7 @@ package com.yizhuoyan.shidao.platform.support.dao;
 import com.yizhuoyan.shidao.common.dao.support.SingleTableDaoSupport;
 import com.yizhuoyan.shidao.common.dao.support.Sql;
 import com.yizhuoyan.shidao.platform.dao.SystemFunctionalityDao;
-import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityModel;
+import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityDo;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -23,13 +23,13 @@ import static com.yizhuoyan.shidao.common.dao.support.JDBCUtil.toSqlTimestamp;
  * @author root@yizhuoyan.com
  */
 @Repository
-public class SystemFunctionalityDaoImpl extends SingleTableDaoSupport<SystemFunctionalityModel> implements SystemFunctionalityDao{
+public class SystemFunctionalityDaoImpl extends SingleTableDaoSupport<SystemFunctionalityDo> implements SystemFunctionalityDao{
 public SystemFunctionalityDaoImpl(){
   super("sys_functionality", "id,code,name,url,orderCode,parent_id,kind,status,remark,createTime");
 }
 
 @Override
-public void obj2row(PreparedStatement ps, SystemFunctionalityModel m) throws Exception{
+public void obj2row(PreparedStatement ps, SystemFunctionalityDo m) throws Exception{
   int i = 1;
   ps.setString(i++, m.getId());
   ps.setString(i++, m.getCode());
@@ -44,8 +44,8 @@ public void obj2row(PreparedStatement ps, SystemFunctionalityModel m) throws Exc
 }
 
 public void updateCodeCascade(String code, String newCode) throws Exception{
-  Sql sql = Sql.update(this.tableName)
-                .set("code", "CONCAT(?,SUBSTRING(code,LENGTH(?)+1))")
+  Sql sql = Sql.updateTable(this.tableName)
+                .set("code=CONCAT(?,SUBSTRING(code,LENGTH(?)+1))")
                 .where("code like ?");
   executeUpdateSql(sql, newCode, code, code+"%");
 
@@ -57,13 +57,14 @@ public void updateCodeCascade(String code, String newCode) throws Exception{
   }
 
     @Override
-    public List<SystemFunctionalityModel> selectDescendantByCode(String code) throws Exception {
+    public List<SystemFunctionalityDo> selectDescendantByCode(String code) throws Exception {
         Sql sql=Sql.select(this.generateSelectColumns())
                 .from(this.tableName)
-                .where("code like ?");
+                .where("code like ?")
+                .orderBy("code desc");
         return executesQuerySql(sql,this::row2obj,code+"/%");
     }
-    public List<SystemFunctionalityModel> selectByUserId(String userId) throws Exception{
+    public List<SystemFunctionalityDo> selectByUserId(String userId) throws Exception{
   Sql sql = Sql.selectDistinct(this.generateSelectColumns("f"))
                 .from("sys_functionality f")
                 .join("rel_role_functionality rof on f.id=rof.functionality_id")
@@ -75,7 +76,7 @@ public void updateCodeCascade(String code, String newCode) throws Exception{
 
   return executesQuerySql(sql, this::row2obj, userId);
 }
-public List<SystemFunctionalityModel> selectByStatusAndUserId(int status,String userId) throws Exception{
+public List<SystemFunctionalityDo> selectByStatusAndUserId(int status, String userId) throws Exception{
   Sql sql = Sql.selectDistinct(this.generateSelectColumns("f"))
                 .from("sys_functionality f")
                 .join("rel_role_functionality rof on f.id=rof.functionality_id")
@@ -89,7 +90,7 @@ public List<SystemFunctionalityModel> selectByStatusAndUserId(int status,String 
   return executesQuerySql(sql, this::row2obj,status,userId);
 }
 
-public List<SystemFunctionalityModel> selectByRoleId(String roleId) throws Exception{
+public List<SystemFunctionalityDo> selectByRoleId(String roleId) throws Exception{
   Sql sql = Sql.selectDistinct(this.generateSelectColumns("f"))
                 .from("sys_functionality f")
                 .join("rel_role_functionality rof on f.id=rof.functionality_id")
@@ -100,8 +101,8 @@ public List<SystemFunctionalityModel> selectByRoleId(String roleId) throws Excep
 }
 
 @Override
-protected SystemFunctionalityModel row2obj(ResultSet rs) throws Exception{
-  SystemFunctionalityModel m = new SystemFunctionalityModel();
+protected SystemFunctionalityDo row2obj(ResultSet rs) throws Exception{
+  SystemFunctionalityDo m = new SystemFunctionalityDo();
   int i = 1;
   m.setId(rs.getString(i++));
   m.setCode(rs.getString(i++));

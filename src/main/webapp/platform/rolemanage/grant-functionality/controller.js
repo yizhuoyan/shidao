@@ -169,7 +169,7 @@
                 return node.key;
             });
 
-            var url = "/platform/rolemanage/grantFunctionality";
+            var url = "/platform/role/grantFunctionality";
             $.ajaxPost(url, {
                 id: roleId,
                 functionalityIds: selectedNodes.join(",")

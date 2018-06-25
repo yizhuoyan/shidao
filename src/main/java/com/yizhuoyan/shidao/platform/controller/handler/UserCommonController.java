@@ -3,7 +3,7 @@ package com.yizhuoyan.shidao.platform.controller.handler;
 import com.yizhuoyan.shidao.common.dto.JsonResponse;
 import com.yizhuoyan.shidao.common.web.springmvc.AbstractControllerSupport;
 import com.yizhuoyan.shidao.platform.dto.UserContext;
-import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityModel;
+import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityDo;
 import com.yizhuoyan.shidao.platform.function.UserCommonFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -71,7 +71,7 @@ public JsonResponse modifyMyPassword(String account,String oldPassword,
 
 public JsonResponse myMenu() throws Exception{
   UserContext context = UserContext.getCurrentUser();
-  List<SystemFunctionalityModel> functionalitys = context.getMenuFunctionalitys();
+  List<SystemFunctionalityDo> functionalitys = context.getMenuFunctionalitys();
   return JsonResponse.ok(functionalitys,f->f.toJSON());
 }
 

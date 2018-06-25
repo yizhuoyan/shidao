@@ -13,7 +13,7 @@
         <input type="hidden" name="parentId">
         <p>
             <label for="parentNameEL">*父功能:</label>
-            <span class="input-group grow">
+            <span class="input-group layout-box-grow">
                     <button style="width: 30px" id="pickParentBtn" type="button"><i class="fa fa-search"></i></button>
                     <input readonly type="text" id="parentNameEL" size="32" maxlength="16" placeHolder="顶层功能">
                     <button class="fa fa-remove" id="clearParentBtn" type="button"></button>
@@ -22,15 +22,15 @@
         <p>
             <label name="code" for="inputCodeEL"> *代号:</label>
             <input type="hidden" name="code">
-            <span class="input-group grow">
+            <span class="input-group layout-box-grow">
                 <span class="gap-left" id="parentCodeEL" style="color: #555">/</span>
-                <input class="grow"  id="inputCodeEL" type="text"  style="padding-left: 0"
+                <input class="layout-box-grow"  id="inputCodeEL" type="text"  style="padding-left: 0"
                        maxlength="4" required placeholder="最多4个字符，建议是功能的缩写或数字">
             </span>
         </p>
         <p>
             <label> *名称:</label>
-            <input class="grow" name="name" type="text" size="32"
+            <input class="layout-box-grow" name="name" type="text" size="32"
                    maxlength="32" required>
         </p>
         <p>
@@ -49,7 +49,7 @@
         </p>
         <p>
             <label>URL:</label>
-            <input class="grow" name="url" size="32"
+            <input class="layout-box-grow" name="url" size="32"
                    maxlength="64" type="text">
         </p>
         <p>
@@ -65,12 +65,12 @@
         </p>
         <p>
             <label>菜单排序号:</label>
-            <input class="grow" type="text" size="32" name="orderCode">
+            <input class="layout-box-grow" type="text" size="32" name="orderCode">
             <em>用于主页菜单排序，序号越小，越靠前</em>
         </p>
         <p>
             <label>描述:</label>
-            <textarea class="grow" rows="5" name="remark"></textarea>
+            <textarea class="layout-box-grow" rows="5" name="remark"></textarea>
         </p>
         <p>
             <label>创建时间:</label>

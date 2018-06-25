@@ -20,6 +20,7 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
   <dependencies>
 
     <!-- 工具组件-->
@@ -29,6 +30,11 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>1.16.10</version>
+      </dependency>
 
     <dependency>
       <groupId>io.bit3</groupId>

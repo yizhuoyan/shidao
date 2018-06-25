@@ -11,23 +11,27 @@
     <a class="fa fa-back" href="../list/view.html"></a>
     <h1>修改题目类型</h1>
 </header>
-<main class="grow pad">
-    <form id="modForm" class="label5em">
+<main class="layout-box-grow pad">
+    <form id="modForm" class="label8em">
         <p>
             <label>*id：</label>
-            <input class="grow" maxlength="256" name="id" type="text" required >
+            <input class="layout-box-grow" maxlength="256" name="id" type="text" required >
         </p>
         <p>
             <label>*名称：</label>
-            <input class="grow" maxlength="64" name="name" type="text" required placeholder="required placeholder="建议全部大写，用中横线分割，如PAGE-SIZE之类"">
+            <input class="layout-box-grow" maxlength="64" name="name" type="text" required placeholder="">
         </p>
         <p>
             <label>*解析类：</label>
-            <input  class="grow" name="parserClassName" maxlength="256" type="text" required>
+            <input  class="layout-box-grow" name="parserClassName" maxlength="256" type="text" required>
+        </p>
+        <p>
+            <label>*填写说明URL：</label>
+            <input  class="layout-box-grow" name="instruction" maxlength="256" type="url" required placeholder="请输入url">
         </p>
         <p>
             <label>*描述：</label>
-            <textarea  rows="5" maxlength="512" class="grow" name="remark" placeholder="为了体现配置的含义，请输入备注信息"></textarea>
+            <textarea  rows="5" maxlength="512" class="layout-box-grow" name="remark" placeholder=""></textarea>
             <em>你还可以输入512个字符</em>
         </p>
         <p class="form-action">

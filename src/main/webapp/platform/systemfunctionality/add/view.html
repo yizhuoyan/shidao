@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/common.css">
 
 </head>
-<body class="layout-tbottom">
+<body class="layout-vbox">
 <header class="action-bar">
     <a class="fa fa-back" href="../list/view.html"></a>
     <h1>新增系统功能</h1>
@@ -16,7 +16,7 @@
         <input type="hidden" id="parentIdEL" name="parentId">
         <p>
             <label for="parentIdEL">*父功能:</label>
-            <span class="input-group grow">
+            <span class="input-group layout-box-grow">
                     <button class="fa fa-search" id="pickParentBtn" type="button"></button>
                     <input readonly type="text" id="parentNameEL" placeHolder="顶层功能(/)">
                     <button class="fa fa-remove" id="clearParentBtn" type="button"></button>
@@ -24,16 +24,16 @@
         </p>
         <p>
             <label for="inputCodeEL"> *代号:</label>
-            <span class="input-group grow">
+            <span class="input-group layout-box-grow">
                 <span class="gap-left" id="parentCodeEL" style="color: #555">/</span>
                 <input type="hidden" name="code">
-                <input class="grow"  id="inputCodeEL" type="text" size="32" style="padding-left: 0"
+                <input class="layout-box-grow"  id="inputCodeEL" type="text" size="32" style="padding-left: 0"
                        maxlength="4" required placeholder="最多4个字符，建议是功能的缩写或数字">
             </span>
         </p>
         <p>
             <label> *名称:</label>
-            <input class="grow" name="name" type="text"     maxlength="32" required>
+            <input class="layout-box-grow" name="name" type="text"     maxlength="32" required>
         </p>
         <p>
             <label for="kind"> *类型:</label>
@@ -51,7 +51,7 @@
         </p>
         <p>
             <label> URL:</label>
-            <input class="grow" name="url"   maxlength="256" type="text">
+            <input class="layout-box-grow" name="url"   maxlength="256" type="text">
         </p>
         <p>
             <label for="status"> *状态:</label>
@@ -66,12 +66,12 @@
         </p>
         <p>
             <label>菜单排序号:</label>
-            <input class="grow" type="text" maxlength="16" name="orderCode" placeholder="推荐使用数字">
+            <input class="layout-box-grow" type="text" maxlength="16" name="orderCode" placeholder="推荐使用数字">
             <em>用于功能排序，序号越小，越靠前，不同层级的不影响</em>
         </p>
         <p>
             <label>描述:</label>
-            <textarea class="grow" rows="5" name="remark"></textarea>
+            <textarea class="layout-box-grow" rows="5" name="remark"></textarea>
         </p>
         <p class="form-action">
             <button type="submit" class="btn">确定</button>

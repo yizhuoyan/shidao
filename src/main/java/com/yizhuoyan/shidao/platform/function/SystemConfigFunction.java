@@ -6,7 +6,7 @@
 package com.yizhuoyan.shidao.platform.function;
 
 import com.yizhuoyan.shidao.platform.po.SystemConfigPo;
-import com.yizhuoyan.shidao.platform.entity.SystemConfigModel;
+import com.yizhuoyan.shidao.platform.entity.SystemConfigDo;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public interface SystemConfigFunction {
  * @return
  * @throws Exception
  */
-List<SystemConfigModel> listSystemConfig(String key) throws Exception;
+List<SystemConfigDo> listSystemConfig(String key) throws Exception;
 
 /**
  * 查看系统配置项目详情
@@ -36,7 +36,7 @@ List<SystemConfigModel> listSystemConfig(String key) throws Exception;
  * @return
  * @throws Exception
  */
-SystemConfigModel checkSystemConfigDetail(String id) throws Exception;
+SystemConfigDo checkSystemConfigDetail(String id) throws Exception;
 
 /**
  * 新增系统配置项
@@ -44,7 +44,7 @@ SystemConfigModel checkSystemConfigDetail(String id) throws Exception;
  * @param po 信息
  * @throws Exception
  */
-SystemConfigModel addSystemConfig(SystemConfigPo po) throws Exception;
+SystemConfigDo addSystemConfig(SystemConfigPo po) throws Exception;
 
 /**
  * 修改某个系统配置项
@@ -52,7 +52,7 @@ SystemConfigModel addSystemConfig(SystemConfigPo po) throws Exception;
  * @param po 修改信息
  * @throws Exception
  */
-SystemConfigModel modifySystemConfig(String id, SystemConfigPo po) throws Exception;
+SystemConfigDo modifySystemConfig(String id, SystemConfigPo po) throws Exception;
 
 
 

@@ -6,7 +6,7 @@
     var loadQuestionKindModelURL="/questionhub/questionkind/get?id="+questionkindId;
     //当前的模型
     var questionKindModel = null;
-    //
+    //视图元素
     var $modFormEL;
     var $modFormSubmitBtnEL;
     var $modFormResetBtnEL;
@@ -54,6 +54,7 @@ var updateView = function (m) {
     form.id.value = $$(m.id);
     form.name.value = $$(m.name);
     form.parserClassName.value=$$(m.parserClassName);
+    form.instruction.value=$$(m.instruction);
     form.remark.value = $$(m.remark);
 };
 }();

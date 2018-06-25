@@ -4,8 +4,8 @@ import com.yizhuoyan.shidao.common.exception.ParameterException;
 import com.yizhuoyan.shidao.common.util.KeyValueMap;
 import com.yizhuoyan.shidao.common.util.PlatformUtil;
 import com.yizhuoyan.shidao.platform.dto.UserContext;
-import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityModel;
-import com.yizhuoyan.shidao.platform.entity.SystemUserModel;
+import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityDo;
+import com.yizhuoyan.shidao.platform.entity.SystemUserDo;
 import com.yizhuoyan.shidao.platform.function.UserCommonFunction;
 import org.springframework.stereotype.Service;
 
@@ -27,12 +27,12 @@ public class UserCommonFunctionImpl extends AbstractFunctionSupport implements
         account = $("account",account);
         password = $( "password",password);
 
-        SystemUserModel u = this.userDao.select("account", account);
+        SystemUserDo u = this.userDao.select("account", account);
         assertNotNull("not-exist.account", u, account);
         assertEquals("incorrect.password", password, u.getPassword());
         assertFalse("login-locked.account", u.isLock(), account);
         // 根据用户加载所有拥有的功能模块
-        List<SystemFunctionalityModel> functionalitys = functionalityDao.selectByStatusAndUserId(SystemFunctionalityModel.STATUS_ACTIVATE, u
+        List<SystemFunctionalityDo> functionalitys = functionalityDao.selectByStatusAndUserId(SystemFunctionalityDo.STATUS_ACTIVATE, u
                 .getId());
         // 无任何功能
         assertNotEmpty("login-noFunctionalitys.account", functionalitys,account);
@@ -51,14 +51,14 @@ public class UserCommonFunctionImpl extends AbstractFunctionSupport implements
         uc.setName(u.getName());
         uc.setRemark(u.getRemark());
         uc.setLastLoginIp(u.getLoginIp());
-        uc.setLocked(u.getStatus() == SystemUserModel.STATUS_LOCKED);
+        uc.setLocked(u.getStatus() == SystemUserDo.STATUS_LOCKED);
         // 设置用户功能模块
-        uc.setFunctionalitysMap(PlatformUtil.list2map(functionalitys, SystemFunctionalityModel::getId));
+        uc.setFunctionalitysMap(PlatformUtil.list2map(functionalitys, SystemFunctionalityDo::getId));
         // 设置用户菜单
         uc.setMenuFunctionalitys(functionalitys
                 .stream()
                 //过滤掉按钮和链接即可
-                .filter(f -> f.getKind() != SystemFunctionalityModel.KIND_BUTTON_AND_LINK)
+                .filter(f -> f.getKind() != SystemFunctionalityDo.KIND_BUTTON_AND_LINK)
                 .collect(Collectors.toList()));
         // 更新最后登录时间
         updateMap.put("lastLoginTime", new Date());
@@ -85,7 +85,7 @@ public class UserCommonFunctionImpl extends AbstractFunctionSupport implements
         }
 
         //获取账户
-        SystemUserModel user = this.userDao.select("id", userId);
+        SystemUserDo user = this.userDao.select("id", userId);
         // 账户必须存在
         assertNotNull("not-exist.userId", user,userId);
         // 旧密码必须正确
@@ -103,7 +103,7 @@ public class UserCommonFunctionImpl extends AbstractFunctionSupport implements
         // 两次新密码必须一致
         assertEquals("must-equals.newPassword.newPasswordConfirm", newPasswordConfirm, newPassword);
         //获取账户
-        SystemUserModel user = this.userDao.select("id", id);
+        SystemUserDo user = this.userDao.select("id", id);
         // 账户必须存在
         assertNotNull("not-exist.id", user,id);
         // 新旧密码不能一致

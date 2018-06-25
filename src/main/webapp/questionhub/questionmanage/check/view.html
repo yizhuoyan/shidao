@@ -2,36 +2,45 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>新增题目</title>
+    <title>操作题目</title>
     <link rel="stylesheet" href="/common.css">
 </head>
 <body class="layout-vbox">
 <header class="action-bar">
     <a class="fa fa-back" href="../list/view.html"></a>
-    <h1>新增题目</h1>
+    <h1>操作题目</h1>
 </header>
 
 <main class="pad" style="overflow: auto">
-    <form id="addForm" class="vertical">
+    <form>
         <p>
-            <label>*题型：</label>
-            <select name="kindId" class="grow">
-                <option>11</option>
-            </select>
+            <span>
+                <label>　题型：</label>
+                <b id="kindNameEL">加载中...</b>
+                <input name="kindId" type="hidden">
+            </span>
+            <span>
+
+                <label>　创建人：</label>
+                <b id="creatorNameEL">加载中...</b>
+            </span>
+            <span>
+                <label>　创建时间：</label>
+                <b id="createTimeEL">加载中...</b>
+            </span>
         </p>
         <p>
+            <label>*难度：</label>
+            <input name="difficult"  class="layout-box-grow" value="1"  type="number" min="1" max="9">
+        </p>
+
+        <p class="vertical">
             <label>
-                *题目内容:(<a href="#">填写说明</a>)
+                &nbsp;&nbsp;*内容：(<a target="frameWindow" href="../instruction/view.html">填写说明</a>)
             </label>
-            <textarea name="content" rows="5" class="grow" placeholder="支持Markdown语法" required></textarea>
+            <textarea name="content" rows="15" class="layout-box-grow" placeholder="支持Markdown语法" required></textarea>
         </p>
         <p>
-            <label>*答案解析:</label>
-            <textarea name="answerExplain" rows="5" class="grow"  ></textarea>
-
-        </p>
-
-        <p class="form-action">
             <button type="submit">确 定</button>
         </p>
 

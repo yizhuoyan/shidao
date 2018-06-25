@@ -6,18 +6,11 @@
     <link href="/common.css" rel="stylesheet">
 
     <style>
-        header {
+        body>header,body>footer {
             background: #000;
             color: #fff;
             padding: 15px;
         }
-
-        footer {
-            background: #000;
-            color: #fff;
-            text-align: center;
-        }
-
     </style>
 </head>
 <body class="layout-vbox">
@@ -30,7 +23,7 @@
          <a class="white" target="frameWindow" href="/todo.html">关于</a>
       </span>
 </header>
-<main class="layout-center-middle grow">
+<main class="layout-box-grow layout-center-middle">
     <div>
         <h1>
             师道
@@ -57,11 +50,10 @@
     </div>
 </main>
 
-<footer>
-    <adress>&copy;版权所有
-        <a href="mailto:root@yizhuoyan.com">root@yizhuoyan.com</a>
-    </adress>
+<footer style="text-align: center">
+    &copy;版权所有 <a href="mailto:root@yizhuoyan.com">root@yizhuoyan.com</a>
 </footer>
+
 <script src="/common.js"></script>
 <script src="controller.js"></script>
 </body>

@@ -6,12 +6,12 @@
 package com.yizhuoyan.shidao.platform.dao;
 
 import com.yizhuoyan.shidao.common.dao.CRUDDao;
-import com.yizhuoyan.shidao.platform.entity.SystemConfigModel;
+import com.yizhuoyan.shidao.platform.entity.SystemConfigDo;
 
 /**
  * @author root@yizhuoyan.com
  */
-public interface SystemConfigDao extends CRUDDao<SystemConfigModel>{
+public interface SystemConfigDao extends CRUDDao<SystemConfigDo>{
 
 
 }

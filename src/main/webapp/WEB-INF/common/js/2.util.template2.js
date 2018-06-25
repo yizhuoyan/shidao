@@ -34,8 +34,9 @@
     };
     //方法中的
     TemplateFunction.helper={
-        print:function(s,escape){
+        print:function(s,escape/*=true*/){
             if(s===null||s===undefined)return '';
+            escape=escape||true;
             if(escape) {
                 return String(s).replace(/[<>&]/g, function (c) {
                     return {'<': '&lt;', '>': '&gt;', '&': '&amp;'}[c]

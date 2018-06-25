@@ -32,11 +32,11 @@ public static <T> void throwIfFail(T t,
   Set<ConstraintViolation<T>> constraintViolations = VALIDATOR.validate(t, groups);
   if(constraintViolations.size()!=0){
       List<String> messages=new ArrayList<>(constraintViolations.size());
-     int argIndex=0;
-     String errorKind=null;
-     String errorField="";
+     int argIndex;
+     String errorKind;
+     String errorField;
      String errorArgs="";
-     String message=null;
+     String message;
     for(ConstraintViolation<?> violation : constraintViolations){
         message=violation.getMessage();
         errorField=violation.getPropertyPath().toString();

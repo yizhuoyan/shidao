@@ -10,9 +10,9 @@ import com.yizhuoyan.shidao.common.dto.PaginationQueryResult;
 import com.yizhuoyan.shidao.common.util.PlatformUtil;
 import com.yizhuoyan.shidao.common.web.springmvc.AbstractControllerSupport;
 import com.yizhuoyan.shidao.platform.po.SysUserPo;
-import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityModel;
-import com.yizhuoyan.shidao.platform.entity.SystemRoleModel;
-import com.yizhuoyan.shidao.platform.entity.SystemUserModel;
+import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityDo;
+import com.yizhuoyan.shidao.platform.entity.SystemRoleDo;
+import com.yizhuoyan.shidao.platform.entity.SystemUserDo;
 import com.yizhuoyan.shidao.platform.function.UserManagerFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,12 +35,12 @@ public JsonResponse list(String key, String pageNo, String pageSize)
     throws Exception{
   int pageNoInt = PlatformUtil.parseInt(pageNo, 0);
   int pageSizeInt = PlatformUtil.parseInt(pageSize, 0);
-  PaginationQueryResult<SystemUserModel> result = function.queryUser(key, pageNoInt, pageSizeInt);
+  PaginationQueryResult<SystemUserDo> result = function.queryUser(key, pageNoInt, pageSizeInt);
   return JsonResponse.ok(result.toJSON(u->u.toJSON()));
 }
 
 public JsonResponse add(SysUserPo dto) throws Exception{
-  SystemUserModel model = function.addUser(dto);
+  SystemUserDo model = function.addUser(dto);
   return JsonResponse.ok();
 }
 
@@ -50,12 +50,12 @@ public JsonResponse del(String id) throws Exception{
 }
 
   public JsonResponse mod(String id, SysUserPo dto) throws Exception{
-    SystemUserModel model = function.modUser(id, dto);
+    SystemUserDo model = function.modUser(id, dto);
     return JsonResponse.ok();
   }
 
 public JsonResponse get(String id) throws Exception{
-  SystemUserModel model = function.checkUserDetail(id);
+  SystemUserDo model = function.checkUserDetail(id);
   return JsonResponse.ok(model.toJSON());
 }
 
@@ -76,13 +76,13 @@ public JsonResponse revokeRole(String id, String roleId) throws Exception{
 }
 
 public JsonResponse ofRoles(String id) throws Exception{
-  List<SystemRoleModel> result = function.listRoleOfUser(id);
+  List<SystemRoleDo> result = function.listRoleOfUser(id);
   return JsonResponse.ok(result,r->r.toJSON());
 }
 
 
 public JsonResponse glanceOwnFunctionalitys(String id) throws Exception{
-  List<SystemFunctionalityModel> result = function.glanceOwnFunctionalitys(id);
+  List<SystemFunctionalityDo> result = function.glanceOwnFunctionalitys(id);
   return JsonResponse.ok(result,f->f.toJSON());
 }
 

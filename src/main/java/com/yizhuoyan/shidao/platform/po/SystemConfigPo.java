@@ -2,6 +2,7 @@ package com.yizhuoyan.shidao.platform.po;
 
 import com.yizhuoyan.shidao.common.validatation.MaxLength;
 import com.yizhuoyan.shidao.common.validatation.MustIn;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -14,6 +15,7 @@ import javax.validation.constraints.Size;
  *
  * @author Administrator
  */
+@Data
 public class SystemConfigPo{
 /**
  * 项目名称
@@ -37,36 +39,6 @@ private String remark;
 @MustIn("0/1/9")
 private int status=1;
 
-    public int getStatus() {
-        return status;
-    }
 
-    public void setStatus(int status){
-  this.status = status;
-}
-
-public String getName(){
-  return name;
-}
-
-public void setName(String name){
-  this.name = name;
-}
-
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
-    this.value = value;
-  }
-
-  public String getRemark(){
-  return remark;
-}
-
-public void setRemark(String remark){
-  this.remark = remark;
-}
 
 }

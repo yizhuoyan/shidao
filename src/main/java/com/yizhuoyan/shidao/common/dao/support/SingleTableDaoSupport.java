@@ -112,8 +112,8 @@ public abstract class SingleTableDaoSupport<T> implements CRUDDao<T> {
 
     @Override
     public void update(Serializable id, String column, Object value) throws Exception {
-        Sql sql = Sql.update(tableName)
-                .set(column, "?")
+        Sql sql = Sql.updateTable(tableName)
+                .set(column+"=?")
                 .where(idColumn, "=?");
         executeUpdateSql(sql, value, id);
     }
@@ -223,6 +223,7 @@ public abstract class SingleTableDaoSupport<T> implements CRUDDao<T> {
     public Connection getConnection() {
         return DataSourceUtils.getConnection(dataSource);
     }
+
 
 
     protected final void executeInsert(String tableDesc, Object... values) throws Exception {

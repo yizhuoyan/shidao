@@ -88,7 +88,7 @@
     var updateFunctionalityTableTree = function () {
         $tableTreeEL.fancytree({
             source: {
-                url: "/platform/systemfunctionality/list",
+                url: "/platform/functionality/list",
                 cache: true
             },
             postProcess: function (evt, data) {
@@ -113,9 +113,9 @@
                 var model = node.data;
                 var cells = node.tr.getElementsByTagName("td");
 
-                cells[2].innerHTML = model.code;
-                cells[3].innerHTML = ["目录", "页面", "按钮"][model.kind];
-                cells[4].innerHTML = $$(model.url);
+                cells[2].textContent = model.code;
+                cells[3].textContent = ["目录", "页面", "按钮"][model.kind];
+                cells[4].textContent = $$(model.url);
             },
             strings: {
                 loading: "加载中...请稍后",
