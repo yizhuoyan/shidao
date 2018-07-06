@@ -1,77 +1,84 @@
-;+function (window, document, undefined) {
+(function (window, document) {
     "use strict";
+    /**
+     * how to :
+     *
+     * toast("message");//默认2000
+     * toast("message",300);
+     *
+     */
 
     var defautSetting = {
-        timeout: 3000,
-        fadeIn: 1000,
+        timeout: 2000,
+        fadeIn: 500,
         fadeOut: 1000,
     };
-
+	/**
+	 * 创建toastview
+	 */
     var toastEL = (function (setting) {
-        var toastEL = document.createElement("div");
-        var messageEL = document.createElement("span");
-        toastEL.appendChild(messageEL);
+
         var divCss = {
             position: "fixed",
             zIndex: 2147483647,
             bottom: "150px",
-            left: 0,
-            right: 0,
-            border: "none",
-            textAlign: "center"
+            background: "#000",
+            color: "#fff",
+            border: "1px solid #000",
+            fontSize: "14px",
+            padding: "5px 1em",
+            borderRadius: "5px",
+            boxShadow: "inset 0 1px 1px rgba(0, 0, 0, .075)",
+            display:"none"
         };
-        var spanCss = {
-            "background": "#000",
-            "color": "#fff",
-            "border": "1px solid black",
-            "font-size": "14px",
-            "padding": "5px 1em",
-            "border-radius": "5px",
-            "box-shadow": "inset 0 1px 1px rgba(0, 0, 0, .075)",
-            "display": "none"
-        };
+        var toastEL = document.createElement("div");
         var k;
         for (k in divCss) {
             toastEL.style[k] = divCss[k];
         }
-        for (k in spanCss) {
-            messageEL.style[k] = spanCss[k];
-        }
         window.addEventListener("load", function () {
             window.document.body.appendChild(toastEL);
         });
-        return messageEL;
+        return toastEL;
     })(defautSetting);
+
 
     //save all messages
     var messages = [];
 
-    var doToast = function (message, timeout, whenDone) {
-        timeout = timeout || defautSetting.timeout;
-        messages.push({message: message, timeout: timeout, done: whenDone});
-        if (toastEL.style.display === "none") {
-            toastEL.style.display = "inline-block";
-            toastMessages();
-        }
-    };
+
     //显示消息
     var toastMessages = function () {
         if (messages.length === 0) {
-            //无消息,不再显示
-            toastEL.style.display = "none";
+        	toastEL.show=false;
+        	toastEL.style.display="none";
             return;
         }
+    	if(!toastEL.show){
+    		toastEL.style.display="block";
+    		toastEL.show=true;
+		}
+
         var m = messages.shift();
-        toastEL.innerHTML = m.message;
+        toastEL.textContent = m.message;
+        //计算宽度
+        var left=(document.body.offsetWidth-toastEL.offsetWidth)/2;
+        if(left>0){
+			toastEL.style.left=left+"px";
+        }
         fadeIn(toastEL, defautSetting.fadeIn, function () {
             setTimeout(function () {
                 fadeOut(toastEL, defautSetting.fadeOut, function () {
                     if (m.done) {
-                        m.done.apply(m.message);
+                       try{
+                        	m.done.apply(window,m.message);
+                       }catch(e){
+                       	 console.log(e);
+                       }
                     }
                     toastMessages();
                 });
-            }, m.timeout);
+            },m.timeout);
         });
     };
     /**
@@ -86,10 +93,8 @@
         var timeout = 30;//1000/30;
         //每次递增
         var increase = (100 * timeout / t) ^ 0;
-
         function run() {
             var next = e.opacity + increase;
-
             if (next >= 100) {
                 e.style.opacity = 1;
                 delete e.opacity;
@@ -115,7 +120,6 @@
         var timeout = 30;//1000/30;
         //每次递增
         var increase = (100 * timeout / t) ^ 0;
-
         function run() {
             var next = e.opacity - increase;
             if (next <= 0) {
@@ -131,30 +135,33 @@
 
         run(timeout);
     };
-    //expode 
+
+    //expode
     window.toast = function () {
-        var message, timeout, whenDone;
+        var message, timeout=defautSetting.timeout, whenDone;
         for (var i = arguments.length, arg; i-- > 0;) {
             arg = arguments[i];
-
-             if (typeof arg === "function") {
+            if (typeof arg === "function") {
                 whenDone = arg;
             } else if (typeof arg === "number") {
                 timeout = arg;
             }else{
-                     message = arg;
-             }
+                message = arg;
+            }
         }
         if(Array.isArray(message)){
             message=message.join("<br>");
         }
-        doToast(message, timeout, whenDone);
+        if(message){
+	        messages.push({message: message, timeout: timeout, done: whenDone});
+	        toastMessages();
+        }
     };
 
-}(window, document);
-    
-    
-    
-    
-    
-    
+})(window, document);
+
+
+
+
+
+
