@@ -6,9 +6,9 @@
 package com.yizhuoyan.shidao.platform.function;
 
 import com.yizhuoyan.shidao.platform.po.SysRolePo;
-import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityDo;
-import com.yizhuoyan.shidao.platform.entity.SystemRoleDo;
-import com.yizhuoyan.shidao.platform.entity.SystemUserDo;
+import com.yizhuoyan.shidao.entity.SystemFunctionalityEntity;
+import com.yizhuoyan.shidao.entity.SystemRoleEntity;
+import com.yizhuoyan.shidao.entity.SystemUserEntity;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -22,20 +22,19 @@ import java.util.List;
 public interface SystemRoleManageFunction {
 
 
+    SystemRoleEntity addRole(SysRolePo po) throws Exception;
 
-SystemRoleDo addRole(SysRolePo po) throws Exception;
+    SystemRoleEntity modifyRole(String id, SysRolePo po) throws Exception;
 
-SystemRoleDo modifyRole(String id, SysRolePo po) throws Exception;
+    List<SystemFunctionalityEntity> listSystemFunctionalityOfRole(String roleId) throws Exception;
 
-List<SystemFunctionalityDo> listSystemFunctionalityOfRole(String roleId) throws Exception;
-
-List<SystemUserDo> listUserOfRole(String roleId) throws Exception;
+    List<SystemUserEntity> listUserOfRole(String roleId) throws Exception;
 
 void grantSystemFunctionalitysToRole(String roleId, String... functionalityIds) throws Exception;
 
-SystemRoleDo checkRoleDetail(String id) throws Exception;
+    SystemRoleEntity checkRoleDetail(String id) throws Exception;
 
-List<SystemRoleDo> listRole(String key) throws Exception;
+    List<SystemRoleEntity> listRole(String key) throws Exception;
     void deleteSystemRole(String id)throws Exception;
 
 

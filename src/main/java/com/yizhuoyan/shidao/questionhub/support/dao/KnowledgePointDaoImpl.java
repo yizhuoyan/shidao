@@ -1,9 +1,9 @@
 package com.yizhuoyan.shidao.questionhub.support.dao;
 
-import com.yizhuoyan.shidao.common.dao.support.SingleTableDaoSupport;
-import com.yizhuoyan.shidao.common.dao.support.Sql;
+import com.yizhuoyan.common.dao.support.SingleTableDaoSupport;
+import com.yizhuoyan.common.dao.support.Sql;
 import com.yizhuoyan.shidao.questionhub.dao.KnowledgePointDao;
-import com.yizhuoyan.shidao.questionhub.entity.KnowledgePointDo;
+import com.yizhuoyan.shidao.entity.KnowledgePointDo;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;

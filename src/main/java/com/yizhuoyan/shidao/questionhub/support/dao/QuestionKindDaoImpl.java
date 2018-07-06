@@ -1,8 +1,8 @@
 package com.yizhuoyan.shidao.questionhub.support.dao;
 
-import com.yizhuoyan.shidao.common.dao.support.SingleTableDaoSupport;
+import com.yizhuoyan.common.dao.support.SingleTableDaoSupport;
 import com.yizhuoyan.shidao.questionhub.dao.QuestionKindDao;
-import com.yizhuoyan.shidao.questionhub.entity.QuestionKindDo;
+import com.yizhuoyan.shidao.entity.QuestionKindDo;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;

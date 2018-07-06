@@ -1,10 +1,10 @@
 package com.yizhuoyan.shidao.questionhub.parser;
 
-import com.yizhuoyan.shidao.common.util.PlatformUtil;
-import com.yizhuoyan.shidao.questionhub.entity.QuestionDo;
+import com.yizhuoyan.common.util.PlatformUtil;
+import com.yizhuoyan.shidao.entity.QuestionDo;
 
-import static com.yizhuoyan.shidao.common.util.AssertThrowUtil.assertNotBlank;
-import static com.yizhuoyan.shidao.common.util.AssertThrowUtil.assertTrue;
+import static com.yizhuoyan.common.util.AssertThrowUtil.assertNotBlank;
+import static com.yizhuoyan.common.util.AssertThrowUtil.assertTrue;
 
 /**
  * Created by ben on 11/29/17.

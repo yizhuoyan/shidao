@@ -37,7 +37,7 @@
 
     <!-- Handler配置 -->
     <bean id="handlerMapping"
-          class="com.yizhuoyan.shidao.common.web.springmvc.RequestMappingHandlerMappingAdivice">
+          class="com.yizhuoyan.common.web.springmvc.RequestMappingHandlerMappingAdivice">
         <property name="useRegisteredSuffixPatternMatch" value="true"></property>
         <property name="useTrailingSlashMatch" value="false"></property>
         <property name="alwaysUseFullPath" value="true"></property>
@@ -52,17 +52,17 @@
 
     <!-- handler适配器 -->
     <bean id="handlerAdapter"
-          class="com.yizhuoyan.shidao.common.web.springmvc.RequestMappingHandlerAdapterAdvice">
+          class="com.yizhuoyan.common.web.springmvc.RequestMappingHandlerAdapterAdvice">
         <property name="returnValueHandlers">
             <list>
-                <bean class="com.yizhuoyan.shidao.common.web.springmvc.JsonResponseReturnValueHandler"></bean>
+                <bean class="com.yizhuoyan.common.web.springmvc.JsonResponseReturnValueHandler"></bean>
             </list>
         </property>
     </bean>
 
     <!-- 异常处理器 -->
     <bean id="handlerExceptionResolver"
-          class="com.yizhuoyan.shidao.common.web.springmvc.JsonResponseExceptionResolver">
+          class="com.yizhuoyan.common.web.springmvc.JsonResponseExceptionResolver">
     </bean>
 
 

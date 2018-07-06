@@ -6,8 +6,8 @@
 package com.yizhuoyan.shidao.platform.function;
 
 import com.yizhuoyan.shidao.platform.po.SystemFunctionalityPo;
-import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityDo;
-import com.yizhuoyan.shidao.platform.entity.SystemRoleDo;
+import com.yizhuoyan.shidao.entity.SystemFunctionalityEntity;
+import com.yizhuoyan.shidao.entity.SystemRoleEntity;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -21,19 +21,17 @@ import java.util.List;
 public interface SystemFuncationalityFunction {
 
 
-
-
-SystemFunctionalityDo addSystemFunctionality(SystemFunctionalityPo po) throws Exception;
+    SystemFunctionalityEntity addSystemFunctionality(SystemFunctionalityPo po) throws Exception;
 
 void deleteSystemFunctionality(String id) throws Exception;
 
-SystemFunctionalityDo modifySystemFunctionality(String id, SystemFunctionalityPo po) throws Exception;
+    SystemFunctionalityEntity modifySystemFunctionality(String id, SystemFunctionalityPo po) throws Exception;
 
 void enableSystemFunctionality(String id) throws Exception;
 
 void disableSystemFunctionality(String id) throws Exception;
 
-SystemFunctionalityDo checkSysFunctionalityDetail(String id) throws Exception;
+    SystemFunctionalityEntity checkSysFunctionalityDetail(String id) throws Exception;
 
 /**
  * 模糊查询功能模块,包括已停用的
@@ -42,9 +40,9 @@ SystemFunctionalityDo checkSysFunctionalityDetail(String id) throws Exception;
  * @return
  * @throws Exception
  */
-List<SystemFunctionalityDo> listSystemFunctionality(String key) throws Exception;
+List<SystemFunctionalityEntity> listSystemFunctionality(String key) throws Exception;
 
-List<SystemRoleDo> listRoleOfSystemFunctionality(String functionalityId) throws Exception;
+    List<SystemRoleEntity> listRoleOfSystemFunctionality(String functionalityId) throws Exception;
 
 
 

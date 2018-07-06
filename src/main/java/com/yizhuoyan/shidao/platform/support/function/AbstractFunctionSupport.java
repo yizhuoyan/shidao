@@ -16,16 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author root@yizhuoyan.com
  */
 public abstract class AbstractFunctionSupport{
-@Autowired
-protected SystemConfigService configService;
-@Autowired
-protected SystemFunctionalityDao functionalityDao;
-@Autowired
-protected SystemRoleDao roleDao;
-@Autowired
-protected SystemUserDao userDao;
-@Autowired
-protected SystemConfigDao configDao;
 
 
 }

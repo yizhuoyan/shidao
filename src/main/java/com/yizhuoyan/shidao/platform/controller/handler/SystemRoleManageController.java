@@ -5,11 +5,11 @@
  */
 package com.yizhuoyan.shidao.platform.controller.handler;
 
-import com.yizhuoyan.shidao.common.dto.JsonResponse;
-import com.yizhuoyan.shidao.common.web.springmvc.AbstractControllerSupport;
+import com.yizhuoyan.common.dto.JsonResponse;
+import com.yizhuoyan.common.web.springmvc.AbstractControllerSupport;
 import com.yizhuoyan.shidao.platform.po.SysRolePo;
-import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityDo;
-import com.yizhuoyan.shidao.platform.entity.SystemRoleDo;
+import com.yizhuoyan.shidao.entity.SystemFunctionalityEntity;
+import com.yizhuoyan.shidao.entity.SystemRoleEntity;
 import com.yizhuoyan.shidao.platform.function.SystemRoleManageFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,17 +28,17 @@ public class SystemRoleManageController extends AbstractControllerSupport{
 private SystemRoleManageFunction function;
 
 public JsonResponse list(String key) throws Exception{
-  List<SystemRoleDo> roles = function.listRole(key);
+  List<SystemRoleEntity> roles = function.listRole(key);
   return JsonResponse.ok(roles,r->r.toJSON());
 }
 
 public JsonResponse add(SysRolePo po) throws Exception{
-  SystemRoleDo m=function.addRole(po);
+  SystemRoleEntity m = function.addRole(po);
   return JsonResponse.ok(m);
 }
 
 public JsonResponse mod(String id,SysRolePo po) throws Exception{
-  SystemRoleDo m=function.modifyRole(id,po);
+  SystemRoleEntity m = function.modifyRole(id, po);
   return JsonResponse.ok(m);
 }
   public JsonResponse del(String id) throws Exception{
@@ -47,12 +47,12 @@ public JsonResponse mod(String id,SysRolePo po) throws Exception{
   }
 
 public JsonResponse get(String id) throws Exception{
-  SystemRoleDo m = function.checkRoleDetail(id);
+  SystemRoleEntity m = function.checkRoleDetail(id);
   return JsonResponse.ok(m);
 }
 
 public JsonResponse ofFunctionality(String id) throws Exception{
-  List<SystemFunctionalityDo> functionalitys = function.listSystemFunctionalityOfRole(id);
+  List<SystemFunctionalityEntity> functionalitys = function.listSystemFunctionalityOfRole(id);
   return JsonResponse.ok(functionalitys,f->f.toJSON());
 }
 

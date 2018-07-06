@@ -1,9 +1,9 @@
 package com.yizhuoyan.shidao.questionhub.controller.handler;
 
-import com.yizhuoyan.shidao.common.dto.JsonResponse;
-import com.yizhuoyan.shidao.common.dto.PaginationQueryResult;
-import com.yizhuoyan.shidao.common.util.PlatformUtil;
-import com.yizhuoyan.shidao.questionhub.entity.QuestionDo;
+import com.yizhuoyan.common.dto.JsonResponse;
+import com.yizhuoyan.common.dto.PaginationQueryResult;
+import com.yizhuoyan.common.util.PlatformUtil;
+import com.yizhuoyan.shidao.entity.QuestionDo;
 import com.yizhuoyan.shidao.questionhub.function.QuestionHubFunction;
 import com.yizhuoyan.shidao.questionhub.po.QuestionPo;
 import org.springframework.beans.factory.annotation.Autowired;

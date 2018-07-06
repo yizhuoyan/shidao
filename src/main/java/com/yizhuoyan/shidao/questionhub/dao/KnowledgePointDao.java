@@ -1,7 +1,7 @@
 package com.yizhuoyan.shidao.questionhub.dao;
 
-import com.yizhuoyan.shidao.common.dao.CRUDDao;
-import com.yizhuoyan.shidao.questionhub.entity.KnowledgePointDo;
+import com.yizhuoyan.common.dao.CRUDDao;
+import com.yizhuoyan.shidao.entity.KnowledgePointDo;
 
 import java.util.List;
 

@@ -5,13 +5,13 @@
  */
 package com.yizhuoyan.shidao.platform.dao;
 
-import com.yizhuoyan.shidao.common.dao.CRUDDao;
-import com.yizhuoyan.shidao.platform.entity.SystemConfigDo;
+import com.yizhuoyan.common.dao.CRUDDao;
+import com.yizhuoyan.shidao.entity.SystemConfigEntity;
 
 /**
  * @author root@yizhuoyan.com
  */
-public interface SystemConfigDao extends CRUDDao<SystemConfigDo>{
+public interface SystemConfigDao extends CRUDDao<SystemConfigEntity> {
 
 
 }

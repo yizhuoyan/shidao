@@ -5,22 +5,28 @@
  */
 package com.yizhuoyan.shidao.platform.support.function;
 
-import com.yizhuoyan.shidao.common.dao.support.SelectLikePo;
-import com.yizhuoyan.shidao.common.util.KeyValueMap;
-import com.yizhuoyan.shidao.common.validatation.ParameterObjectValidator;
+import com.yizhuoyan.common.dao.support.SelectLikePo;
+import com.yizhuoyan.common.util.KeyValueMap;
+import com.yizhuoyan.common.util.validatation.ParameterObjectValidator;
+import com.yizhuoyan.shidao.platform.dao.SystemFunctionalityDao;
+import com.yizhuoyan.shidao.platform.dao.SystemRoleDao;
+import com.yizhuoyan.shidao.platform.dao.SystemUserDao;
 import com.yizhuoyan.shidao.platform.po.SysRolePo;
-import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityDo;
-import com.yizhuoyan.shidao.platform.entity.SystemRoleDo;
-import com.yizhuoyan.shidao.platform.entity.SystemUserDo;
+import com.yizhuoyan.shidao.entity.SystemFunctionalityEntity;
+import com.yizhuoyan.shidao.entity.SystemRoleEntity;
+import com.yizhuoyan.shidao.entity.SystemUserEntity;
 import com.yizhuoyan.shidao.platform.function.SystemRoleManageFunction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 
-import static com.yizhuoyan.shidao.common.util.AssertThrowUtil.*;
-import static com.yizhuoyan.shidao.common.validatation.ParameterValidator.$;
-import static com.yizhuoyan.shidao.common.util.PlatformUtil.*;
+import static com.yizhuoyan.common.util.AssertThrowUtil.assertFalse;
+import static com.yizhuoyan.common.util.AssertThrowUtil.assertNotNull;
+import static com.yizhuoyan.common.util.PlatformUtil.trim;
+import static com.yizhuoyan.common.util.PlatformUtil.uuid12;
+import static com.yizhuoyan.common.util.validatation.ParameterValidator.$;
 
 /**
  * @author root@yizhuoyan.com
@@ -28,14 +34,20 @@ import static com.yizhuoyan.shidao.common.util.PlatformUtil.*;
 @Service
 public class SystemRoleManageFunctionImpl extends AbstractFunctionSupport implements SystemRoleManageFunction {
 
+    @Autowired
+    protected SystemUserDao userDao;
+    @Autowired
+    protected SystemRoleDao roleDao;
+    @Autowired
+    protected SystemFunctionalityDao functionalityDao;
 
     @Override
-    public SystemRoleDo addRole(SysRolePo po) throws Exception {
+    public SystemRoleEntity addRole(SysRolePo po) throws Exception {
         ParameterObjectValidator.throwIfFail(po);
         // 代号不能重复
         String code = po.getCode();
         assertFalse("already-exist", roleDao.exist("code", code), code);
-        SystemRoleDo model = new SystemRoleDo();
+        SystemRoleEntity model = new SystemRoleEntity();
         model.setId(uuid12());
         model.setCode(code);
         model.setName(po.getName());
@@ -47,19 +59,19 @@ public class SystemRoleManageFunctionImpl extends AbstractFunctionSupport implem
 
 
     @Override
-    public SystemRoleDo checkRoleDetail(String id) throws Exception {
+    public SystemRoleEntity checkRoleDetail(String id) throws Exception {
         id = $("id", id);
-        SystemRoleDo model = this.roleDao.select("id", id);
+        SystemRoleEntity model = this.roleDao.select("id", id);
         return model;
     }
 
 
     @Override
-    public SystemRoleDo modifyRole(String id, SysRolePo po) throws Exception {
+    public SystemRoleEntity modifyRole(String id, SysRolePo po) throws Exception {
         id = $("id", id);
         ParameterObjectValidator.throwIfFail(po);
         // 旧数据
-        SystemRoleDo old = this.roleDao.select("id", id);
+        SystemRoleEntity old = this.roleDao.select("id", id);
         assertNotNull("not-exist.id", old, id);
 
         KeyValueMap needUpdateMap = new KeyValueMap(4);
@@ -92,10 +104,10 @@ public class SystemRoleManageFunctionImpl extends AbstractFunctionSupport implem
 
 
     @Override
-    public List<SystemRoleDo> listRole(String key)
+    public List<SystemRoleEntity> listRole(String key)
             throws Exception {
         key = trim(key);
-        List<SystemRoleDo> list = this.roleDao.selectsByLike(
+        List<SystemRoleEntity> list = this.roleDao.selectsByLike(
                 SelectLikePo.of("code,name,remark",key)
                         .setOrderBy("code"));
         return list;
@@ -103,10 +115,10 @@ public class SystemRoleManageFunctionImpl extends AbstractFunctionSupport implem
 
 
     @Override
-    public List<SystemFunctionalityDo> listSystemFunctionalityOfRole(String roleId)
+    public List<SystemFunctionalityEntity> listSystemFunctionalityOfRole(String roleId)
             throws Exception {
         roleId=$("roleId",roleId);
-        List<SystemFunctionalityDo> list = this.functionalityDao.selectByRoleId(roleId);
+        List<SystemFunctionalityEntity> list = this.functionalityDao.selectByRoleId(roleId);
         return list;
     }
 
@@ -127,17 +139,17 @@ public class SystemRoleManageFunctionImpl extends AbstractFunctionSupport implem
     }
 
     @Override
-    public List<SystemUserDo> listUserOfRole(String roleId)
+    public List<SystemUserEntity> listUserOfRole(String roleId)
             throws Exception {
         roleId=$("roleId",roleId);
-        List<SystemUserDo> list = this.userDao.selectByRoleId(roleId);
+        List<SystemUserEntity> list = this.userDao.selectByRoleId(roleId);
         return list;
     }
 
     @Override
     public void deleteSystemRole(String id) throws Exception {
         id = $("id", id);
-        SystemRoleDo r = roleDao.select("id", id);
+        SystemRoleEntity r = roleDao.select("id", id);
         assertNotNull("not-exist.id", r,id);
         //删除角色和功能关联关系
         roleDao.disjoinOnFunctionality(id);

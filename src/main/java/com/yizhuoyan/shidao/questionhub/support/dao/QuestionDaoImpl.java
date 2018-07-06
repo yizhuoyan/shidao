@@ -1,9 +1,9 @@
 package com.yizhuoyan.shidao.questionhub.support.dao;
 
-import com.yizhuoyan.shidao.common.dao.support.JDBCUtil;
-import com.yizhuoyan.shidao.common.dao.support.SingleTableDaoSupport;
+import com.yizhuoyan.common.dao.support.JDBCUtil;
+import com.yizhuoyan.common.dao.support.SingleTableDaoSupport;
 import com.yizhuoyan.shidao.questionhub.dao.QuestionDao;
-import com.yizhuoyan.shidao.questionhub.entity.QuestionDo;
+import com.yizhuoyan.shidao.entity.QuestionDo;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -20,22 +20,20 @@ public class QuestionDaoImpl extends SingleTableDaoSupport<QuestionDo> implement
     }
 
 
-
-
     @Override
     protected void obj2row(PreparedStatement ps, QuestionDo e) throws Exception {
         int i=1;
         ps.setString(i++,e.getAnswer());
         ps.setString(i++,e.getAnswerExplain());
         ps.setString(i++,e.getContent());
-        ps.setTimestamp(i++,JDBCUtil.toSqlTimestamp(e.getCreateTime()));
+        ps.setTimestamp(i++, toTimestamp(e.getCreateTime()));
         ps.setString(i++,e.getCreateUserId());
         ps.setInt(i++,e.getDifficult());
         ps.setString(i++,e.getId());
         ps.setString(i++,e.getOptions());
         ps.setString(i++,e.getQuestionKindId());
         ps.setString(i++,e.getTitle());
-        ps.setTimestamp(i++,JDBCUtil.toSqlTimestamp(e.getUpdateTime()));
+        ps.setTimestamp(i++, toTimestamp(e.getUpdateTime()));
     }
     @Override
     protected QuestionDo row2obj(ResultSet rs) throws Exception {

@@ -1,6 +1,6 @@
 package com.yizhuoyan.shidao.questionhub.parser;
 
-import com.yizhuoyan.shidao.questionhub.entity.QuestionDo;
+import com.yizhuoyan.shidao.entity.QuestionDo;
 
 import java.util.regex.Pattern;
 

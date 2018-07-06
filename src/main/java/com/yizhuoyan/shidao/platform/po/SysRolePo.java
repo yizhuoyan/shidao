@@ -1,10 +1,10 @@
 package com.yizhuoyan.shidao.platform.po;
 
-import com.yizhuoyan.shidao.common.validatation.MaxLength;
+import com.yizhuoyan.common.util.validatation.MaxLength;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+
 @Data
 public class SysRolePo {
     /**

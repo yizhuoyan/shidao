@@ -1,6 +1,6 @@
 package com.yizhuoyan.shidao.questionhub.parser;
 
-import com.yizhuoyan.shidao.questionhub.entity.QuestionDo;
+import com.yizhuoyan.shidao.entity.QuestionDo;
 
 /**
  * Created by ben on 11/29/17.

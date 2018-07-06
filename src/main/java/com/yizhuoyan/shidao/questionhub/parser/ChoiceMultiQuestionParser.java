@@ -1,7 +1,7 @@
 package com.yizhuoyan.shidao.questionhub.parser;
 
-import com.yizhuoyan.shidao.common.exception.PlatformException;
-import com.yizhuoyan.shidao.questionhub.entity.QuestionDo;
+import com.yizhuoyan.common.exception.PlatformException;
+import com.yizhuoyan.shidao.entity.QuestionDo;
 
 /**
  * Created by ben on 11/29/17.

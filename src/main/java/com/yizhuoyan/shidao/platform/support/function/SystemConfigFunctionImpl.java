@@ -1,55 +1,58 @@
 package com.yizhuoyan.shidao.platform.support.function;
 
-import com.yizhuoyan.shidao.common.dao.support.SelectLikePo;
-import com.yizhuoyan.shidao.common.util.KeyValueMap;
-import com.yizhuoyan.shidao.common.validatation.ParameterObjectValidator;
+import com.yizhuoyan.common.dao.support.SelectLikePo;
+import com.yizhuoyan.common.util.KeyValueMap;
+import com.yizhuoyan.common.util.validatation.ParameterObjectValidator;
+import com.yizhuoyan.shidao.platform.dao.SystemConfigDao;
 import com.yizhuoyan.shidao.platform.po.SystemConfigPo;
-import com.yizhuoyan.shidao.platform.entity.SystemConfigDo;
+import com.yizhuoyan.shidao.entity.SystemConfigEntity;
 import com.yizhuoyan.shidao.platform.function.SystemConfigFunction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.groups.Default;
 import java.util.List;
 import java.util.Objects;
 
-import static com.yizhuoyan.shidao.common.util.AssertThrowUtil.*;
-import static com.yizhuoyan.shidao.common.util.AssertThrowUtil.assertNotNull;
-import static com.yizhuoyan.shidao.common.validatation.ParameterValidator.$;
-import static com.yizhuoyan.shidao.common.util.PlatformUtil.*;
+import static com.yizhuoyan.common.util.AssertThrowUtil.*;
+import static com.yizhuoyan.common.util.PlatformUtil.trim;
+import static com.yizhuoyan.common.util.PlatformUtil.uuid12;
+import static com.yizhuoyan.common.util.validatation.ParameterValidator.$;
 
 /**
  * Created by Administrator on 2017/11/22 0022.
  */
 @Service
-public class SystemConfigFunctionImpl extends AbstractFunctionSupport implements SystemConfigFunction {
-
+public class SystemConfigFunctionImpl implements SystemConfigFunction {
+    @Autowired
+    protected SystemConfigDao configDao;
     @Override
-    public List<SystemConfigDo> listSystemConfig(String key)
+    public List<SystemConfigEntity> listSystemConfig(String key)
             throws Exception {
         key = trim(key);
-        List<SystemConfigDo> result = this.configDao.selectsByLike(
+        List<SystemConfigEntity> result = this.configDao.selectsByLike(
                 SelectLikePo.of("name,value,remark",key)
                         .setOrderBy("name"));
         return result;
     }
 
     @Override
-    public SystemConfigDo checkSystemConfigDetail(String id) throws Exception {
+    public SystemConfigEntity checkSystemConfigDetail(String id) throws Exception {
         id = $("id", id);
-        SystemConfigDo item = configDao.select("id", id);
+        SystemConfigEntity item = configDao.select("id", id);
         assertNotNull("not-exist.id", item, id);
         return item;
     }
 
     @Override
-    public SystemConfigDo addSystemConfig(SystemConfigPo po)
+    public SystemConfigEntity addSystemConfig(SystemConfigPo po)
             throws Exception {
         ParameterObjectValidator.throwIfFail(po, Default.class);
         // 配置命名不能重复
         String name = po.getName();
         assertFalse("already-exist.name", configDao.exist("name", name), name);
 
-        SystemConfigDo item = new SystemConfigDo();
+        SystemConfigEntity item = new SystemConfigEntity();
         item.setId(uuid12());
         item.setName(po.getName());
         item.setValue(po.getValue());
@@ -62,9 +65,9 @@ public class SystemConfigFunctionImpl extends AbstractFunctionSupport implements
 
 
     @Override
-    public SystemConfigDo modifySystemConfig(String id, SystemConfigPo po) throws Exception {
+    public SystemConfigEntity modifySystemConfig(String id, SystemConfigPo po) throws Exception {
         id = $("id", id);
-        SystemConfigDo old = configDao.select("id", id);
+        SystemConfigEntity old = configDao.select("id", id);
         assertNotNull("not-exist.id", old, id);
         ParameterObjectValidator.throwIfFail(po);
         KeyValueMap needUpdate = new KeyValueMap(4);

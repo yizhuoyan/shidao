@@ -1,10 +1,10 @@
 package com.yizhuoyan.shidao.platform.function;
 
-import com.yizhuoyan.shidao.common.dto.PaginationQueryResult;
+import com.yizhuoyan.common.dto.PaginationQueryResult;
 import com.yizhuoyan.shidao.platform.po.SysUserPo;
-import com.yizhuoyan.shidao.platform.entity.SystemFunctionalityDo;
-import com.yizhuoyan.shidao.platform.entity.SystemRoleDo;
-import com.yizhuoyan.shidao.platform.entity.SystemUserDo;
+import com.yizhuoyan.shidao.entity.SystemFunctionalityEntity;
+import com.yizhuoyan.shidao.entity.SystemRoleEntity;
+import com.yizhuoyan.shidao.entity.SystemUserEntity;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -18,13 +18,14 @@ import java.util.List;
 @Transactional
 public interface UserManagerFunction {
 
-SystemUserDo addUser(SysUserPo po) throws Exception;
+   SystemUserEntity addUser(SysUserPo po) throws Exception;
 
-SystemUserDo modUser(String id, SysUserPo po) throws Exception;
+   SystemUserEntity modUser(String id, SysUserPo po) throws Exception;
    void deleteUser(String id)throws  Exception;
-SystemUserDo checkUserDetail(String id) throws Exception;
 
-List<SystemRoleDo> listRoleOfUser(String userId) throws Exception;
+   SystemUserEntity checkUserDetail(String id) throws Exception;
+
+   List<SystemRoleEntity> listRoleOfUser(String userId) throws Exception;
 
 /**
  * 添加用户所属角色
@@ -39,12 +40,12 @@ void grantRoles(String userId, String... roleIds) throws Exception;
  * 删除用户所属角色
  *
  * @param userId
- * @param roleIds
+ * @param roleId
  * @throws Exception
  */
 void revokeRole(String userId, String roleId) throws Exception;
 
-List<SystemFunctionalityDo> glanceOwnFunctionalitys(String userId) throws Exception;
+   List<SystemFunctionalityEntity> glanceOwnFunctionalitys(String userId) throws Exception;
 
 void resetUserPassword(String userId) throws Exception;
 
@@ -52,5 +53,5 @@ void lockUser(String userId) throws Exception;
 
 void unlockUser(String userId) throws Exception;
 
-PaginationQueryResult<SystemUserDo> queryUser(String key, int pageNo, int pageSize) throws Exception;
+   PaginationQueryResult<SystemUserEntity> queryUser(String key, int pageNo, int pageSize) throws Exception;
 }

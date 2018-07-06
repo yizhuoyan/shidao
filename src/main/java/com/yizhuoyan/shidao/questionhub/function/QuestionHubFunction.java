@@ -1,9 +1,9 @@
 package com.yizhuoyan.shidao.questionhub.function;
 
-import com.yizhuoyan.shidao.common.dto.PaginationQueryResult;
-import com.yizhuoyan.shidao.questionhub.entity.KnowledgePointDo;
-import com.yizhuoyan.shidao.questionhub.entity.QuestionKindDo;
-import com.yizhuoyan.shidao.questionhub.entity.QuestionDo;
+import com.yizhuoyan.common.dto.PaginationQueryResult;
+import com.yizhuoyan.shidao.entity.KnowledgePointDo;
+import com.yizhuoyan.shidao.entity.QuestionKindDo;
+import com.yizhuoyan.shidao.entity.QuestionDo;
 import com.yizhuoyan.shidao.questionhub.po.KnowledgePointPo;
 import com.yizhuoyan.shidao.questionhub.po.QuestionKindPo;
 import com.yizhuoyan.shidao.questionhub.po.QuestionPo;

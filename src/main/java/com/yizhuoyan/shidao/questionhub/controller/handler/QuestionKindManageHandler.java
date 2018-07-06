@@ -1,7 +1,7 @@
 package com.yizhuoyan.shidao.questionhub.controller.handler;
 
-import com.yizhuoyan.shidao.common.dto.JsonResponse;
-import com.yizhuoyan.shidao.questionhub.entity.QuestionKindDo;
+import com.yizhuoyan.common.dto.JsonResponse;
+import com.yizhuoyan.shidao.entity.QuestionKindDo;
 import com.yizhuoyan.shidao.questionhub.function.QuestionHubFunction;
 import com.yizhuoyan.shidao.questionhub.po.QuestionKindPo;
 import org.springframework.beans.factory.annotation.Autowired;

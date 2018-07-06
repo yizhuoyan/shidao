@@ -5,10 +5,10 @@
  */
 package com.yizhuoyan.shidao.platform.support.dao;
 
-import com.yizhuoyan.shidao.common.dao.support.SingleTableDaoSupport;
-import com.yizhuoyan.shidao.common.dao.support.Sql;
+import com.yizhuoyan.common.dao.support.SingleTableDaoSupport;
+import com.yizhuoyan.common.dao.support.Sql;
 import com.yizhuoyan.shidao.platform.dao.SystemRoleDao;
-import com.yizhuoyan.shidao.platform.entity.SystemRoleDo;
+import com.yizhuoyan.shidao.entity.SystemRoleEntity;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -21,20 +21,13 @@ import java.util.List;
  * @author root@yizhuoyan.com
  */
 @Repository
-public class SystemRoleDaoImpl extends SingleTableDaoSupport<SystemRoleDo> implements SystemRoleDao{
+public class SystemRoleDaoImpl extends SingleTableDaoSupport<SystemRoleEntity> implements SystemRoleDao {
 
 public SystemRoleDaoImpl(){
-  super("sys_role", "id,code,name,remark");
+    super("sys_role", "id,code,name,remark,createTime,createUser_id");
 }
 
-@Override
-public void obj2row(PreparedStatement ps, SystemRoleDo m) throws Exception{
-  int i = 1;
-  ps.setString(i++, m.getId());
-  ps.setString(i++, m.getCode());
-  ps.setString(i++, m.getName());
-  ps.setString(i++, m.getRemark());
-}
+
 
 @Override
 public void joinOnFunctionality(String roleId, String functionalityId) throws Exception{
@@ -57,7 +50,7 @@ public void disjoinOnFunctionality(String roleId) throws Exception{
     executeDelete("rel_user_role(role_id)", roleId);
   }
 
-  public List<SystemRoleDo> selectByUserId(String userId) throws Exception{
+    public List<SystemRoleEntity> selectByUserId(String userId) throws Exception {
   Sql sql = Sql.select(this.generateSelectColumns("r"))
                 .from(this.tableName, " r")
                 .join("rel_user_role rel on rel.role_id=r.id")
@@ -65,7 +58,7 @@ public void disjoinOnFunctionality(String roleId) throws Exception{
   return this.executesQuerySql(sql, this::row2obj, userId);
 }
 
-public List<SystemRoleDo> selectByFunctionalityId(String functionalityId)
+    public List<SystemRoleEntity> selectByFunctionalityId(String functionalityId)
     throws Exception{
   Sql sql = Sql.select(generateSelectColumns("r"))
                 .from(this.tableName, " r")
@@ -73,7 +66,8 @@ public List<SystemRoleDo> selectByFunctionalityId(String functionalityId)
                 .where("rel.functionality_id=?");
   return this.executesQuerySql(sql, this::row2obj, functionalityId);
 }
-public List<SystemRoleDo> selectByUserIdAndFunctionalityId(String userId, String functionalityId)
+
+    public List<SystemRoleEntity> selectByUserIdAndFunctionalityId(String userId, String functionalityId)
     throws Exception{
   Sql sql = Sql.select(generateSelectColumns("r"))
                 .from(this.tableName, " r")
@@ -86,13 +80,26 @@ public List<SystemRoleDo> selectByUserIdAndFunctionalityId(String userId, String
 }
 
 @Override
-protected SystemRoleDo row2obj(ResultSet rs) throws Exception{
-  SystemRoleDo m = new SystemRoleDo();
+protected SystemRoleEntity row2obj(ResultSet rs) throws Exception {
+    SystemRoleEntity m = new SystemRoleEntity();
   int i = 1;
   m.setId(rs.getString(i++));
   m.setCode(rs.getString(i++));
   m.setName(rs.getString(i++));
   m.setRemark(rs.getString(i++));
+    m.setCreateTime(toInstant(rs.getTimestamp(i++)));
+    m.setCreateUserId(rs.getString(i++));
   return m;
 }
+
+    @Override
+    public void obj2row(PreparedStatement ps, SystemRoleEntity m) throws Exception {
+        int i = 1;
+        ps.setString(i++, m.getId());
+        ps.setString(i++, m.getCode());
+        ps.setString(i++, m.getName());
+        ps.setString(i++, m.getRemark());
+        ps.setTimestamp(i++, toTimestamp(m.getCreateTime()));
+        ps.setString(i++, m.getCreateUserId());
+    }
 }

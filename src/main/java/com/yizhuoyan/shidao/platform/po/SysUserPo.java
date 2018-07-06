@@ -1,7 +1,7 @@
 package com.yizhuoyan.shidao.platform.po;
 
-import com.yizhuoyan.shidao.common.validatation.MaxLength;
-import com.yizhuoyan.shidao.common.validatation.MustIn;
+import com.yizhuoyan.common.util.validatation.MaxLength;
+import com.yizhuoyan.common.util.validatation.MustIn;
 import lombok.Data;
 
 import javax.validation.constraints.*;

@@ -1,17 +1,11 @@
-/**
- * shidao
- * SystemConfigController.java
- * 2015年10月31日
- */
 package com.yizhuoyan.shidao.platform.controller.handler;
 
-import com.yizhuoyan.shidao.common.dto.JsonResponse;
-import com.yizhuoyan.shidao.common.web.springmvc.AbstractControllerSupport;
+import com.yizhuoyan.common.dto.JsonResponse;
+import com.yizhuoyan.common.web.springmvc.AbstractControllerSupport;
 import com.yizhuoyan.shidao.platform.po.SystemConfigPo;
-import com.yizhuoyan.shidao.platform.entity.SystemConfigDo;
+import com.yizhuoyan.shidao.entity.SystemConfigEntity;
 import com.yizhuoyan.shidao.platform.function.SystemConfigFunction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -20,7 +14,7 @@ import java.util.List;
 /**
  * @author root@yizhuoyan.com
  */
-@Controller
+
 @RequestMapping("/platform/config")
 public class SystemConfigManageController extends AbstractControllerSupport{
 @Autowired
@@ -28,13 +22,13 @@ private SystemConfigFunction function;
 
 
 public JsonResponse list(String key) throws Exception{
-  List<SystemConfigDo> result = function.listSystemConfig(key);
+  List<SystemConfigEntity> result = function.listSystemConfig(key);
 
   return JsonResponse.ok(result,c->c.toJSON());
 }
 
 public JsonResponse get(String id) throws Exception{
-  SystemConfigDo m = function.checkSystemConfigDetail(id);
+  SystemConfigEntity m = function.checkSystemConfigDetail(id);
   return JsonResponse.ok(m.toJSON());
 }
 

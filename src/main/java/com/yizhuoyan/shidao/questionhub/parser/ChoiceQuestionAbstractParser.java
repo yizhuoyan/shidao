@@ -1,16 +1,16 @@
 package com.yizhuoyan.shidao.questionhub.parser;
 
-import com.yizhuoyan.shidao.common.exception.PlatformException;
-import com.yizhuoyan.shidao.common.util.PlatformUtil;
-import com.yizhuoyan.shidao.questionhub.entity.QuestionDo;
+import com.yizhuoyan.common.exception.PlatformException;
+import com.yizhuoyan.common.util.PlatformUtil;
+import com.yizhuoyan.shidao.entity.QuestionDo;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.yizhuoyan.shidao.common.util.AssertThrowUtil.assertNotBlank;
-import static com.yizhuoyan.shidao.common.util.AssertThrowUtil.assertTrue;
+import static com.yizhuoyan.common.util.AssertThrowUtil.assertNotBlank;
+import static com.yizhuoyan.common.util.AssertThrowUtil.assertTrue;
 
 /**
  * Created by ben on 11/29/17.
@@ -121,7 +121,7 @@ public abstract class ChoiceQuestionAbstractParser implements QuestionParser {
      * 我是正确的选项2
      * 解析：我是选项2的解析
      * ...
-     * @param optionString
+     * @param optionsString
      * @param q
      * @throws Exception
      */

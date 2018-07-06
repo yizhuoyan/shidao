@@ -1,12 +1,12 @@
 package com.yizhuoyan.shidao.questionhub.support.function;
 
-import com.yizhuoyan.shidao.common.dao.support.SelectLikePo;
-import com.yizhuoyan.shidao.common.dto.PaginationQueryResult;
-import com.yizhuoyan.shidao.common.util.KeyValueMap;
-import com.yizhuoyan.shidao.common.validatation.ParameterObjectValidator;
-import com.yizhuoyan.shidao.questionhub.entity.KnowledgePointDo;
-import com.yizhuoyan.shidao.questionhub.entity.QuestionKindDo;
-import com.yizhuoyan.shidao.questionhub.entity.QuestionDo;
+import com.yizhuoyan.common.dao.support.SelectLikePo;
+import com.yizhuoyan.common.dto.PaginationQueryResult;
+import com.yizhuoyan.common.util.KeyValueMap;
+import com.yizhuoyan.common.util.validatation.ParameterObjectValidator;
+import com.yizhuoyan.shidao.entity.KnowledgePointDo;
+import com.yizhuoyan.shidao.entity.QuestionKindDo;
+import com.yizhuoyan.shidao.entity.QuestionDo;
 import com.yizhuoyan.shidao.questionhub.function.QuestionHubFunction;
 import com.yizhuoyan.shidao.questionhub.parser.QuestionParser;
 import com.yizhuoyan.shidao.questionhub.po.KnowledgePointPo;
@@ -22,10 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static com.yizhuoyan.shidao.common.util.AssertThrowUtil.*;
-import static com.yizhuoyan.shidao.common.util.PlatformUtil.trim;
-import static com.yizhuoyan.shidao.common.util.PlatformUtil.uuid12;
-import static com.yizhuoyan.shidao.common.validatation.ParameterValidator.$;
+import static com.yizhuoyan.common.util.AssertThrowUtil.assertFalse;
+import static com.yizhuoyan.common.util.AssertThrowUtil.assertNotNull;
+import static com.yizhuoyan.common.util.AssertThrowUtil.assertTrue;
+import static com.yizhuoyan.common.util.PlatformUtil.trim;
+import static com.yizhuoyan.common.util.PlatformUtil.uuid12;
+import static com.yizhuoyan.common.util.validatation.ParameterValidator.$;
 
 /**
  * Created by Administrator on 2017/11/21 0021.

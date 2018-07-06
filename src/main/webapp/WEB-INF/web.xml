@@ -10,7 +10,7 @@
 
     <servlet>
         <servlet-name>通用小文件上传</servlet-name>
-        <servlet-class>com.yizhuoyan.shidao.common.web.servlet.SmallFileUploadServlet</servlet-class>
+        <servlet-class>com.yizhuoyan.common.web.servlet.SmallFileUploadServlet</servlet-class>
         <multipart-config>
             <location>/WEB-INF/upload-temp</location>
             <!-- 5m -->
@@ -28,7 +28,7 @@
 
     <servlet>
         <servlet-name>dispatcherServlet</servlet-name>
-        <servlet-class>com.yizhuoyan.shidao.common.web.springmvc.PlatformDispatcherServlet</servlet-class>
+        <servlet-class>com.yizhuoyan.common.web.springmvc.PlatformDispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
