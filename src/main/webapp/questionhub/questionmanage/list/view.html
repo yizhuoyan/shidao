@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>题目管理</title>
+    <link rel="stylesheet" href="/common.css">
+</head>
+<body class="layout-vbox">
+<header class="action-bar">
+    <h1>题目管理</h1>
+    <a href="../add/view.html" class="fa fa-plus">新增</a>
+    <span class="layout-box-grow"></span>
+    <form id="queryForm" >
+        <input name="pageNo" type="hidden" value="1">
+        <span class="input-group">
+            <select name="kind">
+                <option value="">所有题型</option>
+            </select>
+            <input name="key" type="text" placeholder="Search for..."
+                   maxlength="16">
+            <button type="submit" class="fa fa-search"></button>
+        </span>
+    </form>
+</header>
+<main class="layout-box-grow table pad">
+    <header>
+        <table>
+            <colgroup>
+                <col width="50px">
+                <col width="50px">
+                <col width="100px">
+                <col width="600px">
+                <col width="auto">
+                <col width="150px">
+            </colgroup>
+            <tr>
+                <th>No.</th>
+                <th>操作</th>
+                <th>类型</th>
+                <th>题目内容</th>
+                <th>创建人</th>
+                <th>创建时间</th>
+            </tr>
+        </table>
+    </header>
+    <main>
+        <table class="data">
+            <tbody id="dataQueryingTableBody">
+                <tr>
+                    <td colspan="99">
+                        <i class="fa fa-spinner fa-spin"></i>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody id="dataNotFoundTableBody" style="display: none">
+                <tr>
+                    <td colspan="99">暂无相关记录!</td>
+                </tr>
+            </tbody>
+            <tbody id="dataFoundTableBody">
+            </tbody>
+            <script type="text/template" name="dataFoundTableBodyTemplate(items)">
+                <-for(var i=0,item;i < items.length;i++){item=items[i];->
+                <tr>
+                    <td>$(i+1)</td>
+                    <td>
+                        <a href="../check/view.html?$(item.id)">操作</a>
+                    </td>
+                    <td>$(item.kind.name)</td>
+                    <td class="ellipsis" style="max-width:600px">$(item.content)</td>
+                    <td>$(item.createUser.name)</td>
+                    <td>$(Date.format(item.createTime))</td>
+                </tr>
+                <-}->
+            </script>
+        </table>
+    </main>
+    <footer id="paginationRegionEL" class="layout-justify" style="display: none">
+        <span>
+            <strong class="tips">
+                共找到 <b id="totalRowsEL">0</b>条记录
+                每页<b id="pageSizeEL">0</b>条,
+                共<b id="totalPagesEL">0</b>页
+            </strong>
+        </span>
+        <span id="paginationButtonsEL" class="pagination-group">
+                <button id="firstPageBtn" disabled>&lt;&lt;</button>
+                <button id="previousPageBtn" disabled>&lt;</button>
+                <b id="pageNoEL">0</b>
+                <button id="nextPageBtn" disabled>&gt;</button>
+                <button id="lastPageBtn" disabled>&gt;&gt;</button>
+        </span>
+    </footer>
+</main>
+<script src="/common.js"></script>
+<script src="controller.js"></script>
+
+</body>
+</html>

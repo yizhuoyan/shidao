@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>新增角色</title>
+    <link rel="stylesheet" href="/common.css">
+</head>
+<body class="layout-vbox">
+<header class="action-bar">
+    <a class="fa fa-back" href="../list/view.html"></a>
+    <h1>新增角色</h1>
+</header>
+
+<main class="pad" style="overflow: auto">
+    <form id="addForm">
+        <p>
+            <label>
+                *代号:
+            </label>
+            <input class="layout-box-grow" name="code" type="text" maxlength="32" placeholder="推荐使用英文字母" required>
+        </p>
+        <p>
+            <label>
+                *名称:
+            </label>
+            <input class="layout-box-grow" name="name" type="text" maxlength="32" required placeholder="">
+        </p>
+        <p>
+            <label>描述:</label>
+            <textarea class="layout-box-grow" rows="4" maxlength="512" name="remark"></textarea> <em>不能超过512个字符哦</em>
+        </p>
+        <p class="form-action">
+            <button type="submit">确 定</button>
+        </p>
+    </form>
+</main>
+<script src="/common.js"></script>
+<script src="controller.js"></script>
+
+</body>
+</html>

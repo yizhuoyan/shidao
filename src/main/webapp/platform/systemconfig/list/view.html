@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>系统参数配置</title>
+    <link rel="stylesheet" href="/common.css">
+
+</head>
+<body class="layout-vbox">
+<header class="action-bar">
+    <h1>系统参数配置</h1>
+    <a href="../add/view.html" class="fa fa-plus">新增</a>
+    <span class="layout-box-grow"></span>
+    <form id="queryForm" >
+        <span class="input-group">
+            <input name="key" type="text" placeholder="Search for..."
+                   maxlength="16">
+            <button type="submit" class="fa fa-search"></button>
+        </span>
+    </form>
+</header>
+<main class="layout-box-grow table pad">
+    <header>
+        <table>
+            <colgroup>
+                <col width="50px">
+                <col width="50px">
+                <col width="200px">
+                <col width="100px">
+                <col width="120px">
+                <col width="auto">
+            </colgroup>
+            <tr>
+                <th>No.</th>
+                <th>操作</th>
+                <th>名称</th>
+                <th>内容</th>
+                <th>状态</th>
+                <th>描述</th>
+            </tr>
+        </table>
+    </header>
+    <main>
+        <table class="data">
+            <tbody id="dataQueryingTableBody">
+            <tr>
+                <td colspan="99">
+                    <i class="fa fa-spinner fa-spin"></i>
+                </td>
+            </tr>
+            </tbody>
+            <tbody id="dataNotFoundTableBody" style="display: none">
+            <tr>
+                <td colspan="99">暂无相关记录!</td>
+            </tr>
+            </tbody>
+            <tbody id="dataFoundTableBody">
+            <script type="text/template" name="dataFoundTableBodyTemplate(items)">
+                <-for(var i=0,item;i < items.length;i++){item=items[i];->
+                <-if(item.status===1){->
+                <tr>
+                <-}else{->
+                <tr class="disabled">
+                <-}->
+                <td>$(i+1)</td>
+                <td>
+                    <a href="../check/view.html?$(item.id)">修改</a>
+                </td>
+                <td>$(item.name)</td>
+                <td>$(item.value)</td>
+                <td>$(item.status===1?"启用":"停用")</td>
+                <td class="left">$(item.remark)</td>
+                </tr>
+                <-}->
+            </script>
+            </tbody>
+
+
+        </table>
+    </main>
+    <footer>
+        <div id="pageInfoBox" style="display: none">
+            共找到<b id="totalRowsEL">加载中...</b>条数据
+        </div>
+
+    </footer>
+</main>
+<script src="/common.js"></script>
+<script src="controller.js"></script>
+
+</body>
+</html>

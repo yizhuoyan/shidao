@@ -1,0 +1,11 @@
+.layout-middle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.layout-center-middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

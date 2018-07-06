@@ -1,0 +1,83 @@
+/**********form************/
+form {
+    margin: 0;
+
+}
+
+form > p {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+form.vertical>p,p.vertical{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content:center;
+    align-items: flex-start;
+}
+
+form > p > .grow {
+    flex: 1 1 auto;
+}
+
+form.vertical>p>.grow,p.vertical>.grow{
+    flex:none;
+    align-self: stretch;
+}
+
+form > p > label {
+    text-align: right;
+    min-width: 4em;
+    padding-right: 1em;
+}
+
+form.vertical > p > label ,p.vertical>label{
+    margin-bottom: 1em;
+    text-align: left;
+    padding-right: 0;
+}
+
+
+
+form.label5em > p > label {
+    min-width: 5em;
+}
+form.label6em > p > label {
+    min-width: 6em;
+}
+form.label7em > p > label {
+    min-width: 7em;
+}
+form.label8em > p > label {
+    min-width: 8em;
+}
+
+form > p em {
+    color: #7f7f7f;
+    padding-left: 1em;
+    font-style: normal;
+}
+
+
+form.label5em > p.form-action {
+    padding-left: 6em;
+}
+
+form.label6em > p.form-action {
+    padding-left: 7em;
+}
+form.label7em > p.form-action {
+    padding-left: 8em;
+}
+form.label8em > p.form-action {
+    padding-left: 9em;
+}
+
+form > p.form-action {
+    padding-left: 5em;
+}
+
+form.vertical > p.form-action {
+    padding-left: 0em;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>新增配置</title>
+    <link rel="stylesheet" href="/common.css">
+</head>
+<body class="layout-vbox">
+<header class="action-bar">
+    <a class="fa fa-back" href="../list/view.html"></a>
+    <h1>新增配置</h1>
+</header>
+<main class="pad layout-box-grow">
+    <form id="addForm"
+          method="post">
+        <p>
+            <label >*名称：</label>
+            <input  class="layout-box-grow" name="name" maxlength="64" type="text" required placeholder="建议全部大写，用中横线分割，如PAGE-SIZE之类">
+        </p>
+        <p>
+            <label >*内容：</label>
+            <input class="layout-box-grow" name="value" maxlength="256" type="text" required >
+        </p>
+        <p>
+
+            <label name="status">*状态：</label>
+            <span>
+                    <label>
+                        <input name="status" type="radio"
+                               value="1" checked>启用
+                    </label>
+                    <label>
+                        <input name="status" type="radio" value="0">
+							停用
+					</label>
+                    <em>停用状态的配置相当于删除了</em>
+                </span>
+        </p>
+        <p>
+            <label>*描述：</label>
+            <textarea  maxlength="512" rows="5" class="layout-box-grow" name="remark" placeholder="为了体现配置的含义，请输入备注信息"></textarea>
+            <i></i>
+        </p>
+        <p>
+            <button type="submit">确 定</button>
+        </p>
+    </form>
+</main>
+<script src="/common.js"></script>
+<script src="controller.js"></script>
+</body>
+</html>

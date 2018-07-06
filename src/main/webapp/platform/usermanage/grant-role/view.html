@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>授予用户角色</title>
+    <link rel="stylesheet" href="/common.css">
+
+    <link href="/weblib/fancytree/ui.fancytree.css" rel="stylesheet">
+    <style type="text/css">
+        .selected-list{
+            min-height: 3em;
+        }
+        .selected-list > li {
+            position: relative;
+            border: 1px solid #999;
+            display: inline-block;
+            margin:5px;
+            cursor: pointer;
+            padding:6px 10px;
+            border-radius: 5px;
+            background: hsl(103, 30%, 50%);
+            color: #fff;
+
+        }
+
+        .selected-list > li:hover {
+            background: hsl(103, 30%, 30%);
+        }
+    </style>
+</head>
+<body class="layout-vbox pad">
+<header class="layout-justify">
+    <aside>
+        <h5>用户【<b id="headingUserNameEL">加载中...</b>】角色授权</h5>
+    </aside>
+    <aside>
+        <button id="confirmGrantBtn">确定授予</button>
+    </aside>
+</header>
+<section class="padv">
+    <fieldset>
+        <legend>已选择<b id="totalGrantRolesEL">加载中...</b>个角色
+            <small>(点击可以撤销)</small>
+        </legend>
+        <ul id="currentSelectedList" class="selected-list">
+
+        </ul>
+    </fieldset>
+</section>
+<article class="layout-box-grow table">
+    <header>
+        <table>
+            <colgroup>
+                <col width="30px">
+                <col width="200px">
+                <col width="150px">
+                <col width="auto">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>@</th>
+                <th>名称</th>
+                <th>代号</th>
+                <th>描述</th>
+            </tr>
+            </thead>
+        </table>
+    </header>
+    <main style="overflow:auto;">
+        <table id="functionalityTableTree">
+            <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+</article>
+<script src="/common.js"></script>
+<script src="/weblib/fancytree/jquery.fancytree.js"></script>
+<script src="controller.js"></script>
+</body>
+</html>

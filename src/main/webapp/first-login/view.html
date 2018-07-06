@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>第一次登陆</title>
+    <link href="/common.css" rel="stylesheet">
+</head>
+<body class="pad" >
+    <header style="padding: 50px 0">
+           <h5>
+               <b id="headingUserNameLE">加载中...</b>您好，
+               系统检测到您是第一次登陆，请先修改密码！
+           </h5>
+    </header>
+    <main class="layout-hbox">
+        <form id="modifyPasswordForm" class="layout-box-grow label6em pad" style="padding-top: 50px">
+            <p>
+                <label>*新密码:</label>
+                <input class="layout-box-grow" name="newPassword" type="password">
+            </p>
+            <p>
+                <label>*新密码确认:</label>
+                <input class="layout-box-grow" name="newPassword" type="password">
+            </p>
+
+            <p class="form-action">
+                <button type="submit">确认修改</button>
+            </p>
+
+        </form>
+
+        <aside class="pad">
+            <p>
+                <h6>密码必须满足如下要求：</h6>
+                <ol>
+                    <li>密码至少6位。</li>
+                    <li>应至少包含一个字母，一个数字</li>
+                    <li>请每三个月修改一次密码，否则系统回锁定您的账号。</li>
+                    <li>如果忘记密码，请联系管理员重置。</li>
+                </ol>
+            </p>
+        </aside>
+    </main>
+
+    <script src="/common.js"></script>
+    <script src="controller.js"></script>
+</body>
+</html>

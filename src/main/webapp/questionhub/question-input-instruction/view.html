@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>试题填写指南</title>
+    <link rel="stylesheet" href="/common.css">
+    <style>
+        textarea {
+            border: 1px solid #999;
+            border-radius: 5px;
+            width: 300px;
+            min-height: 200px;
+        }
+
+        main > section {
+            padding: 1em 0;
+        }
+
+
+    </style>
+</head>
+<body class="pad">
+<header>
+    <h1>试题填写指南</h1>
+</header>
+<main>
+    <header>
+        <h4>通用规则</h4>
+        <ol>
+            <li>题干，答案，选项，解析内容之间都是以两个或两个以上空行分割。</li>
+            <li>所有内容都支持Markdown语法</li>
+            <li>选择题和填空题的正确答案都写题干中的小括号(不区分半角全角)内，如果题干中需要小括号，请使用转移字符。如“\(xxxx\)”</li>
+        </ol>
+    </header>
+    <nav>
+        <h4>目录</h4>
+
+    <ol>
+        <li><a href="#choice">选择题</a></li>
+        <li><a href="#fillinblank">填空题</a></li>
+        <li><a href="#yesno">判断题</a></li>
+        <li><a href="#essay">问答题</a></li>
+        <li><a href="#composite">综合题</a></li>
+    </ol>
+    </nav>
+    <section id="choice">
+        <header>
+            <h5>选择题(单选，多选，不定项)</h5>
+
+            <p>
+                <h6>说明：</h6>
+            <ol>
+                <li>题干，选项，整体解析内容之间以两个或两个以上空行分割。</li>
+                <li>正确答案写在题干的小括号内。</li>
+                <li>每个选项后换行可以编写针对此选项的解析，解析内容必须以（解析：）开头</li>
+            </ol>
+            </p>
+        </header>
+        <main>
+            格式：
+            <textarea style="height: 450px">我是题干，我可以换行书写，我是题干，我
+可以换行书写（这里写正确选项）
+&lt;空一行&gt;
+&lt;空一行&gt;
+我是正确的选项1
+解析：我是选项1的解析
+我是正确的选项2
+解析：我是选项2的解析
+...
+&lt;空一行&gt;
+&lt;空一行&gt;
+解析：我是整体解析
+...</textarea>
+            示例：
+            <textarea style="height: 450px">在开发Java Web应用程序的时候，HTTP请求消息使用Get或POET方法以便在WEB上传输数据。
+
+    则下列关于GET和POST 方法描述*正确的*是（AB）
+
+
+A、POST请求的数据在地址栏不可见
+解析：POST发出的请求的数据放在请求体中，不会显示在地址栏
+B、POST请求提交的数据在理论上没有长度限制
+解析：POST发出的请求的数据放在请求体中，理论上没有现在，但由于浏览器内存限制，不可能是无限。
+C、POST请求对发送的数据的长度限制在240-255个字符
+解析：POST发出的请求的数据放在请求体中，理论上没有现在，但由于浏览器内存限制，不可能是无限。具体来说，会是多少不确定。
+D、GET请求提交数据更加安全
+解析：GET发出的请求的数据放在请求行的URL中，会显示在地址栏，相对POST来说不安全。
+</textarea>
+            <textarea style="height: 450px">在JSP中有EL表达式${10*10 ne 10}，结果是(B)
+
+
+A.100
+B.true
+C.fasle
+D.以上都不对
+
+
+解析：
+ne表示不等于的意思，10*10=100肯定不等于10，所以答案为true。
+</textarea>
+        </main>
+    </section>
+
+    <section id="fillinblank">
+        <header>
+            <h5>填空题</h5>
+            <p>
+                说明：<br>
+                题干和解析用两个或两个以上的空行隔开。
+                <br>
+                正确答案写在题干的小括号内。
+                <br>
+            </p>
+        </header>
+        <main>
+            格式：
+            <textarea>题干题干题干（正确答案，多个正确答案用/分割）
+&lt;空一行&gt;
+&lt;空一行&gt;
+解析：xxxx
+</textarea>
+            示例：
+            <textarea style="width: 500px">在Java Web开发中，不同的客户端需要共享数据，则数据应该存储在三大属性域之一的（application/applicationScope/ServletContext）中。
+
+
+解析：
+    不同的客户端，则具有不同的session对象，那么只能是application域了。
+</textarea>
+        </main>
+    </section>
+    <section id="yesno">
+        <header>
+            <h5>判断题</h5>
+            <p>
+                说明：<br>
+                判断题必须先编写一个正确的描述，然后编写1个或多个错误描述。
+                <br>
+                一个描述一行。
+                <br>
+                空两行后书写解析内容。
+                <br>
+            </p>
+        </header>
+        <main>
+            格式：
+            <textarea>正确描述
+错误描述1
+错误描述2
+....
+
+
+解析：
+解析内容
+</textarea>
+            示例：
+            <textarea style="width: 500px">HttpSession.getAttribute(String)的返回类型是Object
+HttpSession.getAttribute(String)的返回类型是String
+HttpSession.getAttribute(String)的返回类型是&lt;T&gt;
+
+
+解析：
+ HttpSession.getAttribute(String)返回的是Object类型，需要向下转型为需要的类型。
+</textarea>
+
+        </main>
+    </section>
+
+    <section id="essay">
+        <header>
+            <h5>问答题</h5>
+            <p>
+                说明：<br>
+                题干，答案和解析使用两个或两个以上的空行隔开。
+            </p>
+
+        </header>
+        <main>
+            格式：
+            <textarea>题干题干题干题干
+
+
+答案：
+    答案内容
+
+解析：
+    解析内容
+</textarea>
+
+            示例：
+            <textarea style="width: 600px">final、finalize 和 finally 的不同之处？
+
+
+答案：
+    final 是一个修饰符，可以修饰变量、方法和类。如果 final 修饰变量，意味着该变量的值在初始化后不能被改变。
+
+    finalize 方法是在对象被回收之前调用的方法，给对象自己最后一个复活的机会，但是什么时候调用 finalize 没有保证。
+
+    finally 是一个关键字，与 try 和 catch 一起用于异常的处理。finally 块一定会被执行，无论在 try 块中是否有发生异常。
+
+
+解析：
+    略。
+</textarea>
+
+        </main>
+    </section>
+
+
+    <section id="composite">
+        <header>
+            <h5>综合题</h5>
+            <p>
+                说明：<br>
+                题干和小题中使用两个或两个以上的空行隔开。
+                <br>
+                小题之间使用两个或两个以上的空行隔开。
+                <br>
+                每个小题的题干，答案和解析使用两个或两个以上的空行隔开。
+            </p>
+
+        </header>
+        <main>
+
+            格式：
+            <textarea style="height: 700px">题干题干题干题干
+题干题干题干题干
+&lt;空一行&gt;
+&lt;空一行&gt;
+1.小题1题干
+&lt;空一行&gt;
+答案：答案内容
+&lt;空一行&gt;
+    解析：
+    解析内容
+&lt;空一行&gt;
+2.小题2题干
+&lt;空一行&gt;
+    答案：答案内容
+&lt;空一行&gt;
+    解析：
+    解析内容
+&lt;空一行&gt;
+....
+</textarea>
+
+            示例：
+
+            <textarea  style="height: 700px;width: 500px">根据如下代码，回答后面的问题。
+～～～java
+public static void main(String[] args) {
+
+        Thread t = new Thread() {
+
+            public void run() {
+                pong();
+            }
+        };
+
+        t.run();
+        System.out.print("ping");
+
+}
+
+private static void pong() {
+
+    System.out.print("pong");
+
+}
+～～～
+
+
+1.上面的程序运行结果是？
+
+答：pongping
+
+
+解析：
+这里考的是Thread类中start()和run()方法的区别了。
+start()用来启动一个线程，当调用start方法后，系统才会开启一个新的线程，进而调用run()方法来执行任务。
+而单独的调用run()就跟调用普通方法是一样的，已经失去线程的特性了。
+因此在启动一个线程的时候一定要使用start()而不是run()。
+
+
+2.如果把`t.run();`改为`t.start();`,那么程序的运行结果是？
+
+
+答： pingpong和pongping都有可能
+
+
+解析：
+略
+            </textarea>
+        </main>
+    </section>
+
+
+</main>
+
+<script>
+    //readonly all textarea
+    Array.prototype.slice.call(document.getElementsByTagName("textarea")).forEach(function (textarea) {
+        textarea.setAttribute("readonly","readonly");
+
+
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>新增题目</title>
+    <link rel="stylesheet" href="/common.css">
+</head>
+<body class="layout-vbox">
+<header class="action-bar">
+    <a class="fa fa-back" href="../list/view.html"></a>
+    <h1>新增题目</h1>
+</header>
+
+<main class="pad" style="overflow: auto">
+    <form id="addForm">
+        <p>
+            <label>*题型：</label>
+            <select id="questionKindSelect" name="kindId" class="layout-box-grow">
+                <option>加载中...</option>
+            </select>
+        </p>
+        <p>
+            <label>*难度：</label>
+            <input name="difficult"  class="layout-box-grow" value="1"  type="number" min="1" max="9">
+
+        </p>
+        <p class="vertical">
+            <label>
+                &nbsp;&nbsp;*内容：(<a target="frameWindow" href="../instruction/view.html">填写说明</a>)
+            </label>
+            <textarea name="content" rows="15" class="layout-box-grow" placeholder="支持Markdown语法" required></textarea>
+        </p>
+        <p>
+            <button type="submit">确 定</button>
+        </p>
+
+
+
+    </form>
+</main>
+
+<script src="/common.js"></script>
+<script src="controller.js"></script>
+
+</body>
+</html>

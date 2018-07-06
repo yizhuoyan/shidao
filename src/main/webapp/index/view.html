@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>主页</title>
+    <link href="/common.css" rel="stylesheet">
+    <link href="/weblib/fancytree/ui.fancytree.css" rel="stylesheet">
+    <link href="/weblib/fancytree/theme.fancytree-blackwhite.css" rel="stylesheet">
+
+
+    <style>
+        body > header {
+            background-color: #2A3B4C;
+            color: white;
+            padding: 10px 15px;
+        }
+        nav{
+            background-color: #33485C;
+            width: 200px;
+            overflow: auto;
+        }
+
+        .common-links> a {
+            color: #fff;
+        }
+        .user-actions > a {
+            color: #999999;
+            text-decoration: none;
+            margin: 10px;
+        }
+        .user-actions > a:HOVER {
+            color: #fff;
+        }
+
+
+    </style>
+</head>
+<body class="layout-vbox">
+<header>
+    <div class="layout-justify">
+        <h4>
+            <small class="cm">教学系统</small>
+            师道
+        </h4>
+        <span class="layout-middle common-links">
+            <a>公告</a>
+            <a id="logoutBtn">退出</a>
+        </span>
+    </div>
+</header>
+<main class="layout-box-grow layout-hbox">
+    <nav class="layout-vbox">
+        <section class="gap" style="background-color: #2F4355">
+            <div class="layout-hbox">
+                <img class="avator"  width="50" height="50" src="/avator/no-avator.png">
+                <ul class="layout-list small-font" style="color: white;padding-left: 10px">
+                    <li><b id="userNameEL">加载中...</b></li>
+                    <li><small id="userAccountEL">加载中...</small></li>
+                    <li><b>IP:</b><small id="userLoginIpEL">加载中...</small></li>
+                </ul>
+            </div>
+
+            <div class="user-actions">
+                <a href="welcome.html" title="个人中心" class="fa fa-home" target="mainFrame"></a>
+                <a href="#" title="个人中心" class="fa fa-user"></a>
+                <a href="#" title="消息" class="fa fa-envelope-o"></a>
+                <a href="#" title="设置" class="fa fa-cog"></a>
+                <a href="#" title="近期活动" class=" fa fa-calendar"></a>
+            </div>
+        </section>
+        <menu  class="layout-box-grow" id="menuTreeEL" style="overflow: auto">
+
+        </menu>
+    </nav>
+
+    <article class="layout-box-grow layout-full">
+        <iframe id="mainFrame" name="mainFrame" src="/dashboard/view.html"></iframe>
+    </article>
+</main>
+<script src="/common.js"></script>
+<script src="/weblib/fancytree/jquery.fancytree.js"></script>
+<script src="controller.js"></script>
+</body>
+</html>

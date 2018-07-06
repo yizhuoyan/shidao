@@ -1,0 +1,12 @@
+span.fancytree-expander, span.fancytree-title, span.fancytree-custom-icon {
+    color: #ffffff;
+}
+
+span.fancytree-active {
+    background: #ffffff;
+    outline: 1px dotted black;
+}
+
+span.fancytree-active span.fancytree-title, span.fancytree-active span.fancytree-custom-icon {
+    color: #000000;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>用户拥有功能</title>
+    <link rel="stylesheet" href="/common.css">
+    <link href="/weblib/fancytree/ui.fancytree.css" rel="stylesheet">
+
+</head>
+<body class="layout-vbox">
+<header class="pad">
+    <h6>角色【<b id="roleNameEL">加载中...</b>】系统功能分配</h6>
+</header>
+
+<main class="layout-box-grow layout-vbox">
+    <header class="layout-justify pad">
+        <strong>
+            选中的为已分配功能,目前已分配了<b id="totalGrantFunctionalitysEL">加载中...</b>个，你可以修改后提交即可。
+        </strong>
+        <button id="confirmGrantBtn">提交修改</button>
+    </header>
+    <article class="layout-box-grow table pad">
+        <header>
+            <table>
+                <colgroup>
+                    <col width="30px">
+                    <col width="200px">
+                    <col width="150px">
+                    <col width="80px">
+                    <col width="auto">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>@</th>
+                    <th>名称</th>
+                    <th>代号</th>
+                    <th>类型</th>
+                    <th>url</th>
+                </tr>
+                </thead>
+            </table>
+        </header>
+        <main style="overflow:auto;">
+            <table id="functionalityTableTree">
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td style="text-align: left"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </main>
+        <footer>
+
+        </footer>
+    </article>
+</main>
+<script src="/common.js"></script>
+<script src="/weblib/fancytree/jquery.fancytree.js"></script>
+<script src="controller.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>题型管理</title>
+    <link rel="stylesheet" href="/common.css">
+</head>
+<body class="layout-vbox">
+<header class="action-bar">
+    <h1>题型管理</h1>
+    <a href="../add/view.html" class="fa fa-plus">新增</a>
+</header>
+<main class="layout-box-grow table pad">
+    <header>
+        <table>
+            <colgroup>
+                <col width="50px">
+                <col width="50px">
+                <col width="150px">
+                <col width="150px">
+                <col width="auto">
+            </colgroup>
+            <tr>
+                <th>No.</th>
+                <th>操作</th>
+                <th>id</th>
+                <th>名称</th>
+                <th>解析类名</th>
+            </tr>
+        </table>
+    </header>
+    <main>
+        <table class="data">
+            <tbody id="dataQueryingTableBody">
+                <tr>
+                    <td colspan="99">
+                        <i class="fa fa-spinner fa-spin"></i>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody id="dataNotFoundTableBody" style="display: none">
+                <tr>
+                    <td colspan="99">暂无相关记录!</td>
+                </tr>
+            </tbody>
+            <tbody id="dataFoundTableBody">
+            </tbody>
+            <script type="text/template" name="dataFoundTableBodyTemplate(items)">
+                <-for(var i=0,item;i < items.length;i++){item=items[i];->
+
+                <tr>
+                    <td>$(i+1)</td>
+                    <td>
+                        <a href="../check/view.html?$(item.id)">操作</a>
+                    </td>
+                    <td>$(item.id)</td>
+                    <td>$(item.name)</td>
+                    <td  class="left">$(item.parserClassName)</td>
+                </tr>
+                <-}->
+            </script>
+        </table>
+    </main>
+    <footer id="pageInfoSection"  style="display: none">
+        共找到 <b id="totalRowsEL">0</b>条记录
+    </footer>
+</main>
+<script src="/common.js"></script>
+<script src="controller.js"></script>
+
+</body>
+</html>

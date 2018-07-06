@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>用户详情</title>
+    <link rel="stylesheet" href="/common.css">
+
+</head>
+<body class="layout-vbox">
+<header class="action-bar">
+    <a class="fa fa-back" href="../list/view.html"></a>
+    <h1>【<b id="headingUserNameEL">加载中...</b>】查看/操作</h1>
+    <a id="resetPasswordBtn" class="fa fa-key" >重置密码</a>
+    <a id="glanceOwnFunctionalityBtn" class="fa fa-remove" >拥有功能一览</a>
+    <a id="deleteUserBtn" class="fa fa-remove" >删除</a>
+</header>
+<main class="layout-box-grow  layout-tab">
+    <div class="tabs">
+        <a class="active" href="#card-detail">基础信息</a>
+        <a href="#card-roles">已授角色</a>
+    </div>
+    <section class="tabs-cards">
+        <article id="card-detail" class="tab-card">
+            <form class="pad label6em" id="modForm" >
+                <input type="hidden" name="id">
+                <p>
+                    <label>头像:</label>
+                    <img id="avatorEL" width="50px" height="50px" title="点击查看大图" src="/avator/no-avator.png">
+                    <em>点击查看大图</em>
+                </p>
+                <p>
+                    <label>账号:</label>
+                    <b id="userAccountEL">加载中...</b>
+                </p>
+                <p>
+                    <label>名字:</label>
+                    <b id="userNameEL">加载中...</b>
+                </p>
+                <p>
+                    <label>*状态:</label>
+                    <span>
+                 <label>
+                    <input name="status" type="radio" value="1">正常
+                 </label>
+                      <label>
+                        <input name="status" type="radio" value="0">锁定（<em>锁定账户不可登陆</em>）
+                      </label>
+                            <label>
+                        <input name="status" type="radio" value="9">停用（<em>停用账户不可使用</em>）
+                      </label>
+              </span>
+                </p>
+                <p>
+                    <label>最近登陆:</label>
+                    <b id="userLastLoginTimeEL">加载中...</b>
+                </p>
+                <p>
+                    <label>最近修改密码:</label>
+                    <b id="userLastModPasswordTimeEL">加载中...</b>
+                </p>
+                <p>
+                    <label>创建时间:</label>
+                    <b id="userCreateTimeEL">加载中...</b>
+                </p>
+                <p>
+                    <label>备注:</label>
+                    <textarea class="layout-box-grow" rows="4" name="remark"></textarea>
+                    <em>不能超过128个字符</em>
+                </p>
+                <p class="form-action">
+                    <button type="submit">提交修改</button>
+                    <button type="reset"> 重 置</button>
+                </p>
+
+            </form>
+        </article>
+
+        <iframe id="card-roles" class="tab-card "
+                data-src="../check-granted-role/view.html"></iframe>
+    </section>
+</main>
+<script src="/common.js"></script>
+<script src="controller.js"></script>
+
+</body>
+</html>

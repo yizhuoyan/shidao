@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>系统功能选择器-单选</title>
+    <link rel="stylesheet" href="/common.css">
+    <link href="/weblib/fancytree/ui.fancytree.css" rel="stylesheet">
+
+    <style type="text/css">
+        .selected-list{
+            min-height: 2em;
+            padding:0;
+            margin:0;
+        }
+        .selected-list  li {
+            position: relative;
+            border: 1px solid #999;
+            display: inline-block;
+            margin-right: 1em;
+            padding: 0px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            background: hsl(103, 30%, 50%);
+            color: #fff;
+        }
+
+        .selected-list  li:hover {
+            background: hsl(103, 30%, 30%);
+        }
+    </style>
+</head>
+<body class="layout-vbox">
+<header class="layout-justify">
+    <aside>
+        <h5>父功能选择器</h5>
+    </aside>
+    <aside>
+        <button id="confirmPickBtn">确定选择</button>
+    </aside>
+</header>
+<main class="layout-vbox">
+    <section class="padv">
+        <fieldset class="pad">
+            <legend>已选择
+                <small>(点击项目可以取消)</small>
+            </legend>
+            <ul class="selected-list" id="currentSelectedList">
+
+            </ul>
+        </fieldset>
+    </section>
+    <article class="table">
+        <header>
+            <table>
+                <colgroup>
+                    <col width="30px">
+                    <col width="200px">
+                    <col width="150px">
+                    <col width="80px">
+                    <col width="auto">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>@</th>
+                    <th>名称</th>
+                    <th>代号</th>
+                    <th>类型</th>
+                    <th>url</th>
+                </tr>
+                </thead>
+            </table>
+        </header>
+        <main style="overflow:auto;">
+            <table id="functionalityTableTree">
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </main>
+        <footer>
+
+        </footer>
+    </article>
+</main>
+<script src="/common.js"></script>
+<script src="/weblib/fancytree/jquery.fancytree.js"></script>
+<script src="controller.js"></script>
+</body>
+</html>

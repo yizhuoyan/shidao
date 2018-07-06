@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>系统用户管理</title>
+    <link rel="stylesheet" href="/common.css">
+
+</head>
+<body class="layout-vbox">
+<header class="action-bar">
+    <h1>系统用户管理</h1>
+    <a class="fa fa-plus" href="../add/view.html">新增</a>
+    <span class="layout-box-grow"></span>
+    <form id="queryForm">
+        <input name="pageNo" type="hidden" value="1">
+        <span class="input-group">
+            <input name="key" type="text" placeholder="Search for..."
+                   maxlength="16">
+            <button type="submit" class="fa fa-search"></button>
+        </span>
+    </form>
+</header>
+<main class="layout-box-grow table pad">
+    <header>
+        <table>
+            <colgroup>
+                <col width="50px">
+                <col width="100px">
+                <col width="150px">
+                <col width="auto">
+                <col width="100px">
+                <col width="200px">
+                <col width="200px">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>操作</th>
+                <th>账号</th>
+                <th>姓名</th>
+                <th>状态</th>
+                <th>最近登录时间</th>
+            </tr>
+            </thead>
+        </table>
+    </header>
+    <main>
+        <table class="data">
+            <tbody id="dataQueryingTableBody">
+            <tr>
+                <td colspan="99">
+                    <i class="fa fa-spinner fa-spin"></i>
+                </td>
+            </tr>
+            </tbody>
+            <tbody id="dataNotFoundTableBody" style="display: none">
+            <tr>
+                <td colspan="99">暂无相关记录!</td>
+            </tr>
+            </tbody>
+            <tbody id="dataFoundTableBody">
+                <script type="text/template" name="dataFoundTableTemplate(rows)">
+                    <-for(var i=0,r;i< rows.length;i++){r=rows[i];->
+                         <tr>
+                            <td>$(i+1)</td>
+                            <td>
+                                <a href="../check/view.html?$(r.id)">查看/操作</a>
+                            </td>
+                            <td>$(r.account)</td>
+                            <td>$(r.name)</td>
+                            <td>$(r.status===1?"正常":"停用")</td>
+                            <td>$(Date.format(r.lastLoginTime))</td>
+                        </tr>
+                     <-}->
+                </script>
+            </tbody>
+        </table>
+    </main>
+    <footer id="paginationRegionEL" class="layout-justify" style="display: none">
+        <span>
+            <strong class="tips">
+                共找到 <b id="totalRowsEL">0</b>条记录
+                每页<b id="pageSizeEL">0</b>条,
+                共<b id="totalPagesEL">0</b>页
+            </strong>
+        </span>
+        <span id="paginationButtonsEL" class="pagination-group">
+                <button id="firstPageBtn" disabled>&lt;&lt;</button>
+                <button id="previousPageBtn" disabled>&lt;</button>
+                <b id="pageNoEL">0</b>
+                <button id="nextPageBtn" disabled>&gt;</button>
+                <button id="lastPageBtn" disabled>&gt;&gt;</button>
+        </span>
+    </footer>
+</main>
+<script src="/common.js"></script>
+<script src="controller.js"></script>
+
+</body>
+</html>

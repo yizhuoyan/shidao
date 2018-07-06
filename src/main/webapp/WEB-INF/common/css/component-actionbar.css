@@ -1,0 +1,41 @@
+.action-bar {
+    background: hsl(0, 100%, 95%);
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding: 0px 10px;
+    min-height: 50px;
+    border-bottom: 1px solid #999999;
+}
+
+.action-bar > * {
+    flex: 0 1 auto;
+}
+
+.action-bar > a.fa-back {
+    text-decoration: none;
+}
+
+.action-bar > a.fa-back:hover {
+    color: #c42818;
+}
+
+.action-bar > a.fa-back:after {
+    content: "|";
+    padding: 0 10px;
+    color: #999999;
+}
+
+.action-bar > .grow {
+    flex: 1 1 auto;
+}
+
+.action-bar > h1 {
+    font-size: 120%;
+    padding-right: 10px;
+    display: inline-block;
+}
+
+

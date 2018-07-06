@@ -1,0 +1,69 @@
+input[type="text"],
+input[type="password"],
+input[type="file"],
+input[type="number"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+select,
+textarea {
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    padding-left: .5em;
+    line-height: normal;
+    min-height: 40px;
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei";
+}
+input:focus, textarea:focus,select:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+input:hover, textarea:hover,select:hover {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 133, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 133, .6);
+}
+
+input[readonly], textarea[readonly],select[readonly]{
+    background: #eeeeee;
+    color: #000;
+}
+
+input[readonly]:AFTER, textarea[readonly] {
+    content: "\ufb17";
+}
+
+textarea {
+    padding-right: .5em;
+    text-indent: 0;
+    vertical-align: top;
+}
+
+/************多行文本<*****************/
+/*********单选复选*************/
+input[type="radio"],
+input[type="checkbox"] {
+    margin: 4px 0 0;
+    margin-top: 1px \9;
+    line-height: normal;
+}
+
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}

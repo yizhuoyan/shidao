@@ -1,0 +1,71 @@
+button, a.btn {
+    border: 1px solid #204d74;
+    border-radius: 4px;
+
+    background: #286090 none;
+    color: #eeeeff;
+    cursor: pointer;
+
+    font-size: 14px;
+    font-family: sans-serif, "宋体";
+    font-weight: bold;
+    line-height: normal;
+
+    overflow: hidden;
+    box-sizing: border-box;
+    min-width: 80px;
+    min-height: 40px;
+}
+
+button:HOVER, a.btn:HOVER {
+    color: #ffffff;
+    background-color: #df2e1b;
+    border-color: #c42818;
+}
+
+button:ACTIVE, a.btn:ACTIVE {
+    color: #ffffff;
+    background-color: #2f2f2f;
+    border-bottom-color: #eee;
+    border-right-color: #eee;
+}
+
+button[disabled], a[disabled].btn {
+    cursor: wait;
+    color: #eeeeff;
+    background-color: gray;
+    border-color: #204d74;
+}
+
+button.big {
+
+}
+
+a.btn {
+    text-decoration: none;
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+}
+
+/**两个按钮有距离*/
+button + button,
+button + a,
+a + button,
+a + a {
+    margin-left: 2em;
+}
+
+button.D3, a.btn.D3 {
+    background-color: #DB5705;
+    border-radius: 8px;
+    box-shadow: 0px 9px 0px rgba(219, 31, 5, 1), 0px 9px 25px rgba(0, 0, 0, .7);
+    transition: all .1s ease;
+}
+
+.D3:HOVER {
+    background-color: #D56f0B;
+}
+
+

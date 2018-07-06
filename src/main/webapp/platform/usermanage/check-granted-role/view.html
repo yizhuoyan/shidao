@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>所属角色</title>
+    <link rel="stylesheet" href="/common.css">
+
+
+    <style>
+        .role-view {
+            border: 1px solid #999;
+            border-radius: 4px;
+            float: left;
+            margin-left: 1em;
+            margin-bottom: 1em;
+            padding: 5px;
+        }
+
+        .role-view p {
+            margin: 0;
+            text-indent: 2em;
+            color: #999;
+            width: 150px;
+            height: 80px;
+        }
+
+        .grant-button {
+            border-radius: 0;
+            width: 150px;
+            height: 80px;
+        }
+
+    </style>
+</head>
+<body class="layout-vbox">
+<header class="pad layout-justify">
+    <span>
+        共授予<b id="userTotalGrantRoleEL">加载中...</b>个角色给用户【<b id="userNameEL">加载中...</b>】
+        <br>
+        注：角色按授权时间先后排列
+    </span>
+    <span>
+        <button id="modifyGrantedBtn">修改授权</button>
+    </span>
+</header>
+<main id="grantedRoleBox" class="layout-box-grow">
+    <script type="text/template" id="grantedRolesTemplate(roles)">
+        <-for(var i=0,z=roles.length,r;i < z;i++){r=roles[i];->
+        <fieldset class="role-view">
+            <legend>
+                $(r.name)
+            </legend>
+            <p>$(r.remark)</p>
+        </fieldset>
+        <-}->
+    </script>
+</main>
+    <script src="/common.js"></script>
+    <script src="controller.js"></script>
+</body>
+</html>

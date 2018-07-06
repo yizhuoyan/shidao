@@ -1,0 +1,24 @@
+.layout-hbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+.layout-hbox-wrap {
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.layout-hbox > * {
+    flex: 0 0 auto;
+}
+
+.layout-hbox > .layout-box-grow {
+    flex: 1 1 auto;
+}
+
+

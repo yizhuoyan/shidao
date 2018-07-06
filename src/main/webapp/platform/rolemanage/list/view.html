@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>系统角色管理</title>
+    <link rel="stylesheet" href="/common.css">
+</head>
+<body class="layout-vbox">
+<header class="action-bar">
+    <h1>系统角色管理</h1>
+    <a href="../add/view.html" class="fa fa-plus">新增</a>
+    <span class="layout-box-grow"></span>
+    <form id="qryForm">
+                <span class="input-group">
+                        <input type="text" name="key" placeholder="Search for..." maxlength="16">
+                        <button class="fa fa-search" type="submit"></button>
+                </span>
+    </form>
+</header>
+<main class="layout-box-grow table pad">
+    <header>
+        <table>
+            <colgroup>
+                <col width="50px">
+                <col width="100px">
+                <col width="200px">
+                <col width="200px">
+                <col width="auto">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>操作</th>
+                <th>代号</th>
+                <th>名称</th>
+                <th>描述</th>
+            </tr>
+            </thead>
+        </table>
+    </header>
+    <main>
+        <table>
+            <tbody id="dataQueryingTableBody">
+            <tr>
+                <td colspan="99">
+                    <i class="fa fa-spinner fa-spin"></i>
+                </td>
+            </tr>
+            </tbody>
+            <tbody id="dataNotFoundTableBody" style="display: none">
+            <tr>
+                <td colspan="99">暂无相关记录!</td>
+            </tr>
+            <tbody>
+            <tbody id="dataFoundTableBody">
+            <script type="text/template" name="dataFoundTableBodyTemplate(items)">
+                <-for(var i=0,z=items.length,item;i<z;i++){item=items[i];->
+                <tr>
+                    <td>$(i+1)</td>
+                    <td>
+                        <a href="../check/view.html?$(item.id)">查看/操作</a>
+                    </td>
+                    <td>$(item.code)</td>
+                    <td>$(item.name)</td>
+                    <td>$(item.remark)</td>
+                </tr>
+                <-}->
+            </script>
+            <tbody>
+
+        </table>
+
+    </main>
+    <footer>
+        <!-- 页码区 -->
+        <div id="pageInfoSection" class="group-view" data-group="foundData.pageInfo" style="display: none">
+            <strong class="tips">共找到 <b id="totalRowsEL"></b> 条记录
+            </strong>
+        </div>
+    </footer>
+</main>
+<script src="/common.js"></script>
+<script src="controller.js"></script>
+</body>
+</html>
