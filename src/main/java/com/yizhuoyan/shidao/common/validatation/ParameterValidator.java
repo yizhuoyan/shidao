@@ -30,7 +30,6 @@ public class ParameterValidator extends ParameterObjectValidator {
          }
          code.setCharAt(code.length()-1,')');
      }
-
      if(errors!=null){
         errors.add(code.toString());
      }else{

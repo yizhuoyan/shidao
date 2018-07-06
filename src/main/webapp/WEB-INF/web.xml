@@ -20,7 +20,6 @@
             <file-size-threshold>0</file-size-threshold>
         </multipart-config>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>通用小文件上传</servlet-name>
         <url-pattern>/common/upload</url-pattern>
@@ -42,7 +41,6 @@
         <servlet-name>dispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

@@ -13,7 +13,7 @@ import java.util.stream.Stream;
  */
 public class KeyValueMap implements Map<String, Object> {
 
-    private class KeyValue implements Entry<String,Object>{
+    private class KeyValue implements Map.Entry<String,Object>{
         private final String key;
         private final  Object value;
 
